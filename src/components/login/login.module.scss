@@ -1,0 +1,133 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+.logo{
+    
+    h3{
+        letter-spacing: 0.4px;
+        font-size: 43px;
+        font-weight: 900;
+        
+    }
+}
+
+h1{
+    margin-top: 103px;
+}
+
+.headline{
+  h1{
+    font-size: 60px;
+    letter-spacing: 0.4px;
+    margin-bottom: 10px;
+    font-weight: 900;
+    span{
+        color: #38E842;
+        font-weight: 900;
+        letter-spacing: 0.4px;
+        font-size: 60px;
+    }
+    }
+}
+    
+
+
+.container {
+    background-color: #f2f2f2;
+    border-radius: 10px; 
+    border: 1px solid #ccc; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+    display: flex;
+    flex-direction: row;   
+    height: 100vh;
+}
+
+.loginContainer{
+    width: 60%;
+    margin: 60px 0 0 80px;
+    
+}
+.imgContainer{
+    background-color: #3DFF49;
+    width: 40%;
+    min-height: 90vh;
+    position: relative;
+}
+.microText{
+    position: absolute;
+    top: 0;
+    
+}
+.microImg{
+        mix-blend-mode: multiply;
+        width: 100%;
+         min-height: 90vh;
+
+    }
+.accountСreation{
+    display: flex;
+    p{
+        margin-top: 4px;
+        font-weight: 300;
+        opacity: 0.5;
+        letter-spacing: 1.6px;
+    }
+    h3{
+        margin-left: 12px;
+    }
+    img{
+        margin-top: -13px;
+        width: 36px;
+        margin-left: 15px;
+        
+    }
+}
+
+.formContainer{
+    margin-top: 60px;
+    div{
+        position: relative;
+    }
+}
+
+input[type="email" ] {
+    width:40%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 13px;
+    box-sizing: border-box;
+    font-size: 16px;
+    letter-spacing: 0.4px;
+
+    }
+
+    input[type="password" ] {
+        width:40%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 13px;
+        box-sizing: border-box;
+        font-size: 16px;
+        letter-spacing: 0.4px;
+    }
+    .labelForPass{
+        letter-spacing: 0.4px;
+        position: absolute;
+        font-size: 16px;
+        left: 20px;
+        top: -10px;
+    }
+
+   
+
+
