@@ -73,7 +73,7 @@ export default function Login() {
             </span>
             <img className={styles.smile} src={smile} alt="Smile" />
           </div>
-          <form action="Submit" onSubmit={handleSubmit}>
+          <form className={styles.form} action="Submit" onSubmit={handleSubmit}>
             <div className={styles.email}>
               <label className={styles.loginLabel} htmlFor="email">
                 E-mail*

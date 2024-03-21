@@ -19,6 +19,10 @@ export default function CreateAccount() {
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
 
+  function sendInformation(e) {
+    e.preventDefault();
+  }
+
   const togglePasswordVisibility1 = () => {
     setShowPassword1(!showPassword1);
   };
@@ -86,9 +90,9 @@ export default function CreateAccount() {
               </h1>
               <div className={style.accountAlready}>
                 <p>Already have an account?</p>
-                <h3>
-                  <Link to="/">Login</Link>
-                </h3>
+                <Link to="/" className={style.loginButton}>
+                  Login here
+                </Link>
                 <img src={img} alt="smile" loading="lazy" />
               </div>
             </div>
@@ -96,7 +100,7 @@ export default function CreateAccount() {
             {/* Form section */}
 
             <div>
-              <form className={style.formContainer}>
+              <form className={style.formContainer} onSubmit={sendInformation}>
                 <div className={style.nameSurname}>
                   <div className={style.input}>
                     <label className={style.label} htmlFor="Name">
@@ -164,30 +168,30 @@ export default function CreateAccount() {
                     </div>
                   </div>
                 </div>
+                <div className={style.characters}>
+                  <div>
+                    <img src={checkGreenIcon} alt="Green Icon" />
+                    <p>Upper and lower case letters</p>
+                  </div>
+                  <div>
+                    <img src={checkCrossIcon} alt="Cross Icon" />
+                    <p>
+                      At least one number and one character (@!$%& symbols
+                      allowed)
+                    </p>
+                  </div>
+                  <div>
+                    <img src={checkGrayIcon} alt="Gray Icon" />
+                    <p>Between 8 and 72 characters</p>
+                  </div>
+                </div>
+                <div className={style.buttonElement}>
+                  <button type="submit">
+                    <p>Let’s go</p>
+                    <img src={arrowRightBlack} alt="" />
+                  </button>
+                </div>
               </form>
-              <div className={style.characters}>
-                <div>
-                  <img src={checkGreenIcon} alt="Green Icon" />
-                  <p>Upper and lower case letters</p>
-                </div>
-                <div>
-                  <img src={checkCrossIcon} alt="Cross Icon" />
-                  <p>
-                    At least one number and one character (@!$%& symbols
-                    allowed)
-                  </p>
-                </div>
-                <div>
-                  <img src={checkGrayIcon} alt="Gray Icon" />
-                  <p>Between 8 and 72 characters</p>
-                </div>
-              </div>
-            </div>
-            <div className={style.buttonElement}>
-              <button onClick={toggleActivation}>
-                <p>Let’s go</p>
-                <img src={arrowRightBlack} alt="" />
-              </button>
             </div>
           </div>
         )}

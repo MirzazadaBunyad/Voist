@@ -3,9 +3,9 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import CreateAccount from "./components/createAccaunt/CreateAccount";
 import Login from "./components/login/Login";
 import Forgotpassword from "./components/forgotPassword/Forgotpassword";
+import CreateAccount from "./components/createAccount/CreateAccount";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
