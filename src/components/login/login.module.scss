@@ -9,8 +9,11 @@
   font-family: "Poppins", sans-serif;
 }
 .logo {
-  transform: translate(130px, 50px);
-  width: min-content;
+  width: 91px;
+  height: 26px;
+  position: relative;
+  top: 56px;
+  left: 130px;
 }
 
 .container {
@@ -18,9 +21,12 @@
   width: 100%;
 }
 .info__main {
-  width: 60%;
-  height: 100%;
-  margin: 50px 0 0 140px;
+    width: 60%;
+  height: 470px;
+  position: relative;  
+  top: 165px;
+  left: 130px;
+  gap: 32px;
 }
 .right__banner {
   width: 40%;
@@ -82,6 +88,8 @@
   display: flex;
 }
 .headLine {
+  width: 413px;
+  height: 88px;
   font-size: 40px;
   font-weight: 900;
   font-family: Raleway;
@@ -91,9 +99,10 @@
 
   span {
     color: #38e842;
-    font-weight: 1000;
+    font-weight: 900;
     letter-spacing: 0.4px;
     font-size: 40px;
+    line-height: 44px;
   }
 }
 .accountСreation {

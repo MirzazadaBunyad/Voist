@@ -63,15 +63,17 @@ export default function Login() {
 
       <section className={styles.container}>
         <main className={styles.info__main}>
-          <h1 className={styles.headLine}>
-            Hey there,<span>welcome</span> <br /> to voist!
-          </h1>
-          <div className={styles.accountСreation}>
-            <p>Don't you have an account?</p>
-            <span>
-              <Link to="/createaccount">Create account</Link>
-            </span>
-            <img className={styles.smile} src={smile} alt="Smile" />
+          <div className={styles.login__header}>
+            <h1 className={styles.headLine}>
+              Hey there,<span>welcome</span> <br /> to voist!
+            </h1>
+            <div className={styles.accountСreation}>
+              <p>Don't you have an account?</p>
+              <span>
+                <Link to="/createaccount">Create account</Link>
+              </span>
+              <img className={styles.smile} src={smile} alt="Smile" />
+            </div>
           </div>
           <form className={styles.form} action="Submit" onSubmit={handleSubmit}>
             <div className={styles.email}>
@@ -141,7 +143,7 @@ export default function Login() {
             </div>
           </form>
 
-          <footer>
+          <footer className={styles.loginFooter}>
             <Footer />
           </footer>
         </main>
