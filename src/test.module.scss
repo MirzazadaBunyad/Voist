@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+
+}
+
+.container{
+    display: flex;
+    justify-content: space-between;
+}
+.logo {
+    width: 91px;
+    height: 26px;
+    position: relative;
+    top: 56px;
+    left: 130px;
+  }
+  

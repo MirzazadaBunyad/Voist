@@ -1,0 +1,57 @@
+/* animation.scss */
+
+.login-enter {
+    opacity: 0;
+    transform: translateX(0px);
+
+  }
+  
+  .login-enter-active {
+    opacity: 1;
+    transform: translateX(200px);
+    transition: opacity 0.5s ease-in-out, transform 2s ease-in-out;
+  }
+  
+  .login-exit {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .login-exit-active {
+    opacity: 0;
+    transform: translateX(-300px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  }
+  
+
+  .CreateAccount-enter {
+    opacity: 0;
+    transform: translateX(0px); 
+    transition: opacity 1s ease-in-out, transform 5s linear;
+    position: absolute;
+    top: 0px;
+
+}
+
+.CreateAccount-enter-active {
+    opacity: 1;
+    transform: translateX(100px); 
+    transition: opacity 1s ease-in-out, transform 5s linear;
+    position: absolute;
+    top: 0;
+}
+
+.CreateAccount-exit {
+    opacity: 1;
+    transform: translateX(-100px); 
+    transition: opacity 1s ease-in-out, transform 5s linear;
+
+    position: absolute;
+    top: 50px;
+  }
+  
+  .CreateAccount-exit-active {
+    opacity: 0;
+    transform: translateX(-700px); 
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  }

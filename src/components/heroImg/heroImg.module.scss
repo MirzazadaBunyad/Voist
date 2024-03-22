@@ -1,0 +1,54 @@
+.right__banner {
+    width: 40%;
+    height: 99vh;
+    background-color: #3dff49;
+    position: relative;
+  }
+  .rightBannerText {
+    position: absolute;
+    bottom: 50px;
+    left: 100px;
+    gap: 10px;
+  
+    h2 {
+      /* Applying font family, weight, size, line height, and letter spacing */
+      font-family: "Raleway", sans-serif; /* Font family */
+      font-weight: 900; /* Font weight */
+      font-size: 56px; /* Font size */
+      line-height: 55px; /* Line height */
+      letter-spacing: 0.4px; /* Letter spacing */
+      color: #ffffff;
+      width: 417px;
+      height: 110px;
+    }
+    button {
+      margin: 70px 0 0 0;
+      width: 147px;
+      height: 44px;
+      border-radius: 8px;
+      border: 2px solid;
+      padding: 15px -15px;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 24px;
+      letter-spacing: 0.4px;
+      font-family: Raleway;
+      cursor: pointer;
+      background-color: transparent;
+  
+      img {
+        width: 24px;
+        height: 24px;
+        margin: 0 0 0 5px;
+        transform: translate(0px, 5px);
+      }
+    }
+  }
+  .rightImg {
+    width: 100%;
+    mix-blend-mode: multiply;
+    background-size: cover;
+    height: 99vh;
+  }
+  

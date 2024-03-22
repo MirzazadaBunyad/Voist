@@ -3,8 +3,10 @@ footer {
   justify-content: space-between;
   align-items: center;
   width: 500px;
-  margin: 55px 0 15px 0;
   gap: 10px;
+  position: absolute;
+  bottom: 3vh;
+  left: 150px;
   p:nth-child(1) {
     color: var(--Base-base-8, #6c756f);
     font-family: Inter;
