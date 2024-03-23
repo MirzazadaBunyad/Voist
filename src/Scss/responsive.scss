@@ -1,0 +1,11 @@
+  @mixin responsive769to1057 {
+    @media screen and (min-width: 769px) and (max-width: 1057px) {
+      @content;
+    }
+  }
+  
+  @mixin  responsive1058 {
+    @media screen and (min-width: 1058px) {
+      @content;
+    }
+  }

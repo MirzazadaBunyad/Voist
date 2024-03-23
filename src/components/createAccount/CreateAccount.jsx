@@ -11,7 +11,6 @@ import arrowRightBlack from "../../assets/img/arrowRightBlack.svg";
 import arrowRightWhite from "../../assets/img/arrowRightWhite.svg";
 import passwordEye from "../../assets/img/passwordEye.svg";
 import checkWhiteIcon from "../../assets/img/checkWhiteIcon.svg";
-import Footer from "../footer/Footer";
 import { useState } from "react";
 
 export default function CreateAccount({ ChangeComponents, show }) {

@@ -1,9 +1,8 @@
 .right__banner {
     width: 100%;
-    height: 99vh;
+    height: 99.62vh;
     background-color: #3dff49;
     position: relative;
-    left: 512px;
   }
   .rightBannerText {
     position: absolute;
@@ -12,9 +11,8 @@
     gap: 10px;
   
     h2 {
-      /* Applying font family, weight, size, line height, and letter spacing */
-      font-family: "Raleway", sans-serif; /* Font family */
-      font-weight: 900; /* Font weight */
+      font-family: "Raleway", sans-serif; 
+      font-weight: 900; 
       font-size: 56px; /* Font size */
       line-height: 55px; /* Line height */
       letter-spacing: 0.4px; /* Letter spacing */
@@ -50,6 +48,6 @@
     width: 100%;
     mix-blend-mode: multiply;
     background-size: cover;
-    height: 99vh;
+    height: 100%;
   }
   

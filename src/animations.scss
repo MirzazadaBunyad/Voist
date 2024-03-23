@@ -3,14 +3,12 @@
 .login-enter {
     opacity: 0;
     transform: translateX(-20px);
-    position: absolute;
   }
   
   .login-enter-active {
     opacity: 1;
     transform: translateX(20px);
     transition: opacity 1s linear, transform 1s linear ;
-    position: absolute;
     
   }
   
@@ -37,15 +35,15 @@
     opacity: 1;
     transform: translateX(31px); 
     transition: opacity 1s ease, transform 1s linear ;
-    position: absolute;
-    top: 26px;
+    top: 138px;
 }
 
 .CreateAccount-exit {
     opacity: 1;
     transform: translateX(0); 
     position: absolute;
-    top: 60px;
+    top: 138px;
+    
   }
   
   .CreateAccount-exit-active {
@@ -53,11 +51,5 @@
     transform: translateX(-200px); 
     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
   }
+
  
-  .active{
-    color: var(--Main-main-300, #7dff85);
-    border-bottom: 2px solid var(--Main-main-300, #7dff85);
-    padding-bottom: 5px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-  }
