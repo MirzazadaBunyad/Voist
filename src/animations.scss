@@ -53,3 +53,11 @@
     transform: translateX(-200px); 
     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
   }
+ 
+  .active{
+    color: var(--Main-main-300, #7dff85);
+    border-bottom: 2px solid var(--Main-main-300, #7dff85);
+    padding-bottom: 5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
