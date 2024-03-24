@@ -6,7 +6,7 @@ import ayeOpen from "../../assets/img/passwordEye.svg";
 import arrowRightBlack from "../../assets/img/arrowRightBlack.svg";
 import { useState } from "react";
 
-export default function Login({ show, ChangeComponents }) {
+export default function Login({ openForgetPassword, ChangeComponents }) {
   const [showPassword, setShowPassword] = useState(false);
 
   function handleShowPassword() {
@@ -19,6 +19,9 @@ export default function Login({ show, ChangeComponents }) {
   function handleSubmit(e) {
     e.preventDefault();
   }
+  const handleChangeForgetPasword = () => {
+    openForgetPassword();
+  };
   return (
     <section className={styles.container}>
       <main className={styles.info__main}>
@@ -84,7 +87,10 @@ export default function Login({ show, ChangeComponents }) {
             </div>
 
             <div>
-              <button className={styles.forgotPassword}>
+              <button
+                onClick={handleChangeForgetPasword}
+                className={styles.forgotPassword}
+              >
                 Forgot password?
               </button>
             </div>
@@ -98,8 +104,6 @@ export default function Login({ show, ChangeComponents }) {
           </div>
         </form>
       </main>
-
-      {/* RIGHT IMAGE */}
     </section>
   );
 }

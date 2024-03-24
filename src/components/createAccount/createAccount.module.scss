@@ -14,13 +14,13 @@
 }
 
 .loginContainer {
-  margin: 0 0 0 130px;
+  margin: -20px 0 0 130px;
   .main {
     display: flex;
     width: 500px;
     flex-direction: column;
     align-items: flex-start;
-    gap: 20px;
+    gap: 10px;
     .characters {
       display: flex;
       flex-direction: column;
@@ -56,7 +56,7 @@
       }
     }
     .buttonElement {
-      margin-top: 32px;
+      margin-top: 22px;
       button {
         display: flex;
         padding: 16px 24px;
@@ -94,7 +94,7 @@
     justify-content: center;
     align-items: center;
     margin: 200px 100px;
-     gap: 24px;
+     gap: 4px;
     .checkIcon {
       background-color: #2bb534;
       border-radius: 44.5px;
@@ -156,7 +156,7 @@
         padding: 2px 8px;
         justify-content: center;
         align-items: center;
-        gap: 10px;
+        gap: 4px;
         border-radius: 8px;
         background: transparent;
         border: none;
@@ -198,7 +198,7 @@
     display: inline-flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 40px;
+    gap: 20px;
     h2 {
       color: Natural-natural-1, #fff;
       font-family: Raleway;
@@ -238,6 +238,7 @@
 .accountСreation {
   display: flex;
   align-items: center;
+  flex-direction: column;
   h1 {
     margin-bottom: 10px;
     color: #1d2b21;
@@ -323,7 +324,7 @@
         display: flex;
         padding: 16px 40px 16px 24px;
         align-items: center;
-        gap: 10px;
+        gap: 4px;
         align-self: stretch;
         border-radius: 12px;
         border: 1px solid var(--Base-base-5, #dddfde);
@@ -346,7 +347,7 @@
   .inputEmail {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap:0px;
     position: relative;
     width: 100%;
     .label {

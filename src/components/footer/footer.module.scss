@@ -1,11 +1,13 @@
 @import "../../Scss//responsive.scss";
 
 
-footer {
+.footer {
+  width: 100%;
   display: block;
   align-items: center;
   margin-left: 120px;
-  margin-top: 90px;
+  margin-right: 120px;
+  margin-top:20px;
   @include responsive769to1057 {
     margin-left: 50px;
   }

@@ -17,15 +17,25 @@
     margin: 56px 130px;
     width: 91px;
     height: 26px;
-    z-index: 1;
+    position: relative;
+    z-index: 312231;
+
     @include responsive769to1057 {
         margin:36px 50px
     }
    
+   
+}
+.forgetPasswordContainer{
+    position: absolute;
+    right: 0;
+    background-color: red;
 }
 
 .right__side{
 width: 40%;
+display: flex;
+justify-content: space-between;
 }
 .left__side{
 width: 60%;

@@ -143,12 +143,12 @@ function Test2() {
           <HeroImg />
         </div>
       </div>
-      <div className="active" style={{ display: "none" }}>
+      {/* <div className="active" style={{ display: "none" }}>
         <div>
           <h1>dsaasd</h1>
           <input type="text" />
         </div>
-      </div>
+      </div> */}
     </section>
   );
 }

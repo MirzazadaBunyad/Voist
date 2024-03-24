@@ -1,17 +1,57 @@
 import { useEffect, useState } from "react";
 import Footer from "./components/footer/Footer";
 import HeroImg from "./components/heroImg/HeroImg";
-import style from "./test.module.scss";
+import styles from "./test.module.scss";
 import gsap from "gsap";
 import Login from "./components/login/login";
 import CreateAccount from "./components/createAccount/CreateAccount";
 import { CSSTransition } from "react-transition-group";
 import "./animations.scss";
-function Test(params) {
+import ForgotPassword from "./components/forgotPassword/Forgotpassword";
+function Test() {
   /* login ile Create Accountu deyismek ucun */
   const [show, setShow] = useState(true);
   /* jsap kitabxanasi ucun (animasiyalar) */
   const [tl, setTl] = useState(false);
+  /* ekran sagdadn sola gedende qabag Forget passwordu Display none edir  */
+  const [forgetPasswordVisible, setForgetPasswordVisible] = useState(false);
+  const openForgetPassword = () => {
+    if (tl) {
+      tl.to(".footer", { xPercent: 50, duration: 0.5, textAlign: "center" })
+        .to(".formContainer", { opacity: 0, duration: 0.3 }, "<")
+        .to(
+          ".heroImg",
+          { xPercent: -150, duration: 0.5, yoyo: true, zIndex: 1 },
+          "<"
+        )
+        .to(
+          ".logo",
+          {
+            filter:
+              "invert(100%) hue-rotate(0deg) brightness(200%) contrast(100%)",
+            duration: 0.5,
+            zIndex: 2,
+          },
+          "<"
+        )
+        .then(() => {
+          setForgetPasswordVisible(true);
+        });
+    }
+  };
+
+  const backToLogin = () => {
+    if (tl) {
+      tl.to(".footer", { xPercent: 0, duration: 0.5, textAlign: "left" })
+        .to(".formContainer", { opacity: 1, duration: 0.3, zIndex: 1 }, "<")
+        .to(".heroImg", { xPercent: 0, duration: 0.5, zIndex: 1 }, "<")
+        .to(".active", { opacity: 0, duration: 0, xPercent: 0 }, "<")
+        .to(".logo", { filter: "none", duration: 0, zIndex: 2 }, "<")
+        .then(() => {
+          setForgetPasswordVisible(false);
+        });
+    }
+  };
 
   const handleChangeForm = () => {
     setShow(!show);
@@ -21,52 +61,11 @@ function Test(params) {
     setTl(timeline);
   }, []);
 
-  const openForgetPassword = () => {
-    if (tl) {
-      tl.to(".footer", {
-        xPercent: 80,
-        duration: 0.5,
-        autoAlpha: 1,
-      })
-        .to(
-          ".formContainer",
-          {
-            opacity: 0,
-            duration: 0.3,
-            zIndex: 1,
-          },
-          "<"
-        )
-        .to(
-          ".heroImg",
-          {
-            xPercent: -150,
-            duration: 0.5,
-            zIndex: -1,
-          },
-          "<"
-        )
-        .to(
-          ".logo",
-          {
-            filter:
-              "invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(200%) contrast(100%)",
-            duration: 0.5,
-          },
-          "<"
-        )
-        .then(() => {
-          setTl(true);
-          setForgetPasswordVisible(true);
-        });
-    }
-  };
   return (
-    <div className={style.container}>
-      <div className={style.left__side}>
+    <div className={styles.container}>
+      <div className={styles.left__side}>
         <header>
-          <div className={style.logo}>
-            <button onClick={openForgetPassword}>assda</button>
+          <div className={styles.logo}>
             <svg
               className="logo"
               width="91"
@@ -118,7 +117,11 @@ function Test(params) {
             unmountOnExit
           >
             <div className="login">
-              <Login show={show} ChangeComponents={handleChangeForm} />
+              <Login
+                show={show}
+                ChangeComponents={handleChangeForm}
+                openForgetPassword={openForgetPassword}
+              />
             </div>
           </CSSTransition>
 
@@ -137,14 +140,16 @@ function Test(params) {
           <Footer />
         </div>
       </div>
-      <div className={`${style.right__side} heroImg`}>
+      <div className={`${styles.right__side} heroImg`}>
         <HeroImg />
       </div>
 
       {/*burda Forget Password Form Olacaq  */}
-      {/* <form style={{ display: "block" }} action="">
-        adsasd
-      </form> */}
+      {forgetPasswordVisible && (
+        <div className={`active ${styles.forgetPasswordContainer}`}>
+          <ForgotPassword backToLogin={backToLogin} />
+        </div>
+      )}
     </div>
   );
 }

@@ -10,10 +10,13 @@ import Footer from "../footer/Footer";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function ForgotPassword() {
+export default function ForgotPassword({ backToLogin }) {
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
 
+  const handleClickToLogin = () => {
+    backToLogin();
+  };
   const togglePasswordVisibility1 = () => {
     setShowPassword1(!showPassword1);
   };
@@ -31,24 +34,15 @@ export default function ForgotPassword() {
   };
   return (
     <section className={style.container}>
-      <div className={style.imgContainer}>
-        <img className={style.microImg} src={rightImg} alt="img" />
-        <div className={style.logo}>
-          <img src={voistWhiteLogo} alt="" />
-        </div>
-        <div className={style.microText}>
-          <h2>Al's touch on your calls</h2>
-          <button>
-            <p>Learn more</p>
-            <img src={arrowRightWhite} alt="Arrow Right White" />
-          </button>
-        </div>
-      </div>
       <div className={style.loginContainer}>
         <div className={style.main}>
-          <Link to="/" className={style.arrowLeft}>
+          <button
+            onClick={handleClickToLogin}
+            to="/"
+            className={style.arrowLeft}
+          >
             <img src={arrowLeftBlack} alt="" />
-          </Link>
+          </button>
           <div className={style.accountСreation}>
             <h1>Let’s change the password</h1>
             <div className={style.accountAlready}>
@@ -72,12 +66,11 @@ export default function ForgotPassword() {
               <p>Send code</p>
               <img src={arrowRightBlack} alt="" />
             </button>
-            <button className={style.cancelButton}>
+            <button onClick={handleClickToLogin} className={style.cancelButton}>
               <p>Cancel</p>
             </button>
           </div>
         </div>
-        <Footer />
       </div>
     </section>
   );

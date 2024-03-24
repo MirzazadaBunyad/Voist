@@ -11,7 +11,8 @@
 .info__main {
     width: 60%;
   height: 470px;
-  margin: 0 0 0 130px;
+  margin: 90px 0 57px 130px;
+
   @include responsive769to1057 {
     margin: 0 0 0 50px;
   }
@@ -52,13 +53,16 @@
     line-height: 16px;
     letter-spacing: 0.4px;
   }
-  a {
+  button {
+    border: none;
+    background-color: transparent;
     padding: 2px 8px 2px 8px;
     font-size: 14px;
     font-weight: 700;
     line-height: 16px;
     letter-spacing: 0.4px;
     color: #000000;
+    cursor: pointer;
   }
   .smile {
     width: 24px;
@@ -95,6 +99,7 @@
 }
 .passwordIcon {
   transform: translate(460px, -50px);
+  cursor: pointer;
 }
 
 .rememberMe {
@@ -113,16 +118,20 @@
 }
 
 .forgotPassword {
+  
+  background: transparent;
+  border: none;
   color: #000000;
   font-family: Raleway;
   font-weight: 700;
   font-size: 14px;
   line-height: 24px;
   letter-spacing: 0.4px;
+  cursor: pointer;
 }
 
 .buttonElement {
-  margin: 30px 0 0 10px;
+  margin: 10px 0 0 10px;
   width: 144px;
   height: 56px;
   border-radius: 12px;
