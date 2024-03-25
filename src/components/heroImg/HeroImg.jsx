@@ -8,7 +8,7 @@ function HeroImg() {
       <img className={styles.rightImg} src={rightImg} alt="Error" />
       <div className={styles.rightBannerText}>
         <h2>AI’s touch on your calls</h2>
-        <button>
+        <button className={styles.learnMore}>
           learn more <img src={arrowRightWhite} alt="error" />
         </button>
       </div>
