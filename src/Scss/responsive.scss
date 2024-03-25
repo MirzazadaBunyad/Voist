@@ -1,29 +1,29 @@
-  @mixin responsive769to1057 {
-    @media screen and (min-width: 769px) and (max-width: 1057px) {
-      @content;
-    }
-  }
-  
-  @mixin  responsive1058 {
-    @media screen and (min-width: 1058px) {
-      @content;
-    }
-  }
-  @mixin  responsive1100to1224 {
+@mixin responsive769to1057 {
+  @media screen and (min-width: 769px) and (max-width: 1057px) {
     @content;
   }
-  @mixin  responsive1234 {
-    @media screen and (min-width: 1234px) and (max-width: 1440px) {
-      @content;
-    }
+}
+
+@mixin responsive1058 {
+  @media screen and (min-width: 1058px) {
+    @content;
   }
-  @mixin  responsive1440 {
-    @media screen and (min-width: 1440px) and (max-width: 1500px) {
-      @content;
-    }
+}
+@mixin responsive1100to1224 {
+  @content;
+}
+@mixin responsive1234 {
+  @media screen and (min-width: 1234px) and (max-width: 1440px) {
+    @content;
   }
-  @mixin  responsive1501to1600 {
-    @media screen and (min-width: 1501px) and (max-width: 1600px) {
-      @content;
-    }
+}
+@mixin responsive1440 {
+  @media screen and (min-width: 1440px) and (max-width: 1500px) {
+    @content;
   }
+}
+@mixin responsive1501to1600 {
+  @media screen and (min-width: 1501px) and (max-width: 1600px) {
+    @content;
+  }
+}
