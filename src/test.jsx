@@ -17,7 +17,7 @@ function Test() {
   const [forgetPasswordVisible, setForgetPasswordVisible] = useState(false);
   const openForgetPassword = () => {
     if (tl) {
-      tl.to(".footer", { xPercent: 50, duration: 0.5, textAlign: "center" })
+      tl.to(".footer", { xPercent: 53, duration: 0.5, textAlign: "center" })
         .to(".formContainer", { opacity: 0, duration: 0.3 }, "<")
         .to(
           ".heroImg",
