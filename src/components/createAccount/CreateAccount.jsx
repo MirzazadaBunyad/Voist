@@ -1,4 +1,4 @@
-import style from "./createAccount.module.scss";
+import styles from "./createAccount.module.scss";
 import img from "../../assets/img/smile.gif";
 import rightImg from "../../assets/img/loginImg.jpg";
 import inputIcon from "../../assets/img/inputIcon.svg";
@@ -40,18 +40,18 @@ export default function CreateAccount({ ChangeComponents, show }) {
     setShowMain(!showMain);
   };
   return (
-    <section className={style.container}>
-      <div className={style.loginContainer}>
-        <div className={style.headline}></div>
+    <section className={styles.container}>
+      <div className={styles.loginContainer}>
+        <div className={styles.headline}></div>
         {showMain && (
-          <div className={style.main}>
-            <div className={style.accountСreation}>
+          <div className={styles.main}>
+            <div className={styles.accountСreation}>
               <h1>
                 Create <span>account</span>
               </h1>
-              <div className={style.accountAlready}>
+              <div className={styles.accountAlready}>
                 <p>Already have an account?</p>
-                <button onClick={goToLogin} className={style.loginButton}>
+                <button onClick={goToLogin} className={styles.loginButton}>
                   Login here
                 </button>
                 <img src={img} alt="smile" loading="lazy" />
@@ -61,48 +61,56 @@ export default function CreateAccount({ ChangeComponents, show }) {
             {/* Form section */}
 
             <div>
-              <form className={style.formContainer} onSubmit={sendInformation}>
-                <div className={style.nameSurname}>
-                  <div className={style.input}>
-                    <label className={style.label} htmlFor="Name">
+              <form className={styles.formContainer} onSubmit={sendInformation}>
+                <div className={styles.nameSurname}>
+                  <div className={styles.input}>
+                    <label className={styles.label} htmlFor="Name">
                       Name*
                     </label>
-                    <div className={style.inputShow}>
-                      <input type="text" placeholder="Enter name" id="email" />
+                    <div className={styles.inputShow}>
+                      <input
+                        type="text"
+                        placeholder="Enter name"
+                        id="EnterName"
+                      />
                       <img src={inputIcon} alt="" />
                     </div>
                   </div>
-                  <div className={style.input}>
-                    <label className={style.label} htmlFor="password">
+                  <div className={styles.input}>
+                    <label className={styles.label} htmlFor="password">
                       Surname*
                     </label>
-                    <div className={style.inputShow}>
+                    <div className={styles.inputShow}>
                       <input
                         type="text"
-                        id="password"
+                        id="EnterSurname"
                         placeholder="Enter surname"
                       />
                       <img src={inputIcon} alt="" />
                     </div>
                   </div>
                 </div>
-                <div className={style.inputEmail}>
-                  <label className={style.label} htmlFor="password">
+                <div className={styles.inputEmail}>
+                  <label className={styles.label} htmlFor="password">
                     E-mail*
                   </label>
-                  <input type="email" placeholder="example@company.com" id="" />
+                  <input
+                    type="email"
+                    placeholder="example@company.com"
+                    id="EnterEmail"
+                  />
                   <img src={inputMessageIcon} alt="" />
                 </div>
-                <div className={style.nameSurname}>
-                  <div className={style.input}>
-                    <label className={style.label} htmlFor="Password">
+                <div className={styles.nameSurname}>
+                  <div className={styles.input}>
+                    <label className={styles.label} htmlFor="Password">
                       Password*
                     </label>
-                    <div className={style.inputShow}>
+                    <div className={styles.inputShow}>
                       <input
                         type={showPassword1 ? "text" : "password"}
                         placeholder="Enter password"
-                        id="password1"
+                        id="RepeatPassword"
                       />
                       <img
                         src={showPassword1 ? passwordEye : eyeClosedIcon}
@@ -111,11 +119,11 @@ export default function CreateAccount({ ChangeComponents, show }) {
                       />
                     </div>
                   </div>
-                  <div className={style.input}>
-                    <label className={style.label} htmlFor="password">
+                  <div className={styles.input}>
+                    <label className={styles.label} htmlFor="password">
                       Repeat password*
                     </label>
-                    <div className={style.inputShow}>
+                    <div className={styles.inputShow}>
                       <input
                         type={showPassword2 ? "text" : "password"}
                         id="password"
@@ -129,7 +137,7 @@ export default function CreateAccount({ ChangeComponents, show }) {
                     </div>
                   </div>
                 </div>
-                <div className={style.characters}>
+                <div className={styles.characters}>
                   <div>
                     <img src={checkGreenIcon} alt="Green Icon" />
                     <p>Upper and lower case letters</p>
@@ -146,10 +154,14 @@ export default function CreateAccount({ ChangeComponents, show }) {
                     <p>Between 8 and 72 characters</p>
                   </div>
                 </div>
-                <div className={style.buttonElement}>
+                <div className={styles.buttonElement}>
                   <button type="submit">
                     <p>Let’s go</p>
-                    <img src={arrowRightBlack} alt="" />
+                    <img
+                      className={styles.arrowRight}
+                      src={arrowRightBlack}
+                      alt=""
+                    />
                   </button>
                 </div>
               </form>
@@ -157,18 +169,18 @@ export default function CreateAccount({ ChangeComponents, show }) {
           </div>
         )}
         {showActivation && (
-          <div className={style.activation}>
-            <div className={style.checkIcon}>
+          <div className={styles.activation}>
+            <div className={styles.checkIcon}>
               <img src={checkWhiteIcon} alt="White check icon" />
             </div>
-            <p className={style.activateHeader}>Activate your account</p>
-            <p className={style.checkEmail}>
+            <p className={styles.activateHeader}>Activate your account</p>
+            <p className={styles.checkEmail}>
               Check your email <span>(ulya@domein.az)</span> to activate your
               recruitee account
             </p>
-            <div className={style.sendAgain}>
+            <div className={styles.sendAgain}>
               <p>Didn’t receive e-mail?</p>
-              <button className={style.sendButton}>Send again</button>
+              <button className={styles.sendButton}>Send again</button>
             </div>
           </div>
         )}

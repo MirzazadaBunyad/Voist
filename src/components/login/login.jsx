@@ -5,22 +5,13 @@ import inputMessageIcon from "../../assets/img/inputMessageIcon.svg";
 import ayeOpen from "../../assets/img/passwordEye.svg";
 import arrowRightBlack from "../../assets/img/arrowRightBlack.svg";
 import { useState } from "react";
-import InputK from "../input";
 
 export default function Login({ openForgetPassword, ChangeComponents }) {
-  const [value, setValue] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   function handleShowPassword() {
     setShowPassword(!showPassword);
   }
-
-  const ACV = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setValue({ [name]: value });
-    console.log(value);
-  };
 
   const goToCreateAccount = () => {
     ChangeComponents();
@@ -64,13 +55,6 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
               alt="Error"
             />
           </div>
-          <InputK
-            type="password"
-            name="password"
-            placeholder="Enter password"
-            value={value.password}
-            onChange={ACV}
-          />
           <div className={styles.password}>
             <label className={styles.loginLabel} htmlFor="password">
               Password*

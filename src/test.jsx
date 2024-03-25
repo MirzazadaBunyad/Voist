@@ -16,6 +16,8 @@ function Test() {
   const [tl, setTl] = useState(false);
   /* ekran sagdadn sola gedende qabag Forget passwordu Display none edir  */
   const [forgetPasswordVisible, setForgetPasswordVisible] = useState(false);
+  const [loginVisible, setLoginVisible] = useState(true);
+
   const openForgetPassword = () => {
     if (tl) {
       tl.to(".footer", { xPercent: 53, duration: 0.5, textAlign: "center" })
@@ -65,8 +67,8 @@ function Test() {
   return (
     <div className={styles.container}>
       <div className={styles.left__side}>
-        <header>
-          <div className={styles.logo}>
+        <header className={styles.headerContainer}>
+          <div className={`${styles.logo} logo`}>
             <img src={voistLogo} alt="" />
           </div>
         </header>

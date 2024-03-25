@@ -8,12 +8,16 @@
   font-family: "Poppins", sans-serif;
   font-weight: 400;
 }
+.headerContainer{
+  display: inline-block;
+}
 .container {
   display: flex;
   width: 100%;
   overflow: hidden; /*bu burda olmali deyil*/
 }
 .logo {
+  display: inline-block;
   margin: 56px 130px;
   width: 91px;
   height: 24px;
@@ -24,12 +28,12 @@
     margin: 36px 50px;
   }
 }
-.forgetPasswordContainer {
+/* .forgetPasswordContainer {
   position: absolute;
   right: 20%;
   text-align: center;
   top: 40%;
-}
+} */
 
 .right__side {
   width: 40%;
