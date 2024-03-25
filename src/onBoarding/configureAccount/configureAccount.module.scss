@@ -1,0 +1,294 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+}
+.container {
+  width: 680px;
+  overflow: hidden; /*bu burda olmali deyil*/
+  margin: 40px auto 25px;
+  .range {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 55px;
+    width: 600px;
+    .totalCount {
+      color: #1d2b21;
+      font-variant-numeric: lining-nums proportional-nums;
+      font-family: Raleway;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 900;
+      line-height: 16px;
+      letter-spacing: 0.4px;
+      span {
+        color: #99a09b;
+        font-variant-numeric: lining-nums proportional-nums;
+        font-family: Raleway;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 16px;
+        letter-spacing: 0.4px;
+      }
+    }
+    .rangeColors {
+      display: flex;
+      width: 100%;
+      .grayRange {
+        width: 65%;
+      }
+    }
+  }
+  .fullForm {
+    display: flex;
+    width: 600px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      align-self: stretch;
+      h1 {
+        color: #1d2b21;
+        font-family: Raleway;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 35px;
+        letter-spacing: 0.4px;
+      }
+      .subtitle {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        align-self: stretch;
+        p {
+          color: #6c756f;
+          font-family: Raleway;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 16px;
+          letter-spacing: 0.4px;
+        }
+        .gif {
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
+    .formContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 32px;
+      align-self: stretch;
+      .form {
+        width: 100%;
+        .formName {
+          display: flex;
+          align-items: flex-start;
+          gap: 24px;
+          align-self: stretch;
+          .companyName {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 9px;
+            flex: 1 0 0;
+            label {
+              color: #1d2b21;
+              font-family: Raleway;
+              font-size: 12px;
+              font-style: normal;
+              font-weight: 600;
+              line-height: 12px;
+              letter-spacing: 0.4px;
+            }
+            input {
+              display: flex;
+              padding: 16px 24px;
+              align-items: center;
+              gap: 10px;
+              align-self: stretch;
+              border-radius: 12px;
+              border: 1px solid #dddfde;
+              background-color: #fdfdfd;
+              &::placeholder {
+                color: #99a09b;
+                font-family: Raleway;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 24px;
+                letter-spacing: 0.4px;
+              }
+            }
+            img {
+              transform: translate(245px, -47px);
+            }
+          }
+        }
+        .formNumber {
+          .companyNumber {
+            label {
+              color: #1d2b21;
+              font-family: Raleway;
+              font-size: 12px;
+              font-style: normal;
+              font-weight: 600;
+              line-height: 12px;
+              letter-spacing: 0.4px;
+            }
+            input {
+              display: flex;
+              padding: 16px 24px;
+              align-items: center;
+              gap: 10px;
+              align-self: stretch;
+              border-radius: 12px;
+              border: 1px solid #dddfde;
+              background-color: #fdfdfd;
+              width: 100%;
+              &::placeholder {
+                color: #99a09b;
+                font-family: Raleway;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 24px;
+                letter-spacing: 0.4px;
+                padding-left: 20px;
+              }
+            }
+            .flag {
+              width: 24px;
+              height: 24px;
+              transform: translate(-140px, 40px);
+            }
+            .companyNumber {
+              width: 24px;
+              height: 24px;
+              transform: translate(555px, -37px);
+            }
+          }
+        }
+        .formDescription {
+          .companyNumber {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 9px;
+            flex: 1 0 0;
+            label {
+              color: #1d2b21;
+              font-family: Raleway;
+              font-size: 12px;
+              font-style: normal;
+              font-weight: 600;
+              line-height: 12px;
+              letter-spacing: 0.4px;
+            }
+            input {
+              display: flex;
+              height: 124px;
+              padding-top: 10px;
+              padding: 16px 24px;
+              //   align-items: flex-start;
+              gap: 10px;
+              align-self: stretch;
+              border-radius: 12px;
+              border: 1px solid #dddfde;
+              background-color: #fdfdfd;
+              width: 100%;
+              &::placeholder {
+                color: #99a09b;
+                font-family: Raleway;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 24px;
+                letter-spacing: 0.4px;
+              }
+            }
+            .flag {
+              width: 24px;
+              height: 24px;
+              transform: translate(-140px, 40px);
+            }
+            .companyNumber {
+              width: 24px;
+              height: 24px;
+              transform: translate(555px, -37px);
+            }
+          }
+        }
+      }
+      .buttonContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        align-self: stretch;
+        .continueButton {
+          display: flex;
+          padding: 16px 24px;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          border-radius: 12px;
+          background-color: #7dff85;
+          border: none;
+          color: #000;
+          font-family: Raleway;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 24px;
+          cursor: pointer;
+          letter-spacing: 0.4px;
+          transition: all 0.3s ease;
+          &:hover {
+            background-color: #2bb534;
+            color: white;
+            img {
+              filter: invert(100%);
+              transition: all 0.3s ease;
+            }
+          }
+        }
+        .skipButton {
+          display: flex;
+          padding: 16px 24px;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          border-radius: 12px;
+          background-color: white;
+          border: none;
+          color: #000;
+          font-family: Raleway;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 24px;
+          cursor: pointer;
+          letter-spacing: 0.4px;
+          transition: all 0.3s ease;
+          &:hover {
+            background: #ecffed;
+          }
+        }
+      }
+    }
+  }
+}
