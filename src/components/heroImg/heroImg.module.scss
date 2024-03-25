@@ -20,6 +20,27 @@
     width: 417px;
     height: 110px;
   }
+  button {
+    margin: 70px 0 0 0;
+    width: 147px;
+    height: 44px;
+    border-radius: 8px;
+    border: 2px solid;
+    padding: 15px -15px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.4px;
+    font-family: Raleway;
+    cursor: pointer;
+    background-color: transparent;
+
+    img {
+      width: 24px;
+      height: 24px;
+      margin: 0 0 0 5px;
+      transform: translate(0px, 5px);
     }
   }
 }
