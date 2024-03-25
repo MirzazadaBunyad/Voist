@@ -1,5 +1,4 @@
 import styles from "./forgotPassword.module.scss";
-
 import SendToEmail from "../forgotPassword/sendToEmail/SendToEmail";
 import { useState } from "react";
 import CodeBelow from "./codeBelow/CodeBolow";
@@ -7,22 +6,31 @@ import CodeBelow from "./codeBelow/CodeBolow";
 export default function ForgotPassword({ backToLogin }) {
   const [show, setShow] = useState(false);
   const [sendInformation, setSendInformation] = useState({
-    input1: "",
-    input2: "",
+    input: "",
   });
+
   function handleClickToChange() {
     setShow(!show);
   }
+
+  function handleUpdateSendInformation(data) {
+    setSendInformation(data);
+  }
+
   return (
     <section className={styles.container}>
       <div className={styles.loginContainer}>
-        <button onClick={handleClickToChange}>change</button>
         {show ? (
-          <CodeBelow />
+          <CodeBelow
+            sendInformation={sendInformation}
+            handleClickToChange={handleClickToChange}
+          />
         ) : (
           <SendToEmail
             handleClickToLogin={backToLogin}
-            setSendInformation={setSendInformation}
+            setSendInformation={handleUpdateSendInformation}
+            handleClickToChange={handleClickToChange}
+            initialData={sendInformation}
           />
         )}
       </div>

@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
-// import Footer from "./components/footer/Footer";
-// import HeroImg from "./components/heroImg/HeroImg";
-// import styles from "./test.module.scss";
+import Footer from "./components/footer/Footer";
+import HeroImg from "./components/heroImg/HeroImg";
+import styles from "./test.module.scss";
 import gsap from "gsap";
-// import Login from "./components/login/login";
-// import CreateAccount from "./components/createAccount/CreateAccount";
-// import { CSSTransition } from "react-transition-group";
+import Login from "./components/login/login";
+import CreateAccount from "./components/createAccount/CreateAccount";
+import { CSSTransition } from "react-transition-group";
 import "./animations.scss";
-// import ForgotPassword from "./components/forgotPassword/Forgotpassword";
-// import voistLogo from "./assets/img/voistLogo.svg";
-import OnBoarding from "./onBoarding/onBoarding";
+import ForgotPassword from "./components/forgotPassword/Forgotpassword";
+import voistLogo from "./assets/img/voistLogo.svg";
 function Test() {
   /* login ile Create Accountu deyismek ucun */
   const [show, setShow] = useState(true);
@@ -17,6 +16,8 @@ function Test() {
   const [tl, setTl] = useState(false);
   /* ekran sagdadn sola gedende qabag Forget passwordu Display none edir  */
   const [forgetPasswordVisible, setForgetPasswordVisible] = useState(false);
+  const [loginVisible, setLoginVisible] = useState(true);
+
   const openForgetPassword = () => {
     if (tl) {
       tl.to(".footer", { xPercent: 53, duration: 0.5, textAlign: "center" })
@@ -64,56 +65,55 @@ function Test() {
   }, []);
 
   return (
-    <OnBoarding />
-    // <div className={styles.container}>
-    //   <div className={styles.left__side}>
-    //     <header>
-    //       <div className={styles.logo}>
-    //         <img src={voistLogo} alt="Voist Logo" />
-    //       </div>
-    //     </header>
-    //     <main className="formContainer">
-    //       <CSSTransition
-    //         in={show}
-    //         timeout={500}
-    //         classNames="login"
-    //         unmountOnExit
-    //       >
-    //         <div className="login">
-    //           <Login
-    //             show={show}
-    //             ChangeComponents={handleChangeForm}
-    //             openForgetPassword={openForgetPassword}
-    //           />
-    //         </div>
-    //       </CSSTransition>
+    <div className={styles.container}>
+      <div className={styles.left__side}>
+        <header className={styles.headerContainer}>
+          <div className={`${styles.logo} logo`}>
+            <img src={voistLogo} alt="" />
+          </div>
+        </header>
+        <main className="formContainer">
+          <CSSTransition
+            in={show}
+            timeout={500}
+            classNames="login"
+            unmountOnExit
+          >
+            <div className="login">
+              <Login
+                show={show}
+                ChangeComponents={handleChangeForm}
+                openForgetPassword={openForgetPassword}
+              />
+            </div>
+          </CSSTransition>
 
-    //       <CSSTransition
-    //         in={!show}
-    //         timeout={500}
-    //         classNames="CreateAccount"
-    //         unmountOnExit
-    //       >
-    //         <div>
-    //           <CreateAccount show={!show} ChangeComponents={handleChangeForm} />
-    //         </div>
-    //       </CSSTransition>
-    //     </main>
-    //     <div className="footer">
-    //       <Footer />
-    //     </div>
-    //   </div>
-    //   <div className={`${styles.right__side} heroImg`}>
-    //     <HeroImg />
-    //   </div>
+          <CSSTransition
+            in={!show}
+            timeout={500}
+            classNames="CreateAccount"
+            unmountOnExit
+          >
+            <div>
+              <CreateAccount show={!show} ChangeComponents={handleChangeForm} />
+            </div>
+          </CSSTransition>
+        </main>
+        <div className="footer">
+          <Footer />
+        </div>
+      </div>
+      <div className={`${styles.right__side} heroImg`}>
+        <HeroImg />
+      </div>
 
-    //   {/*burda Forget Password Form Olacaq  */}
-    //   {forgetPasswordVisible && (
-    //     <div className={`active ${styles.forgetPasswordContainer}`}>
-    //       <ForgotPassword backToLogin={backToLogin} />
-    //     </div>
-    //   )}
-    // </div>
+      {/*burda Forget Password Form Olacaq  */}
+      {forgetPasswordVisible && (
+        <div className={`active ${styles.forgetPasswordContainer}`}>
+          <ForgotPassword backToLogin={backToLogin} />
+        </div>
+      )}
+    </div>
   );
 }
 export default Test;
