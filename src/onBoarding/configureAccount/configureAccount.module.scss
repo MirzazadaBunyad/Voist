@@ -9,8 +9,8 @@
 }
 .container {
   width: 680px;
-  overflow: hidden; /*bu burda olmali deyil*/
-  margin: 40px auto 25px;
+  overflow: hidden;
+  margin: 40px auto 24px;
   .range {
     display: inline-flex;
     flex-direction: column;
@@ -41,8 +41,11 @@
     .rangeColors {
       display: flex;
       width: 100%;
+      input {
+        color: green;
+      }
       .grayRange {
-        width: 65%;
+        width: 100%;
       }
     }
   }

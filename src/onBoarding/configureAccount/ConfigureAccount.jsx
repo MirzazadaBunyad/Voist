@@ -8,24 +8,40 @@ import companyNumber from "../../assets/img/companyNumber.svg";
 import azerbaijanFlag from "../../assets/img/azerbaijan.svg";
 import arrowRightBlack from "../../assets/img/arrowRightBlack.svg";
 import coupleRightIcon from "../../assets/img/coupleRightIcon.svg";
+import { useState } from "react";
 
 function ConfigureAccount() {
+  const [currentStep, setCurrentStep] = useState(1);
+  const totalSteps = 3;
+
+  const calculateGreenWidth = () => {
+    return `${(currentStep / totalSteps) * 100}%`;
+  };
+
+  const goToNextStep = () => {
+    if (currentStep < totalSteps) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.range}>
         <p className={styles.totalCount}>
-          1/<span>3</span>
+          {currentStep}/{totalSteps}
         </p>
         <div className={styles.rangeColors}>
           <img
             src={greenRangeOne}
             className={styles.greenRange}
             alt="Green range"
+            style={{ width: calculateGreenWidth() }}
           />
           <img
             src={grayRangeOne}
             className={styles.grayRange}
             alt="Gray range"
+            style={{ width: `calc(100% - ${calculateGreenWidth()})` }}
           />
         </div>
       </div>
@@ -33,7 +49,7 @@ function ConfigureAccount() {
         <div className={styles.header}>
           <h1>Let’s configure your account</h1>
           <div className={styles.subtitle}>
-            <p>Plese, fill the informations below.</p>
+            <p>Please, fill the information below.</p>
             <img src={smileGif} className={styles.gif} alt="" />
           </div>
         </div>
@@ -71,7 +87,7 @@ function ConfigureAccount() {
             </div>
           </form>
           <div className={styles.buttonContainer}>
-            <button className={styles.continueButton}>
+            <button onClick={goToNextStep} className={styles.continueButton}>
               Continue
               <img src={arrowRightBlack} alt="" />
             </button>
