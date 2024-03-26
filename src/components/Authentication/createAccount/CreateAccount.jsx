@@ -1,16 +1,14 @@
 import styles from "./createAccount.module.scss";
-import img from "../../assets/img/smile.gif";
-import rightImg from "../../assets/img/loginImg.jpg";
-import inputIcon from "../../assets/img/inputIcon.svg";
-import inputMessageIcon from "../../assets/img/inputMessageIcon.svg";
-import eyeClosedIcon from "../../assets/img/eyeClosedIcon.svg";
-import checkGreenIcon from "../../assets/img/checkGreenIcon.svg";
-import checkGrayIcon from "../../assets/img/checkGrayIcon.svg";
-import checkCrossIcon from "../../assets/img/checkCrossIcon.svg";
-import arrowRightBlack from "../../assets/img/arrowRightBlack.svg";
-import arrowRightWhite from "../../assets/img/arrowRightWhite.svg";
-import passwordEye from "../../assets/img/passwordEye.svg";
-import checkWhiteIcon from "../../assets/img/checkWhiteIcon.svg";
+import img from "../../../assets/img/smile.gif";
+import inputIcon from "../../../assets/img/inputIcon.svg";
+import inputMessageIcon from "../../../assets/img/inputMessageIcon.svg";
+import eyeClosedIcon from "../../../assets/img/eyeClosedIcon.svg";
+import checkGreenIcon from "../../../assets/img/checkGreenIcon.svg";
+import checkGrayIcon from "../../../assets/img/checkGrayIcon.svg";
+import checkCrossIcon from "../../../assets/img/checkCrossIcon.svg";
+import arrowRightBlack from "../../../assets/img/arrowRightBlack.svg";
+import passwordEye from "../../../assets/img/passwordEye.svg";
+import checkWhiteIcon from "../../../assets/img/checkWhiteIcon.svg";
 import { useState } from "react";
 
 export default function CreateAccount({ ChangeComponents, show }) {

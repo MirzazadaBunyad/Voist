@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import img from "../../../assets/img/smile.gif";
-import inputMessageIcon from "../../../assets/img/inputMessageIcon.svg";
-import arrowRightBlack from "../../../assets/img/arrowRightBlack.svg";
+import img from "../../../../assets/img/smile.gif";
+import inputMessageIcon from "../../../../assets/img/inputMessageIcon.svg";
+import arrowRightBlack from "../../../../assets/img/arrowRightBlack.svg";
 import styles from "../sendToEmail/sendToEmail.module.scss";
-import BackButton from "../../backButton/BackButton";
+import BackButton from "../../../../components/smallComponents/backButton/BackButton";
 
 function SendToEmail({
   handleClickToLogin,

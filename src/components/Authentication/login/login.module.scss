@@ -1,4 +1,4 @@
-@import "../../Scss/responsive.scss";
+@import "../../../Scss/responsive.scss";
 @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
 * {
   margin: 0;
@@ -11,7 +11,7 @@
 .info__main {
   width: 60%;
   height: 470px;
-  margin: 90px 0 57px 130px;
+  margin: 34px 0 57px 130px;
 
   @include responsive769to1057 {
     margin: 0 0 0 50px;

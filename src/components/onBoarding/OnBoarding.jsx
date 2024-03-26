@@ -1,5 +1,5 @@
 // import { useEffect, useState } from "react";
-import Footer from "../components/footer/Footer";
+import Footer from "../footer/Footer";
 import HeroImg from "../components/heroImg/HeroImg";
 import styles from "./onBoarding.module.scss";
 // import gsap from "gsap";

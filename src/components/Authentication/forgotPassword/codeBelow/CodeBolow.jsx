@@ -1,7 +1,7 @@
-import BackButton from "../../backButton/BackButton";
+import BackButton from "../../../smallComponents/backButton/BackButton";
 import styles from "./codeBelow.module.scss";
-import img from "../../../assets/img/smile.gif";
-import arrowRightBlack from "../../../assets/img/arrowRightBlack.svg";
+import img from "../../../../assets/img/smile.gif";
+import arrowRightBlack from "../../../../assets/img/arrowRightBlack.svg";
 
 function CodeBelow({ handleClickToChange, sendInformation }) {
   const handleGoBack = () => {

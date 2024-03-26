@@ -1,6 +1,6 @@
 import styles from "./heroImg.module.scss";
-import rightImg from "../../assets/img/loginImg.jpg";
-import arrowRightWhite from "../../assets/img/arrowRightWhite.svg";
+import rightImg from "../../../assets/img/loginImg.jpg";
+import arrowRightWhite from "../../../assets/img/arrowRightWhite.svg";
 
 function HeroImg() {
   return (

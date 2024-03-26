@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import Footer from "./components/footer/Footer";
-import HeroImg from "./components/heroImg/HeroImg";
-import styles from "./test.module.scss";
+import Footer from "../footer/Footer";
+import HeroImg from "../smallComponents/heroImg/HeroImg";
+import styles from "./authentication.module.scss";
 import gsap from "gsap";
-import Login from "./components/login/login";
-import CreateAccount from "./components/createAccount/CreateAccount";
+import Login from "./login/Login";
+import CreateAccount from "../Authentication/createAccount/CreateAccount";
 import { CSSTransition } from "react-transition-group";
 import "./animations.scss";
-import ForgotPassword from "./components/forgotPassword/Forgotpassword";
-import voistLogo from "./assets/img/voistLogo.svg";
-function Test() {
+import ForgotPassword from "../Authentication/forgotPassword/Forgotpassword";
+import voistLogo from "../../assets/img/voistLogo.svg";
+function Authentication() {
   /* login ile Create Accountu deyismek ucun */
   const [show, setShow] = useState(true);
   /* jsap kitabxanasi ucun (animasiyalar) */
@@ -116,4 +116,4 @@ function Test() {
     </div>
   );
 }
-export default Test;
+export default Authentication;
