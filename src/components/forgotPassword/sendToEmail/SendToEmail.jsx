@@ -11,26 +11,33 @@ function SendToEmail({
   setSendInformation,
   initialData,
 }) {
-  const [value, setValue] = useState("");
+  const [inputValue, setInputValue] = useState(initialData.input || "");
 
   useEffect(() => {
-    setValue(initialData.input1);
+    setInputValue(initialData.input || "");
   }, [initialData]);
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
+  const handleChange = (e) => {
+    setInputValue(e.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setSendInformation({ ...initialData, input1: value });
-    handleClickToChange();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (inputValue.trim() !== "") {
+      setSendInformation({ ...initialData, input: inputValue });
+      handleClickToChange();
+      initialData.input = inputValue;
+      console.log(initialData);
+    }
   };
-
+  const handleCancel = (e) => {
+    e.preventDefault(); // Предотвращаем отправку формы
+    handleClickToLogin(); // Вызываем функцию для возврата к предыдущему экрану
+  };
   return (
     <>
       <div className={styles.container}>
-        <div className={styles.backButton}>
+        <div onClick={handleCancel} className={styles.backButton}>
           <BackButton />
         </div>
 
@@ -51,13 +58,12 @@ function SendToEmail({
                 Email*
               </label>
               <input
-                autoComplete="off"
                 className={styles.LoginInput}
                 type="email"
                 id="email"
                 name="email"
                 placeholder="example@company.com"
-                value={value}
+                value={inputValue}
                 onChange={handleChange}
               />
               <img
@@ -71,6 +77,7 @@ function SendToEmail({
                 Send code
                 <img src={arrowRightBlack} alt="Error" />
               </button>
+
               <button
                 onClick={handleClickToLogin}
                 className={styles.cancelButton}
