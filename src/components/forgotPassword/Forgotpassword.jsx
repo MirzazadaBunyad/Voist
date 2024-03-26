@@ -5,9 +5,7 @@ import CodeBelow from "./codeBelow/CodeBolow";
 
 export default function ForgotPassword({ backToLogin }) {
   const [show, setShow] = useState(false);
-  const [sendInformation, setSendInformation] = useState({
-    input: "",
-  });
+  const [sendInformation, setSendInformation] = useState({ input: "" });
 
   function handleClickToChange() {
     setShow(!show);

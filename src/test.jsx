@@ -20,7 +20,7 @@ function Test() {
 
   const openForgetPassword = () => {
     if (tl) {
-      tl.to(".footer", { xPercent: 53, duration: 0.5, textAlign: "center" })
+      tl.to(".footer", { xPercent: 82, duration: 0.5, textAlign: "center" })
         .to(".formContainer", { opacity: 0, duration: 0.3 }, "<")
         .to(
           ".heroImg",
