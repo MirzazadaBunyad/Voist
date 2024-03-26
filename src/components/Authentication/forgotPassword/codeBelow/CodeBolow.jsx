@@ -15,43 +15,41 @@ function CodeBelow({ handleClickToChange, sendInformation }) {
       </div>
 
       <div className={styles.accountСreation}>
-        <h1>Let’s change the password</h1>
+        <h1>Enter the the code below</h1>
         <div className={styles.accountAlready}>
-          <p>Enter your email first</p>
+          <p>OTP code sent to ulya@company domein.com</p>
           <img src={img} className={styles.smile} alt="smile" loading="lazy" />
         </div>
         <form className={styles.formContainer}>
-          <div>
-            <label className={styles.loginLabel} htmlFor="email">
-              Email*
-            </label>
-            <div className={styles.inputContainer}>
-              <input
-                className={styles.LoginInput}
-                type="number"
-                id=""
-                name="number"
-                placeholder="."
-              />
-              <input
-                className={styles.LoginInput}
-                type="number"
-                id=""
-                name="number"
-              />
-              <input
-                className={styles.LoginInput}
-                type="number"
-                id=""
-                name="number"
-              />
-              <input
-                className={styles.LoginInput}
-                type="number"
-                id=""
-                name="number"
-              />
-            </div>
+          <div className={styles.inputContainer}>
+            <input
+              className={styles.LoginInput}
+              type="number"
+              id=""
+              name="number"
+              placeholder="•"
+            />
+            <input
+              className={styles.LoginInput}
+              type="number"
+              id=""
+              name="number"
+              placeholder="•"
+            />
+            <input
+              className={styles.LoginInput}
+              type="number"
+              id=""
+              name="number"
+              placeholder="•"
+            />
+            <input
+              className={styles.LoginInput}
+              type="number"
+              id=""
+              name="number"
+              placeholder="•"
+            />
           </div>
           <div className={styles.buttonElement}>
             <button type="submit" className={styles.sendButton}>

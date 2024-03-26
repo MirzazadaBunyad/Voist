@@ -23,6 +23,7 @@
     font-weight: 800;
     line-height: 35px; 
     letter-spacing: 0.4px;
+    margin: 0 0 10px 0 ;
 }
 }
   .accountAlready {
@@ -35,7 +36,6 @@
       font-weight: 500;
       line-height: 16px;
       letter-spacing: 0.4px;
-      margin-bottom: 32px;
     }
     img{
       width: 24px;
@@ -62,7 +62,10 @@
     height: 48px;
     border-radius: 12px;
     border: 1px solid #99A09B;
-    font-size: 12px;
+    font-size: 25px;
+    text-align: center;
+    padding-top: 13px;
+    margin-left: 10px;
     
   }
   /* Скрываем стрелки у всех input типа number */
@@ -71,6 +74,8 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+
 
   .inputMessageIcon {
     transform: translate(455px, -40px);
@@ -87,6 +92,7 @@ input[type="number"]::-webkit-outer-spin-button {
     line-height: 24px;
     letter-spacing: 0.4000000059604645px;
     text-align: left;
+      margin: 32px 0 0 0;
       img {
         width: 24px;
         height: 24px;
@@ -94,6 +100,18 @@ input[type="number"]::-webkit-outer-spin-button {
     }
     .inputContainer{
         display: flex;
+        margin: 32px 0 0 -11px;
+        ::placeholder {
+          color: #99a09b;
+          font-family: "Raleway", sans-serif;
+          font-size: 42px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 12px;
+          letter-spacing: 0.4px;
+          text-align: center;
+          
+        }
     }
     .sendButton {
       display: flex;
