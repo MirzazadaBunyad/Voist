@@ -1,36 +1,40 @@
 import styles from "./forgotPassword.module.scss";
-import SendToEmail from "../forgotPassword/sendToEmail/SendToEmail";
 import { useState } from "react";
+import NewPassword from "./newPassword/NewPassword";
+import Successfully from "./successfully/Successfully";
 import CodeBelow from "./codeBelow/CodeBolow";
+import SendToEmail from "./sendToEmail/SendToEmail";
 
 export default function ForgotPassword({ backToLogin }) {
-  const [show, setShow] = useState(false);
+  const [currentComponent, setCurrentComponent] = useState("SendToEmail");
   const [sendInformation, setSendInformation] = useState({ input: "" });
 
-  function handleClickToChange() {
-    setShow(!show);
-  }
-
-  function handleUpdateSendInformation(data) {
-    setSendInformation(data);
-  }
+  const handleComponentChange = (component) => {
+    setCurrentComponent(component);
+  };
 
   return (
     <section className={styles.container}>
       <div className={styles.loginContainer}>
-        {show ? (
-          <CodeBelow
-            sendInformation={sendInformation}
-            handleClickToChange={handleClickToChange}
-          />
-        ) : (
+        {currentComponent === "SendToEmail" && (
           <SendToEmail
             handleClickToLogin={backToLogin}
-            setSendInformation={handleUpdateSendInformation}
-            handleClickToChange={handleClickToChange}
+            handleClickToChange={() => handleComponentChange("CodeBelow")}
+            setSendInformation={setSendInformation}
             initialData={sendInformation}
           />
         )}
+        {currentComponent === "CodeBelow" && (
+          <CodeBelow
+            handleClickToChange={() => handleComponentChange("NewPassword")}
+          />
+        )}
+        {currentComponent === "NewPassword" && (
+          <NewPassword
+            handleClickToChange={() => handleComponentChange("Successfully")}
+          />
+        )}
+        {currentComponent === "Successfully" && <Successfully />}
       </div>
     </section>
   );
