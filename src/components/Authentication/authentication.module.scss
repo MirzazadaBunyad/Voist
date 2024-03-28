@@ -1,0 +1,48 @@
+@import "../../Scss/responsive.scss";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+}
+.headerContainer{
+  display: inline-block;
+}
+.container {
+  display: flex;
+  width: 100%;
+  overflow: hidden; /*bu burda olmali deyil*/
+}
+.logo {
+  display: inline-block;
+  margin: 56px 130px;
+  width: 91px;
+  height: 24px;
+  position: relative;
+  z-index: 312231;
+
+  @include responsive769to1057 {
+    margin: 36px 50px;
+  }
+}
+/* .forgetPasswordContainer {
+  position: absolute;
+  right: 20%;
+  text-align: center;
+  top: 40%;
+} */
+
+.right__side {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  right: 0;
+  z-index: 9999999;
+}
+.left__side {
+  width: 60%;
+}

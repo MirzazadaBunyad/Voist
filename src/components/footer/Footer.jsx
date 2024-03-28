@@ -1,12 +1,12 @@
-import style from "./footer.module.scss";
+import styles from "./footer.module.scss";
 
 function Footer() {
   return (
-    <div className={style.footer}>
+    <div className={styles.footer}>
       <p>&#169; 2023 Voist. Allrights reserved.</p>
-      <p>Term & Conditions</p>
-      <p>Privacy Policy</p>
-      <select className={style.languageChosen}>
+      <button className={styles.term}>Term & Conditions</button>
+      <button className={styles.privacy}>Privacy Policy</button>
+      <select className={styles.languageChosen}>
         <option value="english">En</option>
         <option value="spanish">Sp</option>
       </select>
