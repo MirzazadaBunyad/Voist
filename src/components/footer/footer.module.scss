@@ -41,6 +41,10 @@
       background-color: #ecf1ff;
       color: #7da1ff;
     }
+    &:active{
+      color: #2B52B5;
+      background-color: #C3D4FF;
+    }
   }
   .privacy {
     display: flex;
@@ -63,6 +67,10 @@
       border-radius: 8px;
       background-color: #ecf1ff;
       color: #7da1ff;
+    }
+    &:active{
+      color: #2B52B5;
+      background-color: #C3D4FF;
     }
   }
   .languageChosen {

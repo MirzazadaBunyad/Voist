@@ -48,7 +48,7 @@ function CodeBelow({ handleClickToChange }) {
           <div className={styles.inputContainer}>
             <input
               className={styles.LoginInput}
-              type="text"
+              type="number"
               id=""
               name="number"
               placeholder="•"
@@ -58,7 +58,7 @@ function CodeBelow({ handleClickToChange }) {
             />
             <input
               className={styles.LoginInput}
-              type="text"
+              type="number"
               id=""
               name="number"
               placeholder="•"
@@ -68,7 +68,7 @@ function CodeBelow({ handleClickToChange }) {
             />
             <input
               className={styles.LoginInput}
-              type="text"
+              type="number"
               id=""
               name="number"
               placeholder="•"
@@ -78,7 +78,7 @@ function CodeBelow({ handleClickToChange }) {
             />
             <input
               className={styles.LoginInput}
-              type="text"
+              type="number"
               id=""
               name="number"
               placeholder="•"
