@@ -1,16 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import BackButton from "../../../smallComponents/backButton/BackButton";
 import gif from "../../../../assets/img/smile.gif";
 import styles from "./newPassword.module.scss";
 import checkGreenIcon from "../../../../assets/img/checkGreenIcon.svg";
 import checkCrossIcon from "../../../../assets/img/checkCrossIcon.svg";
 import checkGrayIcon from "../../../../assets/img/checkGrayIcon.svg";
+import eyeClosedIcon from "../../../../assets/img/eyeClosedIcon.svg";
+import passwordEye from "../../../../assets/img/passwordEye.svg";
+import arrowRightBlack from "../../../../assets/img/arrowRightBlack.svg";
 
 function NewPassword() {
+  const [showPassword1, setShowPassword1] = useState(false);
+  const [showPassword2, setShowPassword2] = useState(false);
+
+  const togglePasswordVisibility1 = () => {
+    setShowPassword1(!showPassword1);
+  };
+  const togglePasswordVisibility2 = () => {
+    setShowPassword2(!showPassword2);
+  };
   return (
     <div>
       <div>
-        <BackButton />
+        <div className={styles.backButton}>
+          <BackButton />
+        </div>
         <div className={styles.textContainer}>
           <h2>Set your new password</h2>
           <div>
@@ -26,13 +40,35 @@ function NewPassword() {
               <label className={styles.changePasswordLabel} htmlFor="password1">
                 Password*
               </label>
-              <input  className={styles.changePasswordInput} type="number" name="password" id="password1" />
+              <input
+                className={styles.changePasswordInput}
+                type={showPassword1 ? "text" : "password"}
+                name="password"
+                id="password1"
+              />
+              <img
+                className={styles.passIconImg1}
+                onClick={togglePasswordVisibility1}
+                src={showPassword1 ? passwordEye : eyeClosedIcon}
+                alt="Error"
+              />
             </div>
-            <div>
+            <div className={styles.repeatePassword}>
               <label className={styles.changePasswordLabel} htmlFor="password2">
                 Repeat password*
               </label>
-              <input className={styles.changePasswordInput} type="number" name="repeatPassword" id="password2" />
+              <input
+                className={styles.changePasswordInput}
+                type={showPassword2 ? "text" : "password"}
+                name="repeatPassword"
+                id="password2"
+              />
+              <img
+                className={styles.passIconImg2}
+                onClick={togglePasswordVisibility2}
+                src={showPassword2 ? passwordEye : eyeClosedIcon}
+                alt="Error"
+              />
             </div>
           </div>
           <div className={styles.characters}>
@@ -53,10 +89,13 @@ function NewPassword() {
             <div>
               <div className={styles.buttonContainer}>
                 <div>
-                  <button>Set Password</button>
+                  <button type="submit" className={styles.setPassword}>
+                    Set password
+                    <img src={arrowRightBlack} alt="Error" />
+                  </button>
                 </div>
                 <div>
-                  <button>Cancel</button>
+                  <button className={styles.cancel}>Cancel</button>
                 </div>
               </div>
             </div>

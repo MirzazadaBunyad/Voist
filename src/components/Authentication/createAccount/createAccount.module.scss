@@ -33,11 +33,11 @@
         &:nth-child(1) {
           p {
             color: #1d2b21;
-             font-family: Raleway;
+            font-family: Raleway;
             font-size: 12px;
             font-style: normal;
             font-weight: 600;
-            line-height: 16px; /* 133.333% */
+            line-height: 16px;
             letter-spacing: 0.4px;
           }
         }
@@ -49,7 +49,7 @@
             font-size: 12px;
             font-style: normal;
             font-weight: 400;
-            line-height: 16px; /* 133.333% */
+            line-height: 16px;
             letter-spacing: 0.4px;
           }
         }
@@ -71,7 +71,7 @@
         &:hover {
           background-color: #2bb534;
           color: white;
-          .arrowRight{
+          .arrowRight {
             filter: invert(100%);
             transition: all 0.3s ease;
           }
@@ -87,7 +87,7 @@
       }
     }
   }
-  
+
   .activation {
     display: flex;
     width: 384px;
@@ -95,7 +95,7 @@
     justify-content: center;
     align-items: center;
     margin: 200px 100px;
-     gap: 4px;
+    gap: 4px;
     .checkIcon {
       background-color: #2bb534;
       border-radius: 44.5px;
@@ -172,7 +172,7 @@
         transition: all 0.3s ease;
         &:hover {
           background-color: #ecf1ff;
-          color: var(--Info-info-300, #7da1ff);
+          color: #7da1ff;
           line-height: 24px;
         }
       }
@@ -206,7 +206,7 @@
       font-size: 56px;
       font-style: normal;
       font-weight: 900;
-      line-height: 55px; /* 98.214% */
+      line-height: 55px;
       letter-spacing: 0.4px;
     }
     button {
@@ -218,7 +218,7 @@
       cursor: pointer;
       background-color: transparent;
       border-radius: 8px;
-      border: 2px solid  #fff;
+      border: 2px solid #fff;
       transition: all 0.3s ease;
       &:hover {
         border-radius: 8px;
@@ -245,7 +245,7 @@
     font-size: 40px;
     font-style: normal;
     font-weight: 900;
-    line-height: 44px; /* 110% */
+    line-height: 44px;
     letter-spacing: 0.4px;
     span {
       color: #38e842;
@@ -258,8 +258,8 @@
     display: flex;
     align-items: center;
     p {
-      color: var(--Base-base-8, #6c756f);
-      //   font-family: Raleway;
+      color: #6c756f;
+      font-family: Raleway;
       font-size: 14px;
       font-style: normal;
       font-weight: 500;
@@ -272,22 +272,22 @@
       justify-content: center;
       align-items: center;
       gap: 10px;
-      color: var(--Natural-natural-13, #000);
-      // font-family: Raleway;
+      color: #000;
+      font-family: Raleway;
       background-color: transparent;
       border: none;
       cursor: pointer;
       font-size: 14px;
       font-style: normal;
       font-weight: 700;
-      line-height: 16px; /* 114.286% */
+      line-height: 16px;
       letter-spacing: 0.4px;
       border-radius: 8px;
       transition: all 0.3s ease;
       &:hover {
-        background: var(--Info-info-50, #ecf1ff);
-        color: var(--Info-info-300, #7da1ff);
-        // line-height: 24px;
+        background-color: #ecf1ff;
+        color: #7da1ff;
+        line-height: 24px;
       }
     }
     img {
@@ -310,49 +310,44 @@
       flex-direction: column;
       align-items: flex-start;
       gap: 9px;
-      // flex: 1 0 0;
       .label {
-        color: var(--Base-base-13, #1d2b21);
-        //   font-family: Raleway;
+        color: #1d2b21;
+        font-family: Raleway;
         font-size: 12px;
         font-style: normal;
         font-weight: 600;
-        line-height: 12px; /* 100% */
+        line-height: 12px;
         letter-spacing: 0.4px;
       }
       input {
         display: flex;
-        padding: 16px 40px 16px 24px;
+        padding: 16px 40px 16px 18px;
         align-items: center;
         gap: 4px;
         align-self: stretch;
         border-radius: 12px;
-        border: 1px solid var(--Base-base-5, #dddfde);
-        background: var(--Base-base-2, #fdfdfd);
+        border: 1px solid #dddfde;
+        background-color: #fdfdfd;
         margin: 8px 0;
         letter-spacing: 0.4px;
-        // font-family: Raleway;
+        font-family: Raleway;
         font-size: 14px;
         line-height: 24px;
       }
       img {
-        // position: absolute;
-        // top: 25px;
-        // right: 18px;
-        // cursor: pointer;
-        transform: translate(200px, -47px);
+        transform: translate(180px, -47px);
       }
     }
   }
   .inputEmail {
     display: flex;
     flex-direction: column;
-    gap:0px;
+    gap: 9px;
     position: relative;
     width: 100%;
     .label {
-      //   color: var(--Base-base-13, #1d2b21);
-      //   font-family: Raleway;
+      color: #1d2b21;
+      font-family: Raleway;
       font-size: 12px;
       font-style: normal;
       font-weight: 600;
@@ -367,31 +362,13 @@
       gap: 10px;
       align-self: stretch;
       border-radius: 12px;
-      border: 1px solid var(--Base-base-5, #dddfde);
-      background: var(--Base-base-2, #fdfdfd);
+      border: 1px solid #dddfde;
+      background-color: #fdfdfd;
     }
     img {
-      // position: absolute;
       width: 24px;
       height: 24px;
-      // top: 35px;
-      // right: 18px;
-      transform: translate(460px, -47px);
+      transform: translate(417px, -45px);
     }
   }
 }
-
-// input[type="email"] {
-//   width: 100%;
-// }
-
-// input[type="password"] {
-//   width: 100%;
-// }
-// .labelForPass {
-//   letter-spacing: 0.4px;
-//   position: absolute;
-//   font-size: 16px;
-//   left: 20px;
-//   top: -10px;
-// }
