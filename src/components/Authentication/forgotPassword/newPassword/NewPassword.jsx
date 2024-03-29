@@ -9,7 +9,7 @@ import eyeClosedIcon from "../../../../assets/img/eyeClosedIcon.svg";
 import passwordEye from "../../../../assets/img/passwordEye.svg";
 import arrowRightBlack from "../../../../assets/img/arrowRightBlack.svg";
 
-function NewPassword() {
+function NewPassword({ handleGoBack, backToLogin, handleClickToChange }) {
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
 
@@ -19,10 +19,11 @@ function NewPassword() {
   const togglePasswordVisibility2 = () => {
     setShowPassword2(!showPassword2);
   };
+
   return (
     <div>
       <div>
-        <div className={styles.backButton}>
+        <div onClick={handleGoBack} className={styles.backButton}>
           <BackButton />
         </div>
         <div className={styles.textContainer}>
@@ -34,7 +35,10 @@ function NewPassword() {
             </span>
           </div>
         </div>
-        <form className={styles.ChangePasswordFormContainer}>
+        <form
+          onSubmit={handleClickToChange}
+          className={styles.ChangePasswordFormContainer}
+        >
           <div className={styles.ChangePasswordInputs}>
             <div>
               <label className={styles.changePasswordLabel} htmlFor="password1">
@@ -95,7 +99,9 @@ function NewPassword() {
                   </button>
                 </div>
                 <div>
-                  <button className={styles.cancel}>Cancel</button>
+                  <button onClick={backToLogin} className={styles.cancel}>
+                    Cancel
+                  </button>
                 </div>
               </div>
             </div>

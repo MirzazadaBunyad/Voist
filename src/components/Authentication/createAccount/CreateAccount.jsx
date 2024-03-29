@@ -153,12 +153,12 @@ export default function CreateAccount({ ChangeComponents, show }) {
                   </div>
                 </div>
                 <div className={styles.buttonElement}>
-                  <button type="submit">
+                  <button onClick={toggleActivation} type="submit">
                     <p>Let’s go</p>
                     <img
                       className={styles.arrowRight}
                       src={arrowRightBlack}
-                      alt=""
+                      alt="Error"
                     />
                   </button>
                 </div>

@@ -27,11 +27,15 @@ export default function ForgotPassword({ backToLogin }) {
         {currentComponent === "CodeBelow" && (
           <CodeBelow
             handleClickToChange={() => handleComponentChange("NewPassword")}
+            handleGoBack={() => handleComponentChange("SendToEmail")}
+            backToLogin={backToLogin}
           />
         )}
         {currentComponent === "NewPassword" && (
           <NewPassword
             handleClickToChange={() => handleComponentChange("Successfully")}
+            handleGoBack={() => handleComponentChange("CodeBelow")}
+            backToLogin={backToLogin}
           />
         )}
         {currentComponent === "Successfully" && <Successfully />}
