@@ -105,10 +105,14 @@
   padding-right: 65px;
   transition: all 0.5s ease;
 
-  &:hover {
-    border-color: #1d2b21;
-    transition: all 0.2s ease;
+  input {
+    width: 100%;
+    outline: none;
+    border: none;
   }
+}
+.invalid {
+  border: 1px solid red;
 }
 
 .inputMessageIcon {

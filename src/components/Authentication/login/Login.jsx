@@ -1,13 +1,32 @@
+import React, { useState } from "react";
 import styles from "./login.module.scss";
 import smile from "../../../assets/img/smile.gif";
 import eyeClosedIcon from "../../../assets/img/eyeClosedIcon.svg";
 import inputMessageIcon from "../../../assets/img/inputMessageIcon.svg";
 import ayeOpen from "../../../assets/img/passwordEye.svg";
 import arrowRightBlack from "../../../assets/img/arrowRightBlack.svg";
-import { useState } from "react";
 
 export default function Login({ openForgetPassword, ChangeComponents }) {
   const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const [isTyping, setIsTyping] = useState(false);
+
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+    setIsTyping(true);
+  };
 
   function handleShowPassword() {
     setShowPassword(!showPassword);
@@ -16,12 +35,16 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
   const goToCreateAccount = () => {
     ChangeComponents();
   };
+
   function handleSubmit(e) {
     e.preventDefault();
+    setIsTyping(false);
   }
+
   const handleChangeForgetPasword = () => {
     openForgetPassword();
   };
+
   return (
     <section className={styles.container}>
       <main className={styles.info__main}>
@@ -38,17 +61,24 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
           </div>
         </div>
         <form className={styles.form} action="Submit" onSubmit={handleSubmit}>
-          <div className={styles.email}>
+          <div className={styles.inputBox}>
             <label className={styles.loginLabel} htmlFor="email">
               E-mail*
             </label>
-            <input
-              className={styles.LoginInput}
-              type="email"
-              id="email"
-              name="email"
-              placeholder="example@company.com"
-            />
+            <div
+              className={`${styles.LoginInput} ${
+                isTyping && !isValidEmail(formData.email) ? styles.invalid : ""
+              }`}
+            >
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="example@company.com"
+                value={formData.email}
+                onChange={handleChange}
+              />
+            </div>
             <img
               className={styles.inputMessageIcon}
               src={inputMessageIcon}
@@ -65,6 +95,8 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
               id="password"
               name="password"
               placeholder="Enter password"
+              value={formData.password}
+              onChange={handleChange}
             />
             <img
               className={styles.passwordIcon}
