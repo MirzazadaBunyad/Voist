@@ -9,18 +9,63 @@ import checkCrossIcon from "../../../assets/img/checkCrossIcon.svg";
 import arrowRightBlack from "../../../assets/img/arrowRightBlack.svg";
 import passwordEye from "../../../assets/img/passwordEye.svg";
 import checkWhiteIcon from "../../../assets/img/checkWhiteIcon.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function CreateAccount({ ChangeComponents, show }) {
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
+  const [showActivation, setShowActivation] = useState(false);
+  const [showMain, setShowMain] = useState(true);
+  const [data, setData] = useState({
+    name: "",
+    surname: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData({
+      ...data,
+      [name]: value,
+    });
+    console.log(data);
+  };
 
   const goToLogin = () => {
     ChangeComponents();
   };
-  function sendInformation(e) {
+  const sendInformation = async (e) => {
     e.preventDefault();
-  }
+
+    try {
+      const response = await fetch(
+        "https://0ia78onnye.execute-api.eu-central-1.amazonaws.com/api/users/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: data.name,
+            surname: data.surname,
+            email: data.email,
+            password: data.password,
+            confirmPassword: data.confirmPassword,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error: Status ${response.status}`);
+      }
+
+      console.log("Data sent successfully!");
+    } catch (error) {
+      console.error("Error sending data:", error.message);
+    }
+  };
 
   const togglePasswordVisibility1 = () => {
     setShowPassword1(!showPassword1);
@@ -29,9 +74,6 @@ export default function CreateAccount({ ChangeComponents, show }) {
   const togglePasswordVisibility2 = () => {
     setShowPassword2(!showPassword2);
   };
-
-  const [showActivation, setShowActivation] = useState(false);
-  const [showMain, setShowMain] = useState(true);
 
   const toggleActivation = () => {
     setShowActivation(!showActivation);
@@ -70,7 +112,11 @@ export default function CreateAccount({ ChangeComponents, show }) {
                         type="text"
                         placeholder="Enter name"
                         id="EnterName"
+                        value={data.name}
+                        name="name"
+                        onChange={handleChange}
                       />
+
                       <img src={inputIcon} alt="" />
                     </div>
                   </div>
@@ -83,7 +129,11 @@ export default function CreateAccount({ ChangeComponents, show }) {
                         type="text"
                         id="EnterSurname"
                         placeholder="Enter surname"
+                        value={data.surname}
+                        name="surname"
+                        onChange={handleChange}
                       />
+
                       <img src={inputIcon} alt="" />
                     </div>
                   </div>
@@ -96,7 +146,11 @@ export default function CreateAccount({ ChangeComponents, show }) {
                     type="email"
                     placeholder="example@company.com"
                     id="EnterEmail"
+                    value={data.email}
+                    name="email"
+                    onChange={handleChange}
                   />
+
                   <img src={inputMessageIcon} alt="" />
                 </div>
                 <div className={styles.nameSurname}>
@@ -108,8 +162,12 @@ export default function CreateAccount({ ChangeComponents, show }) {
                       <input
                         type={showPassword1 ? "text" : "password"}
                         placeholder="Enter password"
-                        id="RepeatPassword"
+                        id="password"
+                        value={data.password}
+                        name="password"
+                        onChange={handleChange}
                       />
+
                       <img
                         src={showPassword1 ? passwordEye : eyeClosedIcon}
                         alt=""
@@ -124,9 +182,13 @@ export default function CreateAccount({ ChangeComponents, show }) {
                     <div className={styles.inputShow}>
                       <input
                         type={showPassword2 ? "text" : "password"}
-                        id="password"
+                        id="confirmPassword"
                         placeholder="Enter password"
+                        value={data.confirmPassword}
+                        name="confirmPassword"
+                        onChange={handleChange}
                       />
+
                       <img
                         src={showPassword2 ? passwordEye : eyeClosedIcon}
                         alt=""

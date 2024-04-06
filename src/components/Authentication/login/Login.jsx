@@ -12,6 +12,7 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
     email: "",
     password: "",
   });
+
   const [isTyping, setIsTyping] = useState(false);
 
   const isValidEmail = (email) => {
@@ -26,6 +27,35 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
       [name]: value,
     });
     setIsTyping(true);
+    console.log(formData);
+  };
+  const sendInformation = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(
+        "https://0ia78onnye.execute-api.eu-central-1.amazonaws.com/api/users/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            password: formData.password,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error: Status ${response.status}`);
+      }
+
+      console.log("Data sent successfully!");
+    } catch (error) {
+      console.error("Error sending data:", error.message);
+    }
+    setIsTyping(false);
   };
 
   function handleShowPassword() {
@@ -35,11 +65,6 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
   const goToCreateAccount = () => {
     ChangeComponents();
   };
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    setIsTyping(false);
-  }
 
   const handleChangeForgetPasword = () => {
     openForgetPassword();
@@ -60,7 +85,11 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
             <img className={styles.smile} src={smile} alt="Smile" />
           </div>
         </div>
-        <form className={styles.form} action="Submit" onSubmit={handleSubmit}>
+        <form
+          className={styles.form}
+          action="Submit"
+          onSubmit={sendInformation}
+        >
           <div className={styles.inputBox}>
             <label className={styles.loginLabel} htmlFor="email">
               E-mail*
