@@ -1,16 +1,14 @@
-import {
-  Route,
-  createBrowserRouter,
-  createRoutesFromElements,
-} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import LandingPage from "./components/landingPage/LandingPage";
 import Authentication from "./components/Authentication/Authentication";
 
-export const router = createBrowserRouter(
-  createRoutesFromElements(
-    <>
-      <>
-        <Route path="/" element={<Authentication />} />
-      </>
-    </>
+function App() {
+  return (<>
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/authentication" element={<Authentication />} />
+    </Routes>
+  </>
   )
-);
+}
+export default App;

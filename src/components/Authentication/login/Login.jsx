@@ -95,9 +95,8 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
               E-mail*
             </label>
             <div
-              className={`${styles.LoginInput} ${
-                isTyping && !isValidEmail(formData.email) ? styles.invalid : ""
-              }`}
+              className={`${styles.LoginInput} ${isTyping && !isValidEmail(formData.email) ? styles.invalid : ""
+                }`}
             >
               <input
                 type="email"
