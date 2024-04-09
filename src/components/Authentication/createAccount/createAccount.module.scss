@@ -354,21 +354,34 @@
       line-height: 12px;
       letter-spacing: 0.4px;
     }
-    input {
-      width: 100%;
-      display: flex;
-      padding: 16px 45px 16px 24px;
-      align-items: center;
-      gap: 10px;
-      align-self: stretch;
-      border-radius: 12px;
-      border: 1px solid #dddfde;
-      background-color: #fdfdfd;
-    }
     img {
       width: 24px;
       height: 24px;
       transform: translate(417px, -45px);
     }
   }
+}
+.inputE {
+  border: 1px solid #dddfde;
+  border-radius: 12px;
+
+  input {
+    width: 100%;
+    display: flex;
+    padding: 16px 45px 16px 24px;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    border-radius: 12px;
+    width: 100%;
+    outline: none;
+    border: none;
+
+    background-color: #fdfdfd;
+  }
+}
+
+.invalid {
+  border: 1px solid red;
+  border-radius: 12px;
 }

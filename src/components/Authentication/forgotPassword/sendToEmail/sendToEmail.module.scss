@@ -15,6 +15,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  animation: container 1.5s ease-in-out;
   h1 {
     color: #1d2b21;
     font-family: Raleway;
@@ -23,6 +24,14 @@
     font-weight: 800;
     line-height: 35px;
     letter-spacing: 0.4px;
+  }
+}
+@-webkit-keyframes container {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 .accountAlready {
@@ -36,16 +45,18 @@
     line-height: 16px;
     letter-spacing: 0.4px;
     margin-bottom: 32px;
+    margin-top: 10px;
   }
   img {
     width: 24px;
     height: 24px;
     margin-left: 3px;
+    margin-top: 5px;
+    animation: Ic 1.5s ease-in-out;
   }
 }
 .formContainer {
   width: 500px;
-  height: 230px;
   margin-right: 40px;
   gap: 32;
 }

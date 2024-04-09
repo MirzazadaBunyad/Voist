@@ -8,138 +8,152 @@
   font-family: "Poppins", sans-serif;
   font-weight: 400;
 }
-.backButton{
+.backButton {
   margin-bottom: 40px;
 }
 .accountСreation {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  animation: container 1.5s ease-in-out;
   h1 {
     color: #1d2b21;
     font-family: Raleway;
     font-size: 32px;
     font-style: normal;
     font-weight: 800;
-    line-height: 35px; 
+    line-height: 35px;
     letter-spacing: 0.4px;
-    margin: 0 0 10px 0 ;
-}
-}
-  .accountAlready {
-    display: flex;
-    p {
-      color: #6c756f;
-      font-family: Raleway;
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: 16px;
-      letter-spacing: 0.4px;
-    }
-    img{
-      width: 24px;
-      height: 24px;
-      margin-left: 3px;
-    }
+    margin: 0 0 10px 0;
   }
-  .formContainer {
-    width: 500px;
-    height: 230px;
-    margin-right: 40px;
-    gap: 32;
+}
+@keyframes container {
+  0% {
+    opacity: 0;
   }
-  .loginLabel {
-    font-family: "Raleway", sans-serif;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 12px;
+  100% {
+    opacity: 1;
+  }
+}
+.accountAlready {
+  display: flex;
+  p {
+    color: #6c756f;
+    font-family: Raleway;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
     letter-spacing: 0.4px;
-    color: #1d2b21;
+    margin-top: 2px;
   }
-  .LoginInput {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    border: 1px solid #99A09B;
-    font-size: 35px;
-    text-align: center;
-    margin-left: 10px;
-    
+  img {
+    width: 24px;
+    height: 24px;
+    margin-left: 3px;
+    margin-top: -3px;
+    animation: moveRight 0.5s linear;
   }
-  /* Скрываем стрелки у всех input типа number */
+}
+@-webkit-keyframes moveRight {
+  0% {
+    transform: translateX(-190px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.formContainer {
+  width: 500px;
+  margin-right: 40px;
+  gap: 32;
+  margin-bottom: 50px;
+}
+.loginLabel {
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 12px;
+  letter-spacing: 0.4px;
+  color: #1d2b21;
+}
+.LoginInput {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  border: 1px solid #99a09b;
+  font-size: 35px;
+  text-align: center;
+  margin-left: 10px;
+}
+/* Скрываем стрелки у всех input типа number */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-
-
-  .inputMessageIcon {
-    transform: translate(455px, -40px);
+.inputMessageIcon {
+  transform: translate(455px, -40px);
+  width: 24px;
+  height: 24px;
+}
+.buttonElement {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 16px;
+  font-family: Raleway;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.4000000059604645px;
+  text-align: left;
+  margin: 32px 0 0 0;
+  img {
     width: 24px;
     height: 24px;
   }
-  .buttonElement {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    font-size:16px ;
-    font-family: Raleway;
-    font-weight: 700;
-    line-height: 24px;
-    letter-spacing: 0.4000000059604645px;
-    text-align: left;
-      margin: 32px 0 0 0;
-      img {
-        width: 24px;
-        height: 24px;
-      }
-    }
-    .inputContainer{
-        display: flex;
-        margin: 32px 0 0 -11px;
-        ::placeholder {
-          color: #99a09b;
-          font-family: "Raleway", sans-serif;
-          font-size: 42px;
-          font-style: normal;
-          font-weight: 500;
-          line-height: 12px;
-          letter-spacing: 0.4px;
-          text-align: center;
-          
-        }
-    }
-    .sendButton {
-      display: flex;
-      padding: 16px 35px;
-      justify-content: center;
-      align-items: center;
-      border: none;
-      border-radius: 12px;
-      background: #7dff85;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      &:hover {
-        background-color: #2bb534;
-        color: white;
-      }
-    }
-    .cancelButton{
-      width: 104pxpx;
-      height: 56pxpx;
-      padding: 16px 24px;
-      border-radius: 12px ;
-      border: none;
-      font-family: Raleway;
-      font-size: 16px;
-      font-weight: 700;
-      line-height: 24px;
-      letter-spacing: 0.4px;
-      text-align: left;
-      cursor: pointer;
-
-    }
-
+}
+.inputContainer {
+  display: flex;
+  margin: 32px 0 0 -11px;
+  ::placeholder {
+    color: #99a09b;
+    font-family: "Raleway", sans-serif;
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 12px;
+    letter-spacing: 0.4px;
+    text-align: center;
+  }
+}
+.sendButton {
+  display: flex;
+  padding: 16px 35px;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 12px;
+  background: #7dff85;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  &:hover {
+    background-color: #2bb534;
+    color: white;
+  }
+}
+.cancelButton {
+  width: 104pxpx;
+  height: 56pxpx;
+  padding: 16px 24px;
+  border-radius: 12px;
+  border: none;
+  font-family: Raleway;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.4px;
+  text-align: left;
+  cursor: pointer;
+}
