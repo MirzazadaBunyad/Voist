@@ -350,10 +350,6 @@
     background: #f5f5f5;
     .keyFeatures {
       position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 56px;
       .keyFeatArrOne {
         position: absolute;
         top: -20px;
@@ -471,7 +467,7 @@
     }
   }
   .callLogsSumSec {
-    .callLogsSumImg{
+    .callLogsSumImg {
       width: 100%;
     }
   }
@@ -630,24 +626,23 @@
   .questions {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 56px;
     padding: 80px 100px;
     background-color: #f5f5f5;
-    position: relative;
     .questionsContainer {
-      width: 100%;
+      position: relative;
       .arrowOne {
         position: absolute;
-        left: 400px;
-        top: 60px;
+        left: 20px;
+        top: -22px;
         width: 39px;
         height: 38px;
       }
       .arrowTwo {
         position: absolute;
-        right: 160px;
-        top: 70px;
+        right: -220px;
+        top: 0;
         width: 90px;
         height: 100px;
       }
@@ -728,15 +723,10 @@
     gap: 64px;
     .contHeadContainer {
       position: relative;
-      width: 100%;
-      .arrowOneContainer {
-        .arrowOne {
-          position: absolute;
-          left: 215px;
-          top: -25px;
-          width: 39px;
-          height: 38px;
-        }
+      .arrowOne {
+        position: absolute;
+        left: -23px;
+        top: -23px;
       }
       .contHeadInfo {
         display: flex;
@@ -823,6 +813,16 @@
                 border: 1px solid #3d73ff;
               }
             }
+            .inputField {
+              align-self: stretch;
+              border-radius: 12px;
+              border: 1px solid #dddfde;
+              input {
+                width: 100%;
+                outline: none;
+                border: none;
+              }
+            }
             .invalid {
               border: 1px solid red;
             }
@@ -851,8 +851,9 @@
             letter-spacing: 0.4px;
           }
           textarea {
-            height: 124px;
+            max-height: 124px;
             padding: 16px 24px;
+            resize: none;
             gap: 10px;
             width: 100%;
             border-radius: 12px;
@@ -1018,7 +1019,7 @@
     padding-top: 24px;
     .footerCopyRightText {
       color: #595959;
-      // font-family: "Visby CF";
+      font-family: "Visby CF";
       font-size: 16px;
       font-style: normal;
       font-weight: 500;
@@ -1026,7 +1027,7 @@
       letter-spacing: 0.4px;
       span {
         color: #000;
-        // font-family: "Visby CF";
+        font-family: "Visby CF";
         font-size: 16px;
         font-style: normal;
         font-weight: 800;
@@ -1040,7 +1041,7 @@
       gap: 40px;
       a {
         color: #000;
-        // font-family: "Visby CF";
+        font-family: "Visby CF";
         font-size: 16px;
         font-style: normal;
         font-weight: 500;

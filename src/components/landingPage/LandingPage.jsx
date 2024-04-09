@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./landingPage.module.scss";
+import "./fonts.css"
 import voistLogo from "../../assets/img/voistLogo.svg";
 import landingPageArrow from "../../assets/img/landingPageArrow.svg";
 import landingPageArrTwo from "../../assets/img/landingPageArrTwo.svg";
@@ -251,7 +252,16 @@ function LandingPage() {
                     Get started
                     <BsArrowRight className={styles.arrowRight} />
                   </Link>
-                  <button className={styles.btnContact}>Contact us</button>
+                  <ScrollLink
+                    activeClass="active"
+                    spy={true}
+                    smooth={true}
+                    offset={-50}
+                    duration={400}
+                    to="form"
+                    className={styles.btnContact}>
+                    Contact us
+                  </ScrollLink>
                 </div>
               </div>
             </div>
@@ -451,8 +461,7 @@ function LandingPage() {
             {accordionItems.map((item, index) => (
               <div key={index} className={styles.accordionItem}>
                 <div
-                  className={`${styles.title} ${activeIndex === index ? styles.active : ""
-                    }`}
+                  className={styles.title}
                   onClick={() => onTitleClick(index)}
                 >
                   <p className={styles.titleText}>{item.title}</p>
@@ -471,13 +480,11 @@ function LandingPage() {
         </section>
         <section name="form" className={styles.contact}>
           <div className={styles.contHeadContainer}>
-            <div className={styles.arrowOneContainer}>
-              <img
-                className={styles.arrowOne}
-                src={landingPageArrow}
-                alt="Arrow one"
-              />
-            </div>
+            <img
+              className={styles.arrowOne}
+              src={landingPageArrow}
+              alt="Arrow one"
+            />
             <div className={styles.contHeadInfo}>
               <h3 className={styles.contHeadInfoHeading}>
                 We provide varuois packeges for you
@@ -513,13 +520,15 @@ function LandingPage() {
                 </div>
                 <div className={styles.nameField}>
                   <label htmlFor="email">E-mail*</label>
-                  <input
-                    type="email"
-                    placeholder="example@company.com"
-                    className={isTyping && !isValidEmail(formData.email) ? styles.invalid : ""}
-                    name="email"
-                    onChange={handleChange}
-                    value={formData.email} />
+                  <div className={`${styles.inputField} ${isTyping && !isValidEmail(formData.email) ? styles.invalid : ""}`}>
+                    <input
+                      type="email"
+                      placeholder="example@company.com"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                    />
+                  </div>
                   <img className={styles.inputIcon} src={inputMessageIcon} alt="Message Icon" />
                 </div>
               </div>
