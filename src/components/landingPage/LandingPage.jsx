@@ -25,15 +25,24 @@ import { FiUser } from "react-icons/fi";
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { HiMiniArrowRight } from "react-icons/hi2";
 import { Link } from "react-router-dom";
+import { Link as ScrollLink } from "react-scroll";
+
 
 function LandingPage() {
-  const [isFocused, setIsFocused] = useState(false);
-  const handleFocus = () => {
-    setIsFocused(true);
-  };
-  const handleBlur = () => {
-    setIsFocused(false);
-  };
+  const menuItems = [
+    { name: 'About', to: 'about', offset: -300 },
+    { name: 'Features', to: 'features', offset: -200 },
+    { name: 'Testimonials', to: 'testimonials', offset: -200 },
+    { name: 'FAQ', to: 'faq', offset: -100 },
+    { name: 'Contact', to: 'contact', offset: -70 },
+  ];
+
+  const [actMenuItem, setActMenuItem] = useState(menuItems[0].name);
+
+  const handleMenuItemClick = (itemName) => {
+    setActMenuItem(itemName);
+  }
+
   const [activeIndex, setActiveIndex] = useState(null);
   const onTitleClick = (index) => {
     setActiveIndex(index === activeIndex ? null : index);
@@ -69,84 +78,87 @@ function LandingPage() {
       content: "To get started, simply contact us for a demo request. Our team will guide you through the setup process and help customize Voist for your specific needs.",
     },
   ];
+
+  const [formData, setFormData] = useState({
+    name: "",
+    companyName: "",
+    email: "",
+    message: "",
+  });
+
+  const [isTyping, setIsTyping] = useState(false);
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+    setIsTyping(true);
+    console.log(formData);
+  };
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("https://0ia78onnye.execute-api.eu-central-1.amazonaws.com/api/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          companyName: formData.companyName,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
+      // const data = await response.json();
+      if (!response.ok) {
+        throw new Error(`HTTP error: Status ${response.status}`);
+      }
+      console.log("Form data sent successfully!");
+    } catch (error) {
+      console.error("Error sending form data:", error.message);
+    }
+    setIsTyping(false);
+  };
   return (
     <>
-      <header className={styles.header}>
+      <header className={styles.headerContainer}>
         <div className={styles.logo}>
-          <a href="#home"
-            // activeClass="active"
-            // to="home"
-            // spy={true}
-            // smooth={true}
-            // offset={0}
-            // duration={400}
+          <ScrollLink
+            activeClass="active"
+            to="home"
+            spy={true}
+            smooth={true}
+            offset={0}
+            duration={400}
           >
             <img className={styles.logoImg} src={voistLogo} alt="Voist Logo" />
-          </a>
+          </ScrollLink>
         </div>
         <div className={styles.nav}>
           <ul className={styles.navList}>
-            <li>
-              <a href= "#about"
-                // activeClass="active"
-                // to="about"
-                // spy={true}
-                // smooth={true}
-                // offset={-300}
-                // duration={400}
-                className={`${styles.active} ${styles.animation}`}
-              >
-                About
-              </a>
-            </li>
-            <li>
-              <a href="#features"
-                // activeClass="active"
-                // to="features"
-                // spy={true}
-                // smooth={true}
-                // offset={-200}
-                // duration={400}
-              >
-                Features
-              </a>
-            </li>
-            <li>
-              <a href="#testimonials"
-                // activeClass="active"
-                // to="testimonials"
-                // spy={true}
-                // smooth={true}
-                // offset={-200}
-                // duration={400}
-              >
-                Testimonials
-              </a>
-            </li>
-            <li>
-              <a href="#faq"
-                // activeClass="active"
-                // to="faq"
-                // spy={true}
-                // smooth={true}
-                // offset={-100}
-                // duration={400}
-              >
-                FAQ
-              </a>
-            </li>
-            <li>
-              <a href="#contact"
-                // activeClass="active"
-                // to="contact"
-                // spy={true}
-                // smooth={true}
-                // offset={-70}
-                // duration={400}
-              >
-                Contact
-              </a>
-            </li>
+            {menuItems.map((menuItem) => (
+              <li key={menuItem.name}>
+                <ScrollLink
+                  to={menuItem.to}
+                  spy={true}
+                  smooth={true}
+                  offset={menuItem.offset}
+                  duration={400}
+                  className={actMenuItem === menuItem.name ? styles.active : ''}
+                  onClick={() => handleMenuItemClick(menuItem.name)}
+                >
+                  {menuItem.name}
+                </ScrollLink>
+              </li>
+            ))}
           </ul>
         </div>
         <div className={styles.hero}>
@@ -156,7 +168,7 @@ function LandingPage() {
         </div>
       </header>
       <main className={styles.mainContainer}>
-        <section id="home" name="home" className={`${styles.backgroundVector} element`}>
+        <section name="home" className={`${styles.backgroundVector} element`}>
           <div className={styles.textContainer}>
             <div className={styles.arrow}>
               <div className={styles.arrowOneContainer}>
@@ -185,9 +197,9 @@ function LandingPage() {
               </p>
             </div>
             <div className={styles.btns}>
-              <button className={styles.btnStarted}>
+              <Link to="/authentication" className={styles.btnStarted}>
                 Get started <BsArrowRight className={styles.arrowRight} />
-              </button>
+              </Link>
               <button className={styles.learnMoreBtn}>Learn more</button>
             </div>
           </div>
@@ -198,7 +210,7 @@ function LandingPage() {
               alt="Call Logs Summary One"
             />
           </div>
-          <div id="about" name="about" className={`${styles.features} about`}>
+          <div name="about" className={`${styles.features} about`}>
             <div className={styles.featuredImgs}>
               <img
                 className={styles.featuredImgOne}
@@ -235,17 +247,17 @@ function LandingPage() {
                   </p>
                 </div>
                 <div className={styles.btns}>
-                  <button className={styles.btnRequest}>
+                  <Link to="/authentication" className={styles.btnRequest}>
                     Get started
                     <BsArrowRight className={styles.arrowRight} />
-                  </button>
+                  </Link>
                   <button className={styles.btnContact}>Contact us</button>
                 </div>
               </div>
             </div>
           </div>
         </section>
-        <section id="features" name="features" className={`${styles.secKeyFeatures} element`}>
+        <section name="features" className={`${styles.secKeyFeatures} element`}>
           <div className={styles.keyFeatures}>
             <img
               src={landingPageArrow}
@@ -377,11 +389,20 @@ function LandingPage() {
               <button className={styles.requestDemoBtn}>
                 Request a demo <BsArrowRight className={styles.arrowRight} />
               </button>
-              <button className={styles.contactUsBtn}>Contact us</button>
+              <ScrollLink
+                activeClass="active"
+                spy={true}
+                smooth={true}
+                offset={-50}
+                duration={400}
+                to="form"
+                className={styles.contactUsBtn}>
+                Contact us
+              </ScrollLink>
             </div>
           </div>
         </section>
-        <section id="testimonials" name="testimonials" className={`${styles.trustedBy} element`}>
+        <section name="testimonials" className={`${styles.trustedBy} element`}>
           <div className={styles.trustedByContainer}>
             <img
               className={styles.trustedByImg}
@@ -404,15 +425,13 @@ function LandingPage() {
           </div>
           {/* <div className={styles.slider}></div> */}
         </section>
-        <section id="faq" name="faq" className={`${styles.questions} element`}>
+        <section name="faq" className={`${styles.questions} element`}>
           <div className={styles.questionsContainer}>
-            <div className={styles.arrowOneContainer}>
-              <img
-                className={styles.arrowOne}
-                src={landingPageArrow}
-                alt="Arrow one"
-              />
-            </div>
+            <img
+              className={styles.arrowOne}
+              src={landingPageArrow}
+              alt="Arrow one"
+            />
             <div className={styles.questionsInfo}>
               <h3 className={styles.questionsInfoHeading}>
                 Questions Are Often Asked To Us
@@ -422,13 +441,11 @@ function LandingPage() {
                 by the readable content.
               </p>
             </div>
-            <div className={styles.arrowTwoContainer}>
-              <img
-                className={styles.arrowTwo}
-                src={questionArr}
-                alt="Arrow two"
-              />
-            </div>
+            <img
+              className={styles.arrowTwo}
+              src={questionArr}
+              alt="Arrow two"
+            />
           </div>
           <div className={styles.questionsContent}>
             {accordionItems.map((item, index) => (
@@ -452,7 +469,7 @@ function LandingPage() {
             ))}
           </div>
         </section>
-        <section className={styles.contact}>
+        <section name="form" className={styles.contact}>
           <div className={styles.contHeadContainer}>
             <div className={styles.arrowOneContainer}>
               <img
@@ -470,100 +487,110 @@ function LandingPage() {
               </p>
             </div>
           </div>
-          <form className={styles.contactFormContainer}>
+          <form className={styles.contactFormContainer} onSubmit={handleSubmit}>
             <div className={styles.contactForm}>
               <div className={styles.nameFields}>
                 <div className={styles.nameField}>
-                  <label>Name Surname*</label>
+                  <label htmlFor="name">Name Surname*</label>
                   <input
                     type="text"
-                    className={`${isFocused ? 'focused' : ''}`}
+                    name="name"
                     placeholder="Enter company domain"
-                    onFocus={handleFocus}
-                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={formData.name}
                   />
                   <FiUser className={styles.inputIcon} />
                 </div>
                 <div className={styles.nameField}>
-                  <label>Company name*</label>
-                  <input type="text" placeholder="Enter company name" />
-                  <img className={styles.inputIcon} src={companyIcon} alt="" />
+                  <label htmlFor="companyName">Company name*</label>
+                  <input
+                    type="text"
+                    placeholder="Enter company name"
+                    name="companyName"
+                    onChange={handleChange}
+                    value={formData.companyName} />
+                  <img className={styles.inputIcon} src={companyIcon} alt="Company Icon" />
                 </div>
                 <div className={styles.nameField}>
-                  <label>E-mail*</label>
-                  <input type="text" placeholder="example@company.com" />
-                  <img className={styles.inputIcon} src={inputMessageIcon} alt="" />
+                  <label htmlFor="email">E-mail*</label>
+                  <input
+                    type="email"
+                    placeholder="example@company.com"
+                    className={isTyping && !isValidEmail(formData.email) ? styles.invalid : ""}
+                    name="email"
+                    onChange={handleChange}
+                    value={formData.email} />
+                  <img className={styles.inputIcon} src={inputMessageIcon} alt="Message Icon" />
                 </div>
               </div>
               <div className={styles.messageField}>
-                <label htmlFor="note">Your message shortly*</label>
-                <textarea name="note" id="note" cols="30" rows="10" placeholder="Describe your message here..."></textarea>
-                {/* <input placeholder="Describe your message here..." type="text" /> */}
+                <label htmlFor="message">Your message shortly*</label>
+                <textarea name="message" value={formData.message} onChange={handleChange} id="note" cols="30" rows="10" placeholder="Describe your message here..."></textarea>
               </div>
             </div>
             <div className={styles.sendBtn}>
-              <button className={styles.continueBtn}>Continue <HiMiniArrowRight className={styles.continueBtnIcon} /></button>
+              <button type="submit" className={styles.continueBtn}>Continue <HiMiniArrowRight className={styles.continueBtnIcon} /></button>
             </div>
           </form>
         </section>
-        <footer id="contact" name="contact" className={`${styles.landingFooter} element`}>
-          <div className={styles.footerInfoContainer}>
-            <div className={styles.footerInfo}>
-              <h3 className={styles.footerInfoHeading}>Get in Touch</h3>
-              <p className={styles.footerInfoParagraph}>Using it can make you sound like you have been studying english for a long time. Here’s the challenge</p>
-            </div>
-            <div className={styles.footerContInfo}>
-              <div className={styles.footerCont}>
-                <div className={styles.footerContIcon}>
-                  <img src={landingLoc} alt="Location Icon" />
-                </div>
-                <div className={styles.footerContText}>
-                  <h4 className={styles.footerContTextHead}>Location</h4>
-                  <p className={styles.footerContTextPar}>4140 Parker Rd., New Mexico</p>
-                </div>
-              </div>
-              <div className={styles.footerCont}>
-                <div className={styles.footerContIcon}>
-                  <img src={callIconFooter} alt="Location Icon" />
-                </div>
-                <div className={styles.footerContText}>
-                  <h4 className={styles.footerContTextHead}>Phone Number</h4>
-                  <p className={styles.footerContTextPar}>(319) 555-0115</p>
-                </div>
-              </div>
-              <div className={styles.footerCont}>
-                <div className={styles.footerContIcon}>
-                  <img src={shareIconFooter} alt="Location Icon" />
-                </div>
-                <div className={styles.footerContText}>
-                  <h4 className={styles.footerContTextHead}>Follow Us:</h4>
-                  <div className={styles.footerContSocial}>
-                    <a target="blank" href="">
-                      <FaFacebook className={styles.footerContSocialIcon} />
-                    </a>
-                    <a target="blank" href="">
-                      <FaInstagram className={styles.footerContSocialIcon} />
-                    </a>
-                    <a target="blank" href="">
-                      <FaTwitter className={styles.footerContSocialIcon} />
-                    </a>
-                    <a target="blank" href="">
-                      <FaLinkedin className={styles.footerContSocialIcon} />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className={styles.footerCopyRight}>
-            <p className={styles.footerCopyRightText}> All rights reserved @ 2023 <span>Voist</span></p>
-            <div className={styles.footerCopyRightLinks}>
-              <a href="/">Privacy Policy</a>
-              <a href="/">Terms & Condition</a>
-            </div>
-          </div>
-        </footer>
       </main >
+      <footer name="contact" className={`${styles.footerContainer} element`}>
+        <div className={styles.footerInfoContainer}>
+          <div className={styles.footerInfo}>
+            <h3 className={styles.footerInfoHeading}>Get in Touch</h3>
+            <p className={styles.footerInfoParagraph}>Using it can make you sound like you have been studying english for a long time. Here’s the challenge</p>
+          </div>
+          <div className={styles.footerContInfo}>
+            <div className={styles.footerCont}>
+              <div className={styles.footerContIcon}>
+                <img src={landingLoc} alt="Location Icon" />
+              </div>
+              <div className={styles.footerContText}>
+                <h4 className={styles.footerContTextHead}>Location</h4>
+                <p className={styles.footerContTextPar}>4140 Parker Rd., New Mexico</p>
+              </div>
+            </div>
+            <div className={styles.footerCont}>
+              <div className={styles.footerContIcon}>
+                <img src={callIconFooter} alt="Location Icon" />
+              </div>
+              <div className={styles.footerContText}>
+                <h4 className={styles.footerContTextHead}>Phone Number</h4>
+                <p className={styles.footerContTextPar}>(319) 555-0115</p>
+              </div>
+            </div>
+            <div className={styles.footerCont}>
+              <div className={styles.footerContIcon}>
+                <img src={shareIconFooter} alt="Location Icon" />
+              </div>
+              <div className={styles.footerContText}>
+                <h4 className={styles.footerContTextHead}>Follow Us:</h4>
+                <div className={styles.footerContSocial}>
+                  <a target="blank" href="">
+                    <FaFacebook className={styles.footerContSocialIcon} />
+                  </a>
+                  <a target="blank" href="">
+                    <FaInstagram className={styles.footerContSocialIcon} />
+                  </a>
+                  <a target="blank" href="">
+                    <FaTwitter className={styles.footerContSocialIcon} />
+                  </a>
+                  <a target="blank" href="">
+                    <FaLinkedin className={styles.footerContSocialIcon} />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={styles.footerCopyRight}>
+          <p className={styles.footerCopyRightText}> All rights reserved @ 2023 <span>Voist</span></p>
+          <div className={styles.footerCopyRightLinks}>
+            <a href="/">Privacy Policy</a>
+            <a href="/">Terms & Condition</a>
+          </div>
+        </div>
+      </footer>
     </>
   );
 }
