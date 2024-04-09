@@ -1,10 +1,10 @@
 import styles from "./backButton.module.scss";
 import arrowLeftBlack from "../../../assets/img/arrowLeftBlack.svg";
 
-function BackButton() {
+function BackButton({ handleBack }) {
   return (
     <>
-      <button className={styles.arrowLeft}>
+      <button onClick={handleBack} className={styles.arrowLeft}>
         <img src={arrowLeftBlack} alt="" />
       </button>
     </>

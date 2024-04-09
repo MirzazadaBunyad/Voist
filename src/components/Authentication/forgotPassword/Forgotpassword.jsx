@@ -4,6 +4,8 @@ import NewPassword from "./newPassword/NewPassword";
 import Successfully from "./successfully/Successfully";
 import CodeBelow from "./codeBelow/CodeBolow";
 import SendToEmail from "./sendToEmail/SendToEmail";
+import { CSSTransition } from "react-transition-group";
+import "../animations.scss";
 
 export default function ForgotPassword({ backToLogin }) {
   const [currentComponent, setCurrentComponent] = useState("SendToEmail");
@@ -16,29 +18,54 @@ export default function ForgotPassword({ backToLogin }) {
   return (
     <section className={styles.container}>
       <div className={styles.loginContainer}>
-        {currentComponent === "SendToEmail" && (
+        <CSSTransition
+          in={currentComponent === "SendToEmail"}
+          timeout={300}
+          classNames="sendToEmail"
+          unmountOnExit
+        >
           <SendToEmail
             handleClickToLogin={backToLogin}
             handleClickToChange={() => handleComponentChange("CodeBelow")}
             setSendInformation={setSendInformation}
             initialData={sendInformation}
           />
-        )}
-        {currentComponent === "CodeBelow" && (
+        </CSSTransition>
+
+        <CSSTransition
+          in={currentComponent === "CodeBelow"}
+          timeout={300}
+          classNames="codeBelow"
+          unmountOnExit
+        >
           <CodeBelow
             handleClickToChange={() => handleComponentChange("NewPassword")}
             handleGoBack={() => handleComponentChange("SendToEmail")}
             backToLogin={backToLogin}
           />
-        )}
-        {currentComponent === "NewPassword" && (
+        </CSSTransition>
+
+        <CSSTransition
+          in={currentComponent === "NewPassword"}
+          timeout={300}
+          classNames="newPassword"
+          unmountOnExit
+        >
           <NewPassword
             handleClickToChange={() => handleComponentChange("Successfully")}
             handleGoBack={() => handleComponentChange("CodeBelow")}
             backToLogin={backToLogin}
           />
-        )}
-        {currentComponent === "Successfully" && <Successfully />}
+        </CSSTransition>
+
+        <CSSTransition
+          in={currentComponent === "Successfully"}
+          timeout={300}
+          classNames="successfully"
+          unmountOnExit
+        >
+          <Successfully />
+        </CSSTransition>
       </div>
     </section>
   );

@@ -20,93 +20,107 @@ function NewPassword({ handleGoBack, backToLogin, handleClickToChange }) {
     setShowPassword2(!showPassword2);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleClickToChange();
+    console.log(initialData);
+  };
+
   return (
     <div>
       <div>
         <div onClick={handleGoBack} className={styles.backButton}>
           <BackButton />
         </div>
-        <div className={styles.textContainer}>
-          <h2>Set your new password</h2>
-          <div>
-            <p>Make sure that you will not forget it again</p>
-            <span>
-              <img src={gif} alt="Error" />
-            </span>
-          </div>
-        </div>
-        <form
-          onSubmit={handleClickToChange}
-          className={styles.ChangePasswordFormContainer}
-        >
-          <div className={styles.ChangePasswordInputs}>
+        <div className={styles.container}>
+          <div className={styles.textContainer}>
+            <h2>Set your new password</h2>
             <div>
-              <label className={styles.changePasswordLabel} htmlFor="password1">
-                Password*
-              </label>
-              <input
-                className={styles.changePasswordInput}
-                type={showPassword1 ? "text" : "password"}
-                name="password"
-                id="password1"
-              />
-              <img
-                className={styles.passIconImg1}
-                onClick={togglePasswordVisibility1}
-                src={showPassword1 ? passwordEye : eyeClosedIcon}
-                alt="Error"
-              />
-            </div>
-            <div className={styles.repeatePassword}>
-              <label className={styles.changePasswordLabel} htmlFor="password2">
-                Repeat password*
-              </label>
-              <input
-                className={styles.changePasswordInput}
-                type={showPassword2 ? "text" : "password"}
-                name="repeatPassword"
-                id="password2"
-              />
-              <img
-                className={styles.passIconImg2}
-                onClick={togglePasswordVisibility2}
-                src={showPassword2 ? passwordEye : eyeClosedIcon}
-                alt="Error"
-              />
+              <p>Make sure that you will not forget it again</p>
+              <span>
+                <img src={gif} alt="Error" />
+              </span>
             </div>
           </div>
-          <div className={styles.characters}>
-            <div>
-              <img src={checkGreenIcon} alt="Green Icon" />
-              <p>Upper and lower case letters</p>
+          <form
+            onSubmit={handleSubmit}
+            className={styles.ChangePasswordFormContainer}
+          >
+            <div className={styles.ChangePasswordInputs}>
+              <div>
+                <label
+                  className={styles.changePasswordLabel}
+                  htmlFor="password1"
+                >
+                  Password*
+                </label>
+                <input
+                  className={styles.changePasswordInput}
+                  type={showPassword1 ? "text" : "password"}
+                  name="password"
+                  id="password1"
+                />
+                <img
+                  className={styles.passIconImg1}
+                  onClick={togglePasswordVisibility1}
+                  src={showPassword1 ? passwordEye : eyeClosedIcon}
+                  alt="Error"
+                />
+              </div>
+              <div className={styles.repeatePassword}>
+                <label
+                  className={styles.changePasswordLabel}
+                  htmlFor="password2"
+                >
+                  Repeat password*
+                </label>
+                <input
+                  className={styles.changePasswordInput}
+                  type={showPassword2 ? "text" : "password"}
+                  name="repeatPassword"
+                  id="password2"
+                />
+                <img
+                  className={styles.passIconImg2}
+                  onClick={togglePasswordVisibility2}
+                  src={showPassword2 ? passwordEye : eyeClosedIcon}
+                  alt="Error"
+                />
+              </div>
             </div>
-            <div>
-              <img src={checkCrossIcon} alt="Cross Icon" />
-              <p>
-                At least one number and one character (@!$%& symbols allowed)
-              </p>
-            </div>
-            <div>
-              <img src={checkGrayIcon} alt="Gray Icon" />
-              <p>Between 8 and 72 characters</p>
-            </div>
-            <div>
-              <div className={styles.buttonContainer}>
-                <div>
-                  <button type="submit" className={styles.setPassword}>
-                    Set password
-                    <img src={arrowRightBlack} alt="Error" />
-                  </button>
-                </div>
-                <div>
-                  <button onClick={backToLogin} className={styles.cancel}>
-                    Cancel
-                  </button>
+            <div className={styles.characters}>
+              <div>
+                <img src={checkGreenIcon} alt="Green Icon" />
+                <p>Upper and lower case letters</p>
+              </div>
+              <div>
+                <img src={checkCrossIcon} alt="Cross Icon" />
+                <p>
+                  At least one number and one character (@!$%& symbols allowed)
+                </p>
+              </div>
+              <div>
+                <img src={checkGrayIcon} alt="Gray Icon" />
+                <p>Between 8 and 72 characters</p>
+              </div>
+              <div>
+                <div className={styles.buttonContainer}>
+                  <div>
+                    <button type="submit" className={styles.setPassword}>
+                      Set password
+                      <img src={arrowRightBlack} alt="Error" />
+                    </button>
+                  </div>
+                  <div>
+                    <button onClick={backToLogin} className={styles.cancel}>
+                      Cancel
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );
