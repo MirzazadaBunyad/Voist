@@ -24,18 +24,33 @@ export default function CreateAccount({ ChangeComponents, show }) {
     confirmPassword: "",
   });
 
+  const [isTyping, setIsTyping] = useState(false);
+  const [emailValid, setEmailValid] = useState(true);
+  const [emailError, setEmailError] = useState("");
+
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setData({
-      ...data,
+    setData((prevData) => ({
+      ...prevData,
       [name]: value,
-    });
-    console.log(data);
+    }));
+    setIsTyping(true);
+
+    if (name === "email") {
+      setEmailValid(isValidEmail(value));
+      setEmailError(isValidEmail(value) ? "" : "");
+    }
   };
 
   const goToLogin = () => {
     ChangeComponents();
   };
+
   const sendInformation = async (e) => {
     e.preventDefault();
 
@@ -79,6 +94,7 @@ export default function CreateAccount({ ChangeComponents, show }) {
     setShowActivation(!showActivation);
     setShowMain(!showMain);
   };
+
   return (
     <section className={styles.container}>
       <div className={styles.loginContainer}>
@@ -116,7 +132,6 @@ export default function CreateAccount({ ChangeComponents, show }) {
                         name="name"
                         onChange={handleChange}
                       />
-
                       <img src={inputIcon} alt="" />
                     </div>
                   </div>
@@ -133,7 +148,6 @@ export default function CreateAccount({ ChangeComponents, show }) {
                         name="surname"
                         onChange={handleChange}
                       />
-
                       <img src={inputIcon} alt="" />
                     </div>
                   </div>
@@ -142,16 +156,22 @@ export default function CreateAccount({ ChangeComponents, show }) {
                   <label className={styles.label} htmlFor="password">
                     E-mail*
                   </label>
-                  <input
-                    type="email"
-                    placeholder="example@company.com"
-                    id="EnterEmail"
-                    value={data.email}
-                    name="email"
-                    onChange={handleChange}
-                  />
-
+                  <div
+                    className={`${styles.inputE} ${
+                      isTyping && !emailValid ? styles.invalid : ""
+                    }`}
+                  >
+                    <input
+                      type="email"
+                      placeholder="example@company.com"
+                      id="EnterEmail"
+                      value={data.email}
+                      name="email"
+                      onChange={handleChange}
+                    />
+                  </div>
                   <img src={inputMessageIcon} alt="" />
+                  {!emailValid && <p className={styles.error}>{emailError}</p>}
                 </div>
                 <div className={styles.nameSurname}>
                   <div className={styles.input}>
@@ -167,7 +187,6 @@ export default function CreateAccount({ ChangeComponents, show }) {
                         name="password"
                         onChange={handleChange}
                       />
-
                       <img
                         src={showPassword1 ? passwordEye : eyeClosedIcon}
                         alt=""
@@ -188,7 +207,6 @@ export default function CreateAccount({ ChangeComponents, show }) {
                         name="confirmPassword"
                         onChange={handleChange}
                       />
-
                       <img
                         src={showPassword2 ? passwordEye : eyeClosedIcon}
                         alt=""

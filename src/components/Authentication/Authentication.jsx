@@ -72,7 +72,7 @@ function Authentication() {
             <img src={voistLogo} alt="" />
           </div>
         </header>
-        <main className="formContainer">
+        <main className={`${styles.formContainer} formContainer`}>
           <CSSTransition
             in={show}
             timeout={500}

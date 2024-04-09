@@ -583,6 +583,9 @@
   .trustedBy {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
     .trustedByContainer {
       display: flex;
       flex-direction: column;
@@ -590,7 +593,7 @@
       justify-content: center;
       gap: 16px;
       align-self: stretch;
-      width: 975px;
+      /* width: 975px; */
       position: relative;
       .trustedByImg {
         position: absolute;
@@ -1051,4 +1054,9 @@
       }
     }
   }
+}
+
+.slider {
+  width: 100%;
+  text-align: center;
 }
