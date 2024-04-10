@@ -5,6 +5,7 @@ import voistLogo from "../../assets/img/voistLogo.svg";
 import landingPageArrow from "../../assets/img/landingPageArrow.svg";
 import landingPageArrTwo from "../../assets/img/landingPageArrTwo.svg";
 import landingPageArrThree from "../../assets/img/landingPageArrThree.svg";
+import landingPageArrFour from "../../assets/img/landingPageArrFour.svg";
 import landingPageArrBlack from "../../assets/img/landingPageArrBlack.svg";
 import questionArr from "../../assets/img/questionArr.svg";
 import highlightIcon from "../../assets/img/highlightIcon.svg";
@@ -27,15 +28,16 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { HiMiniArrowRight } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
+import Carousel from "../Carousel/Carousel";
 
 
 function LandingPage() {
   const menuItems = [
     { name: 'About', to: 'about', offset: -300 },
     { name: 'Features', to: 'features', offset: -200 },
-    { name: 'Testimonials', to: 'testimonials', offset: -200 },
-    { name: 'FAQ', to: 'faq', offset: -100 },
-    { name: 'Contact', to: 'contact', offset: -70 },
+    { name: 'Testimonials', to: 'testimonials', offset: -150 },
+    { name: 'FAQ', to: 'faq', offset: -80 },
+    { name: 'Contact', to: 'contact', offset: -50 },
   ];
 
   const [actMenuItem, setActMenuItem] = useState(menuItems[0].name);
@@ -419,11 +421,11 @@ function LandingPage() {
               src={landingPageArrow}
               alt="Arrow one"
             />
-            {/* <img
+            <img
               className={styles.trustedByImgTwo}
               src={landingPageArrFour}
               alt=""
-            /> */}
+            />
             <h3 className={styles.trustedByHeading}>
               Trusted by Leading Companies
             </h3>
@@ -433,7 +435,9 @@ function LandingPage() {
               point of using Lorem Ipsum.
             </p>
           </div>
-          {/* <div className={styles.slider}></div> */}
+          <div className={styles.slider}>
+            <Carousel />
+          </div>
         </section>
         <section name="faq" className={`${styles.questions} element`}>
           <div className={styles.questionsContainer}>
