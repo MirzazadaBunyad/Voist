@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import styles from "./slick.module.scss";
-import "../landingPage/fonts.css"
+import "../landingPage/fonts.css";
 import image1 from "../../assets/img/landingCarPicOne.png";
 import image2 from "../../assets/img/landingCarPicTwo.png";
 import landCarIcon from "../../assets/img/landCarIcon.svg";
@@ -13,8 +13,18 @@ const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isRunning, setIsRunning] = useState(true);
   const carouselData = [
-    { image: image1, nameSurname: "Ulviyya Imamova", work: "Rectuiter at Pasha Bank", text: "Sapien donec congue lectus pharetra et et maecenas. Eros fames nunc faucibus ut rutrum vel vitae elementum lobortis. Orci mi facilisis nullam vestibulum sit. Mi bibendum interdum hendrerit elementum. Nam mattis mauris mi libero aliquet. Elit tristique quis hac ullamcorper enim.", },
-    { image: image2, nameSurname: "Tapdiq Aliev", work: "CEO at Pasha Bank", text: "Sapien donec congue lectus pharetra et et maecenas. Eros fames nunc faucibus ut rutrum vel vitae elementum lobortis. Orci mi facilisis nullam vestibulum sit. Mi bibendum interdum hendrerit elementum. Nam mattis mauris mi libero aliquet. Elit tristique quis hac ullamcorper enim.", },
+    {
+      image: image1,
+      nameSurname: "Ulviyya Imamova",
+      work: "Rectuiter at Pasha Bank",
+      text: "Sapien donec congue lectus pharetra et et maecenas. Eros fames nunc faucibus ut rutrum vel vitae elementum lobortis. Orci mi facilisis nullam vestibulum sit. Mi bibendum interdum hendrerit elementum. Nam mattis mauris mi libero aliquet. Elit tristique quis hac ullamcorper enim.",
+    },
+    {
+      image: image2,
+      nameSurname: "Tapdiq Aliev",
+      work: "CEO at Pasha Bank",
+      text: "Sapien donec congue lectus pharetra et et maecenas. Eros fames nunc faucibus ut rutrum vel vitae elementum lobortis. Orci mi facilisis nullam vestibulum sit. Mi bibendum interdum hendrerit elementum. Nam mattis mauris mi libero aliquet. Elit tristique quis hac ullamcorper enim.",
+    },
   ];
 
   useEffect(() => {
@@ -22,7 +32,7 @@ const Carousel = () => {
       if (isRunning) {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % carouselData.length);
       }
-    }, 2000);
+    }, 3000);
 
     return () => clearInterval(intervalId);
   }, [carouselData.length, isRunning]);
@@ -40,8 +50,8 @@ const Carousel = () => {
   };
 
   const getFirstFiveWords = (text) => {
-    const words = text.split(' ');
-    return words.slice(0, 5).join(' ');
+    const words = text.split(" ");
+    return words.slice(0, 5).join(" ");
   };
 
   return (
@@ -54,24 +64,52 @@ const Carousel = () => {
             alt={`${currentIndex + 1}`}
           />
           <div className={styles.carouselTexts}>
-            <h3 className={styles.nameSurname}>{carouselData[currentIndex].nameSurname}</h3>
+            <h3 className={styles.nameSurname}>
+              {carouselData[currentIndex].nameSurname}
+            </h3>
             <div className={styles.work}>
               <img className={styles.landCarIcon} src={landCarIcon} alt="" />
-              <p className={styles.workText}>{carouselData[currentIndex].work}</p>
+              <p className={styles.workText}>
+                {carouselData[currentIndex].work}
+              </p>
             </div>
           </div>
         </div>
         <div className={styles.carouselText}>
           <p className={styles.text}>
-            <span className={styles.firstFiveWords}>{getFirstFiveWords(carouselData[currentIndex].text)}</span>
-            {carouselData[currentIndex].text.substring(getFirstFiveWords(carouselData[currentIndex].text).length)}
+            <span className={styles.firstFiveWords}>
+              {getFirstFiveWords(carouselData[currentIndex].text)}
+            </span>
+            {carouselData[currentIndex].text.substring(
+              getFirstFiveWords(carouselData[currentIndex].text).length
+            )}
           </p>
           <div className={styles.star}>
-            <img className={styles.landCarStar} src={landCarStar} alt="Star icon" />
-            <img className={styles.landCarStar} src={landCarStar} alt="Star icon" />
-            <img className={styles.landCarStar} src={landCarStar} alt="Star icon" />
-            <img className={styles.landCarStar} src={landCarStar} alt="Star icon" />
-            <img className={styles.landCarStar} src={landCarStar} alt="Star icon" />
+            <img
+              className={styles.landCarStar}
+              src={landCarStar}
+              alt="Star icon"
+            />
+            <img
+              className={styles.landCarStar}
+              src={landCarStar}
+              alt="Star icon"
+            />
+            <img
+              className={styles.landCarStar}
+              src={landCarStar}
+              alt="Star icon"
+            />
+            <img
+              className={styles.landCarStar}
+              src={landCarStar}
+              alt="Star icon"
+            />
+            <img
+              className={styles.landCarStar}
+              src={landCarStar}
+              alt="Star icon"
+            />
             <p className={styles.starText}>(4.5)</p>
           </div>
         </div>

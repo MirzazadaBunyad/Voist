@@ -32,9 +32,18 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
   const sendInformation = async (e) => {
     e.preventDefault();
 
+    if (!formData.email || !formData.password) {
+      return;
+    } else if (!isValidEmail(formData.email)) {
+      console.log("Invalid email format");
+      return;
+    } else if (formData.password.length < 8) {
+      alert("Password must be at least 8 characters long");
+      return;
+    }
     try {
       const response = await fetch(
-        "https://0ia78onnye.execute-api.eu-central-1.amazonaws.com/api/users/login",
+        "https://mwl25pf9ce.execute-api.eu-central-1.amazonaws.com/Prod/api/user/token/",
         {
           method: "POST",
           headers: {
@@ -95,8 +104,9 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
               E-mail*
             </label>
             <div
-              className={`${styles.LoginInput} ${isTyping && !isValidEmail(formData.email) ? styles.invalid : ""
-                }`}
+              className={`${styles.LoginInput} ${
+                isTyping && !isValidEmail(formData.email) ? styles.invalid : ""
+              }`}
             >
               <input
                 type="email"
