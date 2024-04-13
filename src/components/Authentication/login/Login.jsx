@@ -27,34 +27,37 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
       [name]: value,
     });
     setIsTyping(true);
-    console.log(formData);
   };
+
+  const validatePassword = () => {
+    return formData.password.length >= 8;
+  };
+
   const sendInformation = async (e) => {
     e.preventDefault();
 
     if (!formData.email || !formData.password) {
       return;
-    } else if (!isValidEmail(formData.email)) {
+    }
+
+    if (!isValidEmail(formData.email)) {
       console.log("Invalid email format");
       return;
-    } else if (formData.password.length < 8) {
+    }
+
+    if (!validatePassword()) {
       alert("Password must be at least 8 characters long");
       return;
     }
+
     try {
-      const response = await fetch(
-        "https://mwl25pf9ce.execute-api.eu-central-1.amazonaws.com/Prod/api/user/token/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: formData.email,
-            password: formData.password,
-          }),
-        }
-      );
+      const response = await fetch("https://safaraliyev.live/api/user/token/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
       if (!response.ok) {
         throw new Error(`HTTP error: Status ${response.status}`);
@@ -64,18 +67,19 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
     } catch (error) {
       console.error("Error sending data:", error.message);
     }
+
     setIsTyping(false);
   };
 
-  function handleShowPassword() {
+  const handleShowPassword = () => {
     setShowPassword(!showPassword);
-  }
+  };
 
   const goToCreateAccount = () => {
     ChangeComponents();
   };
 
-  const handleChangeForgetPasword = () => {
+  const handleChangeForgetPassword = () => {
     openForgetPassword();
   };
 
@@ -158,7 +162,7 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
 
             <div>
               <button
-                onClick={handleChangeForgetPasword}
+                onClick={handleChangeForgetPassword}
                 className={styles.forgotPassword}
               >
                 Forgot password?

@@ -51,6 +51,7 @@ function Authentication() {
         .to(".active", { opacity: 0, duration: 0, xPercent: 0 }, "<")
         .to(".logo", { filter: "none", duration: 0, zIndex: 2 }, "<")
         .then(() => {
+          setShow(true);
           setForgetPasswordVisible(false);
         });
     }
@@ -95,7 +96,11 @@ function Authentication() {
             unmountOnExit
           >
             <div>
-              <CreateAccount show={!show} ChangeComponents={handleChangeForm} />
+              <CreateAccount
+                show={!show}
+                ChangeComponents={handleChangeForm}
+                backToLogin={backToLogin}
+              />
             </div>
           </CSSTransition>
         </main>

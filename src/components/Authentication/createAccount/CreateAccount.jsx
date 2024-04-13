@@ -1,3 +1,4 @@
+import React, { useRef, useState } from "react";
 import styles from "./createAccount.module.scss";
 import img from "../../../assets/img/smile.gif";
 import inputIcon from "../../../assets/img/inputIcon.svg";
@@ -8,13 +9,16 @@ import checkGrayIcon from "../../../assets/img/checkGrayIcon.svg";
 import checkCrossIcon from "../../../assets/img/checkCrossIcon.svg";
 import arrowRightBlack from "../../../assets/img/arrowRightBlack.svg";
 import passwordEye from "../../../assets/img/passwordEye.svg";
-import checkWhiteIcon from "../../../assets/img/checkWhiteIcon.svg";
-import { useState } from "react";
+import ActivateAccount from "../../activateAccount/ActivateAccount";
 
-export default function CreateAccount({ ChangeComponents, show }) {
+const CreateAccount = ({ ChangeComponents, show, backToLogin }) => {
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
   const [showActivation, setShowActivation] = useState(false);
+  const [activationCodeSent, setActivationCodeSent] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
+  const [emailValid, setEmailValid] = useState(true);
+  const [emailError, setEmailError] = useState("");
   const [data, setData] = useState({
     first_name: "",
     last_name: "",
@@ -23,9 +27,39 @@ export default function CreateAccount({ ChangeComponents, show }) {
     confirm_password: "",
   });
 
-  const [isTyping, setIsTyping] = useState(false);
-  const [emailValid, setEmailValid] = useState(true);
-  const [emailError, setEmailError] = useState("");
+  const handleSubmit = async (e) => {
+    e && e.preventDefault();
+
+    try {
+      const response = await fetch(
+        "https://safaraliyev.live/api/user/register/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            first_name: data.first_name,
+            last_name: data.last_name,
+            email: data.email,
+            password: data.password,
+            confirm_password: data.confirm_password,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error: Status ${response.status}`);
+      }
+
+      console.log("Data sent successfully!");
+      setActivationCodeSent(true);
+      setShowActivation(true);
+    } catch (error) {
+      console.error("Error sending data:", error.message);
+      // Add error handling logic here
+    }
+  };
 
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -50,38 +84,6 @@ export default function CreateAccount({ ChangeComponents, show }) {
     ChangeComponents();
   };
 
-  const sendInformation = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await fetch(
-        "https://mwl25pf9ce.execute-api.eu-central-1.amazonaws.com/Prod/api/user/register/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            first_name: data.first_name,
-            last_name: data.last_name,
-            email: data.email,
-            password: data.password,
-            confirm_password: data.confirm_password,
-          }),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error(`HTTP error: Status ${response.status}`);
-      }
-
-      console.log("Data sent successfully!");
-      setShowActivation(true);
-    } catch (error) {
-      console.error("Error sending data:", error.message);
-    }
-  };
-
   const togglePasswordVisibility1 = () => {
     setShowPassword1(!showPassword1);
   };
@@ -98,7 +100,7 @@ export default function CreateAccount({ ChangeComponents, show }) {
     <section className={styles.container}>
       <div className={styles.loginContainer}>
         <div className={styles.headline}></div>
-        {show && (
+        {show && !showActivation && (
           <div className={styles.main}>
             <div className={styles.accountСreation}>
               <h1>
@@ -114,7 +116,7 @@ export default function CreateAccount({ ChangeComponents, show }) {
             </div>
 
             {/* Form section */}
-            <form className={styles.formContainer} onSubmit={sendInformation}>
+            <form className={styles.formContainer} onSubmit={handleSubmit}>
               <div className={styles.nameSurname}>
                 <div className={styles.input}>
                   <label className={styles.label} htmlFor="Name">
@@ -242,23 +244,12 @@ export default function CreateAccount({ ChangeComponents, show }) {
             </form>
           </div>
         )}
-        {showActivation && (
-          <div className={styles.activation}>
-            <div className={styles.checkIcon}>
-              <img src={checkWhiteIcon} alt="White check icon" />
-            </div>
-            <p className={styles.activateHeader}>Activate your account</p>
-            <p className={styles.checkEmail}>
-              Check your email <span>(ulya@domein.az)</span> to activate your
-              recruitee account
-            </p>
-            <div className={styles.sendAgain}>
-              <p>Didn’t receive e-mail?</p>
-              <button className={styles.sendButton}>Send again</button>
-            </div>
-          </div>
+        {showActivation && activationCodeSent && (
+          <ActivateAccount data={data} backToLogin={backToLogin} />
         )}
       </div>
     </section>
   );
-}
+};
+
+export default CreateAccount;
