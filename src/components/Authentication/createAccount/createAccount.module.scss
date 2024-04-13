@@ -76,56 +76,7 @@
           letter-spacing: 0.4px;
         }
       }
-    }
-  }
-
-  .activation {
-    display: flex;
-    width: 384px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 200px 100px;
-    gap: 4px;
-    .checkIcon {
-      background-color: #2bb534;
-      border-radius: 44.5px;
-      width: 80px;
-      height: 80px;
-      img {
-        padding: 20px;
-      }
-    }
-    .activateHeader {
-      color: #000;
-      text-align: center;
-      font-family: Raleway;
-      font-size: 24px;
-      font-style: normal;
-      font-weight: 800;
-      line-height: 32px;
-      letter-spacing: 0.4px;
-      margin-top: 24px;
-    }
-    .checkEmail {
-      color: #6c756f;
-      text-align: center;
-      font-family: Raleway;
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: 24px;
-      letter-spacing: 0.4px;
-      margin-top: 12px;
-      span {
-        color: #6c756f;
-        font-family: Raleway;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 24px;
-        letter-spacing: 0.4px;
-      }
+    
     }
     .sendAgain {
       display: flex;
@@ -375,4 +326,80 @@
 .invalid {
   border: 1px solid red;
   border-radius: 12px;
+}
+
+.loginLabel {
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 12px;
+  letter-spacing: 0.4px;
+  color: #1d2b21;
+}
+.LoginInput {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  border: 1px solid #99a09b;
+  font-size: 35px;
+  text-align: center;
+  margin-left: 10px;
+}
+/* Скрываем стрелки у всех input типа number */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.inputMessageIcon {
+  transform: translate(455px, -40px);
+  width: 24px;
+  height: 24px;
+}
+.buttonElement {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 16px;
+  font-family: Raleway;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.4000000059604645px;
+  text-align: left;
+  margin: 32px 0 0 0;
+  img {
+    width: 24px;
+    height: 24px;
+  }
+}
+.inputContainer {
+  display: flex;
+  margin: 32px 0 0 -11px;
+  ::placeholder {
+    color: #99a09b;
+    font-family: "Raleway", sans-serif;
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 12px;
+    letter-spacing: 0.4px;
+    text-align: center;
+  }
+}
+.sendButton {
+  display: flex;
+  padding: 16px 35px;
+  margin-left: 60px;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 12px;
+  background: #7dff85;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  &:hover {
+    background-color: #2bb534;
+    color: white;
+  }
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./landingPage.module.scss";
-import "./fonts.css"
+import "./fonts.css";
 import voistLogo from "../../assets/img/voistLogo.svg";
 import landingPageArrow from "../../assets/img/landingPageArrow.svg";
 import landingPageArrTwo from "../../assets/img/landingPageArrTwo.svg";
@@ -30,21 +30,20 @@ import { Link } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 import Carousel from "../Carousel/Carousel";
 
-
 function LandingPage() {
   const menuItems = [
-    { name: 'About', to: 'about', offset: -300 },
-    { name: 'Features', to: 'features', offset: -200 },
-    { name: 'Testimonials', to: 'testimonials', offset: -150 },
-    { name: 'FAQ', to: 'faq', offset: -80 },
-    { name: 'Contact', to: 'contact', offset: -50 },
+    { name: "About", to: "about", offset: -300 },
+    { name: "Features", to: "features", offset: -200 },
+    { name: "Testimonials", to: "testimonials", offset: -150 },
+    { name: "FAQ", to: "faq", offset: -80 },
+    { name: "Contact", to: "contact", offset: -50 },
   ];
 
   const [actMenuItem, setActMenuItem] = useState(menuItems[0].name);
 
   const handleMenuItemClick = (itemName) => {
     setActMenuItem(itemName);
-  }
+  };
 
   const [activeIndex, setActiveIndex] = useState(null);
   const onTitleClick = (index) => {
@@ -58,27 +57,33 @@ function LandingPage() {
     },
     {
       title: "How does Voist's AI improve customer service?",
-      content: "By analyzing call content and emotions in real-time, Voist provides insights for personalized customer interactions and continuous improvement in service quality.",
+      content:
+        "By analyzing call content and emotions in real-time, Voist provides insights for personalized customer interactions and continuous improvement in service quality.",
     },
     {
       title: "Can Voist integrate with existing customer service systems?",
-      content: "Yes, Voist is designed for easy integration with most existing customer service platforms to enhance functionality without disrupting current operations.",
+      content:
+        "Yes, Voist is designed for easy integration with most existing customer service platforms to enhance functionality without disrupting current operations.",
     },
     {
       title: "Is Voist suitable for businesses of all sizes?",
-      content: "Absolutely, Voist offers scalable solutions tailored to meet the needs of both small businesses and large enterprises.",
+      content:
+        "Absolutely, Voist offers scalable solutions tailored to meet the needs of both small businesses and large enterprises.",
     },
     {
       title: "How does Voist ensure the privacy and security of data?",
-      content: "Voist adheres to strict data privacy and security protocols, ensuring all customer and call data are encrypted and securely stored.",
+      content:
+        "Voist adheres to strict data privacy and security protocols, ensuring all customer and call data are encrypted and securely stored.",
     },
     {
       title: "What kind of support does Voist offer?",
-      content: "Voist provides comprehensive support ranging from online resources and email support to dedicated account management for enterprise clients.",
+      content:
+        "Voist provides comprehensive support ranging from online resources and email support to dedicated account management for enterprise clients.",
     },
     {
       title: "How can I get started with Voist?",
-      content: "To get started, simply contact us for a demo request. Our team will guide you through the setup process and help customize Voist for your specific needs.",
+      content:
+        "To get started, simply contact us for a demo request. Our team will guide you through the setup process and help customize Voist for your specific needs.",
     },
   ];
 
@@ -93,7 +98,7 @@ function LandingPage() {
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
-  }
+  };
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -104,22 +109,24 @@ function LandingPage() {
     console.log(formData);
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("https://0ia78onnye.execute-api.eu-central-1.amazonaws.com/api/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          companyName: formData.companyName,
-          email: formData.email,
-          message: formData.message,
-        }),
-      });
+      const response = await fetch(
+        "https://0ia78onnye.execute-api.eu-central-1.amazonaws.com/api/users/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            companyName: formData.companyName,
+            email: formData.email,
+            message: formData.message,
+          }),
+        }
+      );
       // const data = await response.json();
       if (!response.ok) {
         throw new Error(`HTTP error: Status ${response.status}`);
@@ -155,7 +162,7 @@ function LandingPage() {
                   smooth={true}
                   offset={menuItem.offset}
                   duration={400}
-                  className={actMenuItem === menuItem.name ? styles.active : ''}
+                  className={actMenuItem === menuItem.name ? styles.active : ""}
                   onClick={() => handleMenuItemClick(menuItem.name)}
                 >
                   {menuItem.name}
@@ -261,7 +268,8 @@ function LandingPage() {
                     offset={-50}
                     duration={400}
                     to="form"
-                    className={styles.btnContact}>
+                    className={styles.btnContact}
+                  >
                     Contact us
                   </ScrollLink>
                 </div>
@@ -408,7 +416,8 @@ function LandingPage() {
                 offset={-50}
                 duration={400}
                 to="form"
-                className={styles.contactUsBtn}>
+                className={styles.contactUsBtn}
+              >
                 Contact us
               </ScrollLink>
             </div>
@@ -494,7 +503,8 @@ function LandingPage() {
                 We provide varuois packeges for you
               </h3>
               <p className={styles.contHeadInfoParagraph}>
-                It is a long established fact that a reader will be distracted by the readable content.
+                It is a long established fact that a reader will be distracted
+                by the readable content.
               </p>
             </div>
           </div>
@@ -519,12 +529,23 @@ function LandingPage() {
                     placeholder="Enter company name"
                     name="companyName"
                     onChange={handleChange}
-                    value={formData.companyName} />
-                  <img className={styles.inputIcon} src={companyIcon} alt="Company Icon" />
+                    value={formData.companyName}
+                  />
+                  <img
+                    className={styles.inputIcon}
+                    src={companyIcon}
+                    alt="Company Icon"
+                  />
                 </div>
                 <div className={styles.nameField}>
                   <label htmlFor="email">E-mail*</label>
-                  <div className={`${styles.inputField} ${isTyping && !isValidEmail(formData.email) ? styles.invalid : ""}`}>
+                  <div
+                    className={`${styles.inputField} ${
+                      isTyping && !isValidEmail(formData.email)
+                        ? styles.invalid
+                        : ""
+                    }`}
+                  >
                     <input
                       type="email"
                       placeholder="example@company.com"
@@ -533,25 +554,42 @@ function LandingPage() {
                       onChange={handleChange}
                     />
                   </div>
-                  <img className={styles.inputIcon} src={inputMessageIcon} alt="Message Icon" />
+                  <img
+                    className={styles.inputIcon}
+                    src={inputMessageIcon}
+                    alt="Message Icon"
+                  />
                 </div>
               </div>
               <div className={styles.messageField}>
                 <label htmlFor="message">Your message shortly*</label>
-                <textarea name="message" value={formData.message} onChange={handleChange} id="note" cols="30" rows="10" placeholder="Describe your message here..."></textarea>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  id="note"
+                  cols="30"
+                  rows="10"
+                  placeholder="Describe your message here..."
+                ></textarea>
               </div>
             </div>
             <div className={styles.sendBtn}>
-              <button type="submit" className={styles.continueBtn}>Continue <HiMiniArrowRight className={styles.continueBtnIcon} /></button>
+              <button type="submit" className={styles.continueBtn}>
+                Continue <HiMiniArrowRight className={styles.continueBtnIcon} />
+              </button>
             </div>
           </form>
         </section>
-      </main >
+      </main>
       <footer name="contact" className={`${styles.footerContainer} element`}>
         <div className={styles.footerInfoContainer}>
           <div className={styles.footerInfo}>
             <h3 className={styles.footerInfoHeading}>Get in Touch</h3>
-            <p className={styles.footerInfoParagraph}>Using it can make you sound like you have been studying english for a long time. Here’s the challenge</p>
+            <p className={styles.footerInfoParagraph}>
+              Using it can make you sound like you have been studying english
+              for a long time. Here’s the challenge
+            </p>
           </div>
           <div className={styles.footerContInfo}>
             <div className={styles.footerCont}>
@@ -560,7 +598,9 @@ function LandingPage() {
               </div>
               <div className={styles.footerContText}>
                 <h4 className={styles.footerContTextHead}>Location</h4>
-                <p className={styles.footerContTextPar}>4140 Parker Rd., New Mexico</p>
+                <p className={styles.footerContTextPar}>
+                  4140 Parker Rd., New Mexico
+                </p>
               </div>
             </div>
             <div className={styles.footerCont}>
@@ -597,7 +637,10 @@ function LandingPage() {
           </div>
         </div>
         <div className={styles.footerCopyRight}>
-          <p className={styles.footerCopyRightText}> All rights reserved @ 2023 <span>Voist</span></p>
+          <p className={styles.footerCopyRightText}>
+            {" "}
+            All rights reserved @ 2023 <span>Voist</span>
+          </p>
           <div className={styles.footerCopyRightLinks}>
             <a href="/">Privacy Policy</a>
             <a href="/">Terms & Condition</a>

@@ -39,6 +39,8 @@ function CodeBelow({ handleClickToChange, handleGoBack, backToLogin }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     handleClickToChange();
+    const combinedInputs = inputs.join("");
+    console.log(combinedInputs);
   };
 
   return (
@@ -60,7 +62,7 @@ function CodeBelow({ handleClickToChange, handleGoBack, backToLogin }) {
                 key={index}
                 className={styles.LoginInput}
                 type="number"
-                id="belowInput"
+                id={`belowInput-${index}`}
                 name="number"
                 placeholder="•"
                 ref={
