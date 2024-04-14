@@ -9,7 +9,7 @@ import "../animations.scss";
 
 export default function ForgotPassword({ backToLogin }) {
   const [currentComponent, setCurrentComponent] = useState("SendToEmail");
-  const [sendInformation, setSendInformation] = useState({ input: "" });
+  const [sendInformation, setSendInformation] = useState({ email: "" });
 
   const handleComponentChange = (component) => {
     setCurrentComponent(component);
@@ -42,6 +42,7 @@ export default function ForgotPassword({ backToLogin }) {
             handleClickToChange={() => handleComponentChange("NewPassword")}
             handleGoBack={() => handleComponentChange("SendToEmail")}
             backToLogin={backToLogin}
+            sendInformation={sendInformation}
           />
         </CSSTransition>
 
