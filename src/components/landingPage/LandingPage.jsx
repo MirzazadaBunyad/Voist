@@ -210,7 +210,7 @@ function LandingPage() {
               <Link to="/authentication" className={styles.btnStarted}>
                 Get started <BsArrowRight className={styles.arrowRight} />
               </Link>
-              <button className={styles.learnMoreBtn}>Learn more</button>
+              {/* <button className={styles.learnMoreBtn}>Learn more</button> */}
             </div>
           </div>
           <div className={styles.imgContainer}>
@@ -406,9 +406,9 @@ function LandingPage() {
               </p>
             </div>
             <div className={styles.requestDemoBtns}>
-              <button className={styles.requestDemoBtn}>
-                Request a demo <BsArrowRight className={styles.arrowRight} />
-              </button>
+              <Link to="/authentication" className={styles.requestDemoBtn}>
+                Get started<BsArrowRight className={styles.arrowRight} />
+              </Link>
               <ScrollLink
                 activeClass="active"
                 spy={true}

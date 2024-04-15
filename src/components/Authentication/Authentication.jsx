@@ -104,9 +104,7 @@ function Authentication() {
             </div>
           </CSSTransition>
         </main>
-        <div className="footer">
-          <Footer />
-        </div>
+        <Footer />
       </div>
       <div className={`${styles.right__side} heroImg`}>
         <HeroImg />

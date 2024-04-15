@@ -91,9 +91,9 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
             Hey there,<span>welcome</span> <br /> to voist!
           </h1>
           <div className={styles.accountСreation}>
-            <p>Don't you have an account?</p>
-            <span>
-              <button onClick={goToCreateAccount}>Create account</button>
+            <p className={styles.accountСreationText}>Don't you have an account?</p>
+            <span className={styles.accountСreationBtn}>
+              <button className={styles.createBtn} onClick={goToCreateAccount}>Create account</button>
             </span>
             <img className={styles.smile} src={smile} alt="Smile" />
           </div>
@@ -148,7 +148,7 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
             />
           </div>
           <div className={styles.rememberMe}>
-            <div>
+            <div className={styles.rememberMeContainer}>
               <input
                 className={styles.rememberMeInput}
                 type="checkbox"
@@ -159,8 +159,7 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
                 Remember me
               </label>
             </div>
-
-            <div>
+            <div className={styles.forgotPasswordContainer}>
               <button
                 onClick={handleChangeForgetPassword}
                 className={styles.forgotPassword}
@@ -169,8 +168,7 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
               </button>
             </div>
           </div>
-
-          <div>
+          <div className={styles.button}>
             <button type="Submit" className={styles.buttonElement}>
               Let's go
               <img src={arrowRightBlack} alt="" />
