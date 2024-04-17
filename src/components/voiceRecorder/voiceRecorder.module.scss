@@ -1,0 +1,216 @@
+.container {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+
+  .logo {
+    margin: 56px 130px;
+    position: absolute;
+    left: 0;
+  }
+
+  .left__side {
+    width: 60%;
+  }
+
+  .rightImage {
+    width: 40%;
+  }
+
+  .mainContainer {
+    display: flex;
+    width: 95%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 56px;
+    padding: 125px 130px;
+
+    .rightDesc {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+
+      .header {
+        color: #1d2b21;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 35px;
+        letter-spacing: 0.4px;
+      }
+
+      .paragraph {
+        color: #3f4b42;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 26px;
+        letter-spacing: 0.4px;
+      }
+    }
+
+    .infoDesc {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+
+      .paragraph {
+        color: var(--Base-base-8, #6c756f);
+        font-family: Raleway;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px;
+        letter-spacing: 0.4px;
+      }
+
+      .header {
+        padding: 24px;
+        gap: 10px;
+        border-radius: 16px;
+        background: #f6f7f6;
+        color: #000;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 24px;
+        letter-spacing: 0.4px;
+      }
+    }
+
+    .buttonContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+      width: 100%;
+
+      .recordedAudio {
+        width: 100%;
+
+        .audio {
+          width: 100%;
+          display: flex;
+          padding: 8px 12px 8px 8px;
+          justify-content: space-between;
+          align-items: center;
+          border-radius: 24px;
+
+          &::-webkit-media-controls-play-button {
+            background-color: #3d73ff;
+            color: #fff;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+
+            &:hover {
+              background-color: #648fff;
+            }
+          }
+        }
+      }
+
+      .sendButton {
+        display: flex;
+        padding: 16px 24px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 12px;
+        border: none;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        color: #fff;
+        font-family: Raleway;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24px;
+        letter-spacing: 0.4px;
+        background-color: #3d73ff;
+
+        &:hover {
+          background-color: #2bb534;
+          transition: all 0.3s ease;
+        }
+
+        &.recordingButton {
+          background-color: #ff3d3d;
+
+          .stopCircle {
+            display: inline;
+          }
+        }
+
+        .stopCircle {
+          display: none;
+        }
+      }
+
+      .buttons {
+        display: none;
+        align-items: center;
+        gap: 16px;
+
+        .sendButton {
+          display: flex;
+          padding: 16px 24px;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          border-radius: 12px;
+          background-color: #2bb534;
+          color: #fff;
+          font-family: Raleway;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 24px;
+          letter-spacing: 0.4px;
+          border: none;
+          cursor: pointer;
+
+          .checkIcon {
+            width: 24px;
+            height: 24px;
+          }
+        }
+
+        .recAgainBtn {
+          display: flex;
+          padding: 16px 24px;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          border-radius: 12px;
+          background-color: #f6f7f6;
+          color: #000;
+          font-family: Raleway;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 24px;
+          letter-spacing: 0.4px;
+          border: none;
+          cursor: pointer;
+
+          .microphone {
+            filter: invert(100%);
+            width: 24px;
+            height: 24px;
+          }
+        }
+      }
+      .buttonsVisible {
+        display: flex;
+      }
+      .sendButtonVisible {
+        display: flex;
+      }
+      .sendButtonHidden {
+        display: none;
+      }
+    }
+  }
+}
