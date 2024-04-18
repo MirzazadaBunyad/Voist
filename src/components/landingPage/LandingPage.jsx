@@ -253,7 +253,7 @@ function LandingPage() {
               />
             </div>
 
-            <div className={styles.featureTextContainer}>
+            <div className={styles.featureTextContainer} >
               <div className={styles.arrow}>
                 <img
                   className={styles.featureArrow}

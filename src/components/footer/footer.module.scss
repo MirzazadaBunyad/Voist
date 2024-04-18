@@ -9,6 +9,10 @@
   @include responsive769to1057 {
     margin-left: 50px;
   }
+
+  @include mobileresponsive {
+    display: none;
+  }
   .copyright {
     color: #6c756f;
     font-family: Inter;

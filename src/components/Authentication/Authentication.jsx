@@ -9,6 +9,8 @@ import { CSSTransition } from "react-transition-group";
 import "./animations.scss";
 import ForgotPassword from "../Authentication/forgotPassword/Forgotpassword";
 import voistLogo from "../../assets/img/voistLogo.svg";
+import checkCrossIcon from "../../assets/img/checkCrossIcon.svg";
+
 function Authentication() {
   /* login ile Create Accountu deyismek ucun */
   const [show, setShow] = useState(true);
@@ -22,7 +24,7 @@ function Authentication() {
   };
   const openForgetPassword = () => {
     if (tl) {
-      tl.to(".footer", { xPercent: 78, duration: 0.5, textAlign: "center" })
+      tl.to(".footer", { xPercent: 140, duration: 0.5, textAlign: "center" })
         .to(".formContainer", { opacity: 0, duration: 0.3 }, "<")
         .to(
           ".heroImg",
@@ -75,6 +77,12 @@ function Authentication() {
             <img src={voistLogo} alt="" />
           </div>
         </header>
+        <div className={styles.mobileInfo}>
+          <img src={checkCrossIcon} alt="X" />
+          <div className={styles.mobileInfoText}>
+            <h2 className={styles.title}>phone format is not supported...</h2>
+          </div>
+        </div>
         <main className={`${styles.formContainer} formContainer`}>
           <CSSTransition
             in={show}
