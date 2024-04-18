@@ -3,12 +3,14 @@ import styles from "./activateAccount.module.scss";
 import checkWhiteIcon from "../../assets/img/checkWhiteIcon.svg";
 import arrowRightBlack from "../../assets/img/arrowRightBlack.svg";
 
-function ActivateAccount({ data }) {
+function ActivateAccount({ data, backToLogin, goToLogin }) {
   const [inputs, setInputs] = useState(["", "", "", "", "", ""]);
 
   const handleSubmit = async (e) => {
     e && e.preventDefault();
     const combinedInputs = inputs.join("");
+    backToLogin();
+    goToLogin();
 
     try {
       const response = await fetch(

@@ -11,28 +11,53 @@ function SendToEmail({
   setSendInformation,
   initialData,
 }) {
-  const [inputValue, setInputValue] = useState(initialData.input || "");
+  const [inputValue, setInputValue] = useState(initialData.email || "");
 
   useEffect(() => {
-    setInputValue(initialData.input || "");
+    setInputValue(initialData.email || "");
   }, [initialData]);
 
   const handleChange = (e) => {
     setInputValue(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (inputValue.trim() !== "") {
-      setSendInformation({ ...initialData, input: inputValue });
+      setSendInformation({ ...initialData, email: inputValue });
       handleClickToChange();
-      initialData.input = inputValue;
-      console.log(initialData);
+      console.log(initialData); // Make sure initialData is updated
+
+      try {
+        const response = await fetch(
+          "https://safaraliyev.live/api/user/password_reset/",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: inputValue, // Change this to inputValue
+            }),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error: Status ${response.status}`);
+        }
+
+        console.log("Data sent successfully!");
+        setActivationCodeSent(true);
+        setShowActivation(true);
+      } catch (error) {
+        console.error("Error sending data:", error.message);
+      }
     }
   };
+
   const handleCancel = (e) => {
-    e.preventDefault(); // Предотвращаем отправку формы
-    handleClickToLogin(); // Вызываем функцию для возврата к предыдущему экрану
+    e.preventDefault();
+    handleClickToLogin();
   };
   return (
     <>

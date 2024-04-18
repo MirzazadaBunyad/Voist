@@ -245,7 +245,11 @@ const CreateAccount = ({ ChangeComponents, show, backToLogin }) => {
           </div>
         )}
         {showActivation && activationCodeSent && (
-          <ActivateAccount data={data} backToLogin={backToLogin} />
+          <ActivateAccount
+            data={data}
+            backToLogin={() => setShowActivation(false)}
+            goToLogin={goToLogin}
+          />
         )}
       </div>
     </section>

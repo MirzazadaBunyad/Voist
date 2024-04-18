@@ -16,8 +16,10 @@ function Authentication() {
   const [tl, setTl] = useState(false);
   /* ekran sagdadn sola gedende qabag Forget passwordu Display none edir  */
   const [forgetPasswordVisible, setForgetPasswordVisible] = useState(false);
-  const [loginVisible, setLoginVisible] = useState(true);
-
+  const [showActivation, setShowActivation] = useState(false);
+  const handleActivationComplete = () => {
+    setShowActivation(false);
+  };
   const openForgetPassword = () => {
     if (tl) {
       tl.to(".footer", { xPercent: 78, duration: 0.5, textAlign: "center" })
@@ -99,7 +101,7 @@ function Authentication() {
               <CreateAccount
                 show={!show}
                 ChangeComponents={handleChangeForm}
-                backToLogin={backToLogin}
+                backToLogin={() => setShowActivation(false)}
               />
             </div>
           </CSSTransition>

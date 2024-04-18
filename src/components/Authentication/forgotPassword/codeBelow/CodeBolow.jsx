@@ -4,7 +4,12 @@ import img from "../../../../assets/img/smile.gif";
 import arrowRightBlack from "../../../../assets/img/arrowRightBlack.svg";
 import { useRef, useState } from "react";
 
-function CodeBelow({ handleClickToChange, handleGoBack, backToLogin }) {
+function CodeBelow({
+  handleClickToChange,
+  handleGoBack,
+  backToLogin,
+  sendInformation,
+}) {
   const [show, setShow] = useState(false);
   const [inputs, setInputs] = useState(["", "", "", ""]);
 
@@ -52,7 +57,7 @@ function CodeBelow({ handleClickToChange, handleGoBack, backToLogin }) {
       <div className={styles.accountСreation}>
         <h1>Enter the code below</h1>
         <div className={styles.accountAlready}>
-          <p>OTP code sent to ulya@company domain.com</p>
+          <p>OTP code sent to {sendInformation.input} </p>
           <img src={img} className={styles.smile} alt="smile" loading="lazy" />
         </div>
         <form className={styles.formContainer} onSubmit={handleSubmit}>
