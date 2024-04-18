@@ -24,6 +24,7 @@
   }
 
   .logo {
+    z-index: 2;
     a {
       margin: 0;
       cursor: pointer;
@@ -40,6 +41,7 @@
       }
     }
   }
+
   .toggle {
     display: none;
     width: 44px;
@@ -69,6 +71,64 @@
         display: none;
       }
     }
+
+    li {
+      a {
+        display: flex;
+        padding: 10px 12px;
+        margin: 0;
+        align-items: flex-start;
+        gap: 4px;
+        color: #000;
+        border: 2px solid transparent;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 24px;
+        letter-spacing: 0.4px;
+        list-style: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        &:hover {
+          border-bottom: 2px solid #3dff49;
+          color: #000;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 24px;
+          letter-spacing: 0.4px;
+          transition: all 0.3s ease;
+
+          @include mobileresponsive {
+          }
+        }
+      }
+    }
+    .closeToggle {
+      z-index: 1;
+      h2 {
+        z-index: 2;
+      }
+    }
+
+    .active {
+      border-bottom: 2px solid #3dff49;
+      color: #000;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 24px;
+      letter-spacing: 0.4px;
+    }
+  }
+  .activeNav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 32px 132px;
+    background-color: #fff;
     li {
       a {
         display: flex;
@@ -97,16 +157,6 @@
           transition: all 0.3s ease;
         }
       }
-    }
-
-    .active {
-      border-bottom: 2px solid #3dff49;
-      color: #000;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 24px;
-      letter-spacing: 0.4px;
     }
   }
 }
@@ -853,7 +903,6 @@
       }
     }
     .slider {
-      // width: 100%;
       text-align: center;
     }
   }
