@@ -22,6 +22,7 @@ import featuredImgOne from "../../assets/img/featuredImgOne.png";
 import featuredImgTwo from "../../assets/img/featuredImgTwo.png";
 import companyIcon from "../../assets/img/companyIcon.svg";
 import inputMessageIcon from "../../assets/img/inputMessageIcon.svg";
+import toggleIcon from "../../assets/img/toggleIcon.svg";
 import { BsArrowRight } from "react-icons/bs";
 import { FiUser } from "react-icons/fi";
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
@@ -140,43 +141,57 @@ function LandingPage() {
   return (
     <>
       <header className={styles.headerContainer}>
-        <div className={styles.logo}>
-          <ScrollLink
-            activeClass="active"
-            to="home"
-            spy={true}
-            smooth={true}
-            offset={0}
-            duration={400}
-          >
-            <img className={styles.logoImg} src={voistLogo} alt="Voist Logo" />
-          </ScrollLink>
-        </div>
-        <div className={styles.nav}>
-          <ul className={styles.navList}>
-            {menuItems.map((menuItem) => (
-              <li key={menuItem.name}>
-                <ScrollLink
-                  to={menuItem.to}
-                  spy={true}
-                  smooth={true}
-                  offset={menuItem.offset}
-                  duration={400}
-                  className={actMenuItem === menuItem.name ? styles.active : ""}
-                  onClick={() => handleMenuItemClick(menuItem.name)}
-                >
-                  {menuItem.name}
-                </ScrollLink>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className={styles.hero}>
-          <Link to="/authentication" className={styles.started}>
-            Get started <BsArrowRight className={styles.arrowRight} />
-          </Link>
+        <div className={styles.header}>
+          <div className={styles.logo}>
+            <ScrollLink
+              activeClass="active"
+              to="home"
+              spy={true}
+              smooth={true}
+              offset={0}
+              duration={400}
+            >
+              <img
+                className={styles.logoImg}
+                src={voistLogo}
+                alt="Voist Logo"
+              />
+            </ScrollLink>
+          </div>
+          <div className={styles.nav}>
+            <ul className={styles.navList}>
+              {menuItems.map((menuItem) => (
+                <li key={menuItem.name}>
+                  <ScrollLink
+                    to={menuItem.to}
+                    spy={true}
+                    smooth={true}
+                    offset={menuItem.offset}
+                    duration={400}
+                    className={
+                      actMenuItem === menuItem.name ? styles.active : ""
+                    }
+                    onClick={() => handleMenuItemClick(menuItem.name)}
+                  >
+                    {menuItem.name}
+                  </ScrollLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className={styles.buttons}>
+            <div className={styles.hero}>
+              <Link to="/authentication" className={styles.started}>
+                Get started <BsArrowRight className={styles.arrowRight} />
+              </Link>
+            </div>
+            <div className={styles.toggle}>
+              <img src={toggleIcon} alt="Toggle Icon" />
+            </div>
+          </div>
         </div>
       </header>
+
       <main className={styles.mainContainer}>
         <section name="home" className={`${styles.backgroundVector} element`}>
           <div className={styles.textContainer}>
@@ -213,6 +228,7 @@ function LandingPage() {
               {/* <button className={styles.learnMoreBtn}>Learn more</button> */}
             </div>
           </div>
+
           <div className={styles.imgContainer}>
             <img
               className={styles.callLogsImg}
@@ -220,7 +236,10 @@ function LandingPage() {
               alt="Call Logs Summary One"
             />
           </div>
+
+          {/* burda about hissesi baslayir */}
           <div name="about" className={`${styles.features} about`}>
+            {/* // */}
             <div className={styles.featuredImgs}>
               <img
                 className={styles.featuredImgOne}
@@ -233,6 +252,7 @@ function LandingPage() {
                 alt="Green image"
               />
             </div>
+
             <div className={styles.featureTextContainer}>
               <div className={styles.arrow}>
                 <img
@@ -275,8 +295,11 @@ function LandingPage() {
                 </div>
               </div>
             </div>
+            {/* // */}
           </div>
         </section>
+
+        {/* // */}
         <section name="features" className={`${styles.secKeyFeatures} element`}>
           <div className={styles.keyFeatures}>
             <img
@@ -375,6 +398,9 @@ function LandingPage() {
             </div>
           </div>
         </section>
+        {/* // */}
+
+        {/* // */}
         <section className={styles.callLogsSumSec}>
           <img
             className={styles.callLogsSumImg}
@@ -407,7 +433,8 @@ function LandingPage() {
             </div>
             <div className={styles.requestDemoBtns}>
               <Link to="/authentication" className={styles.requestDemoBtn}>
-                Get started<BsArrowRight className={styles.arrowRight} />
+                Get started
+                <BsArrowRight className={styles.arrowRight} />
               </Link>
               <ScrollLink
                 activeClass="active"
@@ -491,6 +518,9 @@ function LandingPage() {
             ))}
           </div>
         </section>
+        {/* // */}
+
+        {/* // */}
         <section name="form" className={styles.contact}>
           <div className={styles.contHeadContainer}>
             <img
@@ -581,6 +611,8 @@ function LandingPage() {
             </div>
           </form>
         </section>
+
+        {/* // */}
       </main>
       <footer name="contact" className={`${styles.footerContainer} element`}>
         <div className={styles.footerInfoContainer}>
