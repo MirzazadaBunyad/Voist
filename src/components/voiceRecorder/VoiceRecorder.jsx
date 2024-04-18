@@ -88,6 +88,7 @@ function VoiceRecorder() {
                                     </audio>
                                 </div>
                             )}
+
                             <button
                                 className={`${styles.sendButton} ${isRecording ? styles.recordingButton : ''} ${isSendButtonVisible ? styles.sendButtonVisible : styles.sendButtonHidden}`}
                                 onClick={handleRecording}
