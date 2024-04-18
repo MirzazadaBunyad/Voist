@@ -2,7 +2,7 @@ import styles from "./footer.module.scss";
 
 function Footer() {
   return (
-    <div className={styles.footer}>
+    <div className={`${styles.footer} footer`}>
       <p className={styles.copyright}>&#169; 2023 Voist. Allrights reserved.</p>
       <div className={styles.termsPrivacy}>
         <button className={styles.term}>Term & Conditions</button>
