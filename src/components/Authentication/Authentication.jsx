@@ -80,7 +80,9 @@ function Authentication() {
         <div className={styles.mobileInfo}>
           <img src={checkCrossIcon} alt="X" />
           <div className={styles.mobileInfoText}>
-            <h2 className={styles.title}>phone format is not supported...</h2>
+            <h2 className={styles.title}>
+              Currently, the current version does not support mobile devices
+            </h2>
           </div>
         </div>
         <main className={`${styles.formContainer} formContainer`}>

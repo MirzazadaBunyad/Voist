@@ -19,6 +19,15 @@
   @include responsive769to1057 {
     margin: 36px 50px;
   }
+
+  @include mobileresponsive {
+    margin: 36px 120px;
+
+    img {
+      width: 30vw;
+      margin-left: 0.3rem;
+    }
+  }
 }
 
 .right__side {
@@ -46,25 +55,26 @@
 
   @include mobileresponsive {
     display: block;
+    width: 102vw;
 
     h2 {
       color: #000;
-      font-size: 2rem;
+      font-size: 1.5rem;
       font-style: normal;
       font-weight: 800;
-      line-height: 32px;
-      letter-spacing: 0.4px;
+      line-height: 1em;
+      letter-spacing: 2px;
       margin-bottom: 10px;
     }
 
     img {
-      width: 50%;
+      width: 45%;
       height: 50%;
       margin-left: 100px;
     }
   }
   .mobileInfoText {
-    margin-left: 50px;
+    margin-left: 10px;
   }
 }
 

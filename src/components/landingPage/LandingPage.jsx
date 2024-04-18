@@ -42,10 +42,18 @@ function LandingPage() {
 
   const [actMenuItem, setActMenuItem] = useState(menuItems[0].name);
 
+  const [show, setShow] = useState(true);
+
   const handleMenuItemClick = (itemName) => {
     setActMenuItem(itemName);
   };
 
+  const handleToggle = () => {
+    setShow(false);
+  };
+  const handleClickToCloseToggle = () => {
+    setShow(true);
+  };
   const [activeIndex, setActiveIndex] = useState(null);
   const onTitleClick = (index) => {
     setActiveIndex(index === activeIndex ? null : index);
@@ -158,37 +166,69 @@ function LandingPage() {
               />
             </ScrollLink>
           </div>
-          <div className={styles.nav}>
-            <ul className={styles.navList}>
-              {menuItems.map((menuItem) => (
-                <li key={menuItem.name}>
-                  <ScrollLink
-                    to={menuItem.to}
-                    spy={true}
-                    smooth={true}
-                    offset={menuItem.offset}
-                    duration={400}
-                    className={
-                      actMenuItem === menuItem.name ? styles.active : ""
-                    }
-                    onClick={() => handleMenuItemClick(menuItem.name)}
-                  >
-                    {menuItem.name}
-                  </ScrollLink>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className={styles.buttons}>
-            <div className={styles.hero}>
-              <Link to="/authentication" className={styles.started}>
-                Get started <BsArrowRight className={styles.arrowRight} />
-              </Link>
+
+          {show ? (
+            <div className={styles.nav}>
+              <ul className={styles.navList}>
+                {menuItems.map((menuItem) => (
+                  <li key={menuItem.name}>
+                    <ScrollLink
+                      to={menuItem.to}
+                      spy={true}
+                      smooth={true}
+                      offset={menuItem.offset}
+                      duration={400}
+                      className={
+                        actMenuItem === menuItem.name ? styles.active : ""
+                      }
+                      onClick={() => handleMenuItemClick(menuItem.name)}
+                    >
+                      {menuItem.name}
+                    </ScrollLink>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div className={styles.toggle}>
-              <img src={toggleIcon} alt="Toggle Icon" />
+          ) : (
+            <div className={show ? "nav" : styles.activeNav}>
+              <ul className={styles.navList}>
+                {menuItems.map((menuItem) => (
+                  <li key={menuItem.name}>
+                    <ScrollLink
+                      to={menuItem.to}
+                      spy={true}
+                      smooth={true}
+                      offset={menuItem.offset}
+                      duration={400}
+                      className={
+                        actMenuItem === menuItem.name ? styles.active : ""
+                      }
+                      onClick={() => handleMenuItemClick(menuItem.name)}
+                    >
+                      {menuItem.name}
+                    </ScrollLink>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
+          )}
+          {show ? (
+            <div className={styles.buttons}>
+              <div className={styles.hero}>
+                <Link to="/authentication" className={styles.started}>
+                  Get started <BsArrowRight className={styles.arrowRight} />
+                </Link>
+              </div>
+              <div onClick={handleToggle} className={styles.toggle}>
+                <img src={toggleIcon} alt="Toggle Icon" />
+              </div>
+            </div>
+          ) : (
+            // bunu duzeltmeliyem
+            <div className="closeToggle">
+              <h2 onClick={handleClickToCloseToggle}>X</h2>
+            </div>
+          )}
         </div>
       </header>
 
@@ -253,7 +293,7 @@ function LandingPage() {
               />
             </div>
 
-            <div className={styles.featureTextContainer} >
+            <div className={styles.featureTextContainer}>
               <div className={styles.arrow}>
                 <img
                   className={styles.featureArrow}
