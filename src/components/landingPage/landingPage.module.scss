@@ -336,13 +336,30 @@
       align-items: flex-start;
       gap: 76px;
       position: relative;
+      @include mobileresponsive {
+        flex-direction: column;
+        width: 390px;
+        padding: 24px;
+        gap: 32px;
+      }
       .featuredImgs {
+        @include mobileresponsive {
+          position: relative;
+          display: flex;
+          align-items: center;
+        }
         .featuredImgOne {
           position: absolute;
           z-index: 2;
           width: 460px;
           height: 346px;
           flex-shrink: 0;
+          @include mobileresponsive {
+            width: 315px;
+            height: 244px;
+            top: 25px;
+            left: -10px;
+          }
         }
         .featuredImgTwo {
           position: absolute;
@@ -352,15 +369,31 @@
           width: 357px;
           height: 346px;
           flex-shrink: 0;
+          @include mobileresponsive {
+            left: 90px;
+            bottom: 0;
+            top: 0;
+            width: 244px;
+            height: 244px;
+          }
         }
       }
       .featureTextContainer {
         margin-left: 500px;
+        @include mobileresponsive {
+          position: relative;
+          margin-top: 300px;
+          margin-left: 0;
+        }
         .arrow {
           .featureArrow {
             position: absolute;
             bottom: 470px;
             left: 540px;
+            @include mobileresponsive {
+              top: -25px;
+              left: -32px;
+            }
           }
         }
         .featureContainer {
@@ -369,6 +402,9 @@
           flex-direction: column;
           align-items: flex-start;
           gap: 40px;
+          @include mobileresponsive {
+            width: 100%;
+          }
           .text {
             display: flex;
             flex-direction: column;
@@ -382,6 +418,11 @@
               font-weight: 800;
               line-height: 49px;
               letter-spacing: -0.8px;
+              @include mobileresponsive {
+                font-size: 32px;
+                line-height: 40px;
+                letter-spacing: -0.64px;
+              }
             }
             .paragraph {
               color: #8c8c8c;
@@ -391,6 +432,10 @@
               font-weight: 300;
               line-height: 155%;
               letter-spacing: -0.36px;
+              @include mobileresponsive {
+                font-size: 14px;
+                line-height: 141%;
+              }
             }
           }
           .btns {
@@ -459,6 +504,10 @@
     align-items: center;
     gap: 56px;
     background: #f5f5f5;
+    @include mobileresponsive {
+      padding: 40px 24px;
+      gap: 32px;
+    }
     .keyFeatures {
       position: relative;
       .keyFeatArrOne {
@@ -467,6 +516,9 @@
         left: 265px;
         width: 39px;
         height: 38px;
+        @include mobileresponsive {
+          left: 0;
+        }
       }
       .keyFeatText {
         display: flex;
@@ -475,6 +527,9 @@
         gap: 16px;
         align-self: stretch;
         width: 975px;
+        @include mobileresponsive {
+          width: 100%;
+        }
         .keyFeatHeading {
           color: #000;
           text-align: center;
@@ -483,6 +538,11 @@
           font-weight: 800;
           line-height: 49px;
           letter-spacing: -0.8px;
+          @include mobileresponsive {
+            font-size: 32px;
+            line-height: 40px;
+            letter-spacing: -0.64px;
+          }
         }
         .keyFeatParagraph {
           color: #595959;
@@ -493,12 +553,20 @@
           font-weight: 300;
           line-height: 155%;
           width: 78%;
+          @include mobileresponsive {
+            font-size: 14px;
+            line-height: 141%;
+            width: 100%;
+          }
         }
       }
       .keyFeatArrTwo {
         position: absolute;
         top: -3px;
         right: 5px;
+        @include mobileresponsive {
+          display: none;
+        }
       }
     }
     .keyFeatElements {
@@ -506,6 +574,10 @@
       width: 1176px;
       align-items: flex-start;
       gap: 16px;
+      @include mobileresponsive {
+        width: 100%;
+        flex-direction: column;
+      }
       .automatTranscripts,
       .analysisEmotions,
       .aiScoring,
@@ -578,6 +650,9 @@
     }
   }
   .callLogsSumSec {
+    @include mobileresponsive {
+      display: none;
+    }
     .callLogsSumImg {
       width: 100%;
     }
@@ -590,18 +665,23 @@
     gap: 10px;
     background-color: #7dff85;
     margin: 130px 0 100px 0;
+    @include mobileresponsive {
+      padding: 56px 24px;
+    }
     .requestDemoContainer {
       display: flex;
       width: 975px;
       flex-direction: column;
       align-items: flex-start;
       gap: 40px;
+      @include mobileresponsive {
+        width: 100%;
+      }
       .requestDemoText {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         gap: 16px;
-        align-self: stretch;
         position: relative;
         .requestDemoImg {
           position: absolute;
@@ -614,6 +694,9 @@
           position: absolute;
           right: -300px;
           top: 20px;
+          @include mobileresponsive {
+            display: none;
+          }
         }
         .requestDemoHeading {
           color: #000;
@@ -622,6 +705,11 @@
           font-weight: 800;
           line-height: 65px;
           letter-spacing: -1.12px;
+          @include mobileresponsive {
+            font-size: 48px;
+            line-height: 51px;
+            letter-spacing: -0.96px;
+          }
         }
         .requestDemoParagraph {
           color: #000;
@@ -631,6 +719,10 @@
           font-weight: 300;
           line-height: 155%;
           letter-spacing: -0.36px;
+          @include mobileresponsive {
+            font-size: 20px;
+            letter-spacing: -0.4px;
+          }
         }
       }
       .requestDemoBtns {
@@ -664,6 +756,9 @@
             width: 24px;
             height: 24px;
           }
+          @include mobileresponsive {
+            padding: 16px;
+          }
         }
         .contactUsBtn {
           display: flex;
@@ -687,6 +782,9 @@
             background-color: #fff;
             transition: all 0.3s ease;
           }
+          @include mobileresponsive {
+            padding: 16px;
+          }
         }
       }
     }
@@ -697,6 +795,11 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    @include mobileresponsive {
+      gap: 24px;
+      padding: 0 24px 40px;
+      overflow: hidden;
+    }
     .trustedByContainer {
       position: relative;
       display: flex;
@@ -709,11 +812,17 @@
         position: absolute;
         left: 410px;
         top: -25px;
+        @include mobileresponsive {
+          display: none;
+        }
       }
       .trustedByImgTwo {
         position: absolute;
         right: 130px;
         top: 60px;
+        @include mobileresponsive {
+          display: none;
+        }
       }
       .trustedByHeading {
         color: #000;
@@ -722,6 +831,11 @@
         font-weight: 800;
         line-height: 49px;
         letter-spacing: -0.8px;
+        @include mobileresponsive {
+          font-size: 32px;
+          line-height: 40px;
+          letter-spacing: -0.64px;
+        }
       }
       .trustedByParagraph {
         width: 50%;
@@ -731,7 +845,16 @@
         font-size: 18px;
         font-weight: 300;
         line-height: 155%;
+        @include mobileresponsive {
+          width: 80%;
+          font-size: 14px;
+          line-height: 141%;
+        }
       }
+    }
+    .slider {
+      // width: 100%;
+      text-align: center;
     }
   }
   .questions {
@@ -741,6 +864,10 @@
     gap: 56px;
     padding: 80px 100px;
     background-color: #f5f5f5;
+    @include mobileresponsive {
+      padding: 80px 24px;
+      align-items: flex-start;
+    }
     .questionsContainer {
       position: relative;
       .arrowOne {
@@ -749,6 +876,9 @@
         top: -22px;
         width: 39px;
         height: 38px;
+        @include mobileresponsive {
+          left: 5px;
+        }
       }
       .arrowTwo {
         position: absolute;
@@ -756,6 +886,9 @@
         top: 0;
         width: 90px;
         height: 100px;
+        @include mobileresponsive {
+          display: none;
+        }
       }
       .questionsInfo {
         display: flex;
@@ -771,6 +904,11 @@
           font-weight: 800;
           line-height: 49px;
           letter-spacing: -0.8px;
+          @include mobileresponsive {
+            font-size: 32px;
+            line-height: 40px;
+            letter-spacing: -0.64px;
+          }
         }
         .questionsInfoParagraph {
           color: #595959;
@@ -780,6 +918,11 @@
           font-style: normal;
           font-weight: 300;
           line-height: 155%;
+          @include mobileresponsive {
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 141%;
+          }
         }
       }
     }
@@ -807,8 +950,6 @@
             letter-spacing: -0.4px;
           }
           .minPlus {
-            width: 24px;
-            height: 24px;
             font-size: 24px;
           }
         }
@@ -832,12 +973,19 @@
     flex-direction: column;
     align-items: center;
     gap: 64px;
+    @include mobileresponsive {
+      padding: 40px 24px;
+      gap: 40px;
+    }
     .contHeadContainer {
       position: relative;
       .arrowOne {
         position: absolute;
         left: -23px;
         top: -23px;
+        @include mobileresponsive {
+          left: 5px;
+        }
       }
       .contHeadInfo {
         display: flex;
@@ -853,6 +1001,11 @@
           font-weight: 800;
           line-height: 49px;
           letter-spacing: -0.8px;
+          @include mobileresponsive {
+            font-size: 32px;
+            line-height: 40px;
+            letter-spacing: -0.64px;
+          }
         }
         .contHeadInfoParagraph {
           color: #595959;
@@ -862,6 +1015,11 @@
           font-style: normal;
           font-weight: 300;
           line-height: 155%;
+          @include mobileresponsive {
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 141%;
+          }
         }
       }
     }
@@ -874,6 +1032,10 @@
       align-self: stretch;
       border-radius: 32px;
       border: 1px solid #c8c8c8;
+      @include mobileresponsive {
+        border: none;
+        padding: 0;
+      }
       .contactForm {
         display: flex;
         flex-direction: column;
@@ -884,7 +1046,10 @@
           display: flex;
           align-items: flex-start;
           gap: 24px;
-          align-self: stretch;
+          @include mobileresponsive {
+            flex-direction: column;
+            width: 100%;
+          }
           .nameField {
             display: flex;
             flex-direction: column;
@@ -892,6 +1057,9 @@
             gap: 9px;
             flex: 1 0 0;
             position: relative;
+            @include mobileresponsive {
+              width: 100%;
+            }
             label {
               color: #1d2b21;
               font-size: 12px;
@@ -1031,9 +1199,7 @@
   align-items: flex-start;
   gap: 56px;
   background-color: #f5f5f5;
-
   @include mobileresponsive {
-    width: 390px;
     padding: 40px 24px;
   }
   .footerInfoContainer {
@@ -1049,9 +1215,6 @@
       align-items: flex-start;
       gap: 8px;
       align-self: stretch;
-
-      @include mobileresponsive {
-      }
       .footerInfoHeading {
         color: #000;
         font-size: 40px;
@@ -1192,6 +1355,7 @@
 
       @include mobileresponsive {
         gap: 16px;
+        margin-top: 8px;
       }
       a {
         color: #000;
@@ -1211,9 +1375,4 @@
       }
     }
   }
-}
-
-.slider {
-  width: 100%;
-  text-align: center;
 }

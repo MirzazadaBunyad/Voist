@@ -23,7 +23,7 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 56px;
-    padding: 125px 130px;
+    padding: 75px 130px;
 
     .rightDesc {
       display: flex;
@@ -128,8 +128,7 @@
         font-weight: 700;
         line-height: 24px;
         letter-spacing: 0.4px;
-        background-color: #3d73ff;
-
+        background-color: #3d73ff !important;
         &:hover {
           background-color: #2bb534;
           transition: all 0.3s ease;

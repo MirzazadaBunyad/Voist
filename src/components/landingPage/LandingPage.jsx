@@ -460,7 +460,7 @@ function LandingPage() {
             <img
               className={styles.trustedByImgTwo}
               src={landingPageArrFour}
-              alt=""
+              alt="Arrow two"
             />
             <h3 className={styles.trustedByHeading}>
               Trusted by Leading Companies
