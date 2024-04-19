@@ -78,10 +78,10 @@ function Authentication() {
           </div>
         </header>
         <div className={styles.mobileInfo}>
-          <img src={checkCrossIcon} alt="X" />
+          <img src={checkCrossIcon} alt="Cross icon" />
           <div className={styles.mobileInfoText}>
             <h2 className={styles.title}>
-              Currently, the current version does not support mobile devices
+              Currently, the current version does not support mobile devices.
             </h2>
           </div>
         </div>

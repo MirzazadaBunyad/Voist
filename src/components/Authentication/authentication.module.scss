@@ -2,6 +2,9 @@
 
 .headerContainer {
   display: inline-block;
+  @include mobileresponsive {
+    width: 100%;
+  }
 }
 .container {
   display: flex;
@@ -21,10 +24,12 @@
   }
 
   @include mobileresponsive {
-    margin: 36px 120px;
+    margin: 35px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 
     img {
-      width: 30vw;
       margin-left: 0.3rem;
     }
   }
@@ -54,27 +59,29 @@
   display: none;
 
   @include mobileresponsive {
-    display: block;
-    width: 102vw;
-
-    h2 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    .title {
+      width: 80%;
       color: #000;
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       font-style: normal;
       font-weight: 800;
-      line-height: 1em;
+      line-height: 1.25em;
       letter-spacing: 2px;
-      margin-bottom: 10px;
     }
 
     img {
       width: 45%;
       height: 50%;
-      margin-left: 100px;
     }
   }
   .mobileInfoText {
-    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
