@@ -30,6 +30,7 @@ import { HiMiniArrowRight } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 import Carousel from "../Carousel/Carousel";
+import { IoCloseOutline } from "react-icons/io5";
 
 function LandingPage() {
   const menuItems = [
@@ -165,11 +166,13 @@ function LandingPage() {
               offset={0}
               duration={400}
             >
-              <img
-                className={styles.logoImg}
-                src={voistLogo}
-                alt="Voist Logo"
-              />
+              {show ? (
+                <img
+                  className={styles.logoImg}
+                  src={voistLogo}
+                  alt="Voist Logo"
+                />
+              ) : null}
             </ScrollLink>
           </div>
 
@@ -196,52 +199,51 @@ function LandingPage() {
               </ul>
             </div>
           ) : (
-            <div>
-              <div className={show ? "nav" : styles.activeNav}>
+            <div className={styles.actCont}>
+              <div className={show ? "nav" : styles.activeHead}>
+                {/* // */}
                 <div className={styles.activeLogo}>
                   <img src={voistLogo} alt="asdsda" />
                 </div>
-                <nav>
-                  <ul className={styles.navList}>
-                    {menuItems.map((menuItem) => (
-                      <li key={menuItem.name}>
-                        <ScrollLink
-                          to={menuItem.to}
-                          spy={true}
-                          smooth={true}
-                          offset={menuItem.offset}
-                          duration={400}
-                          className={
-                            actMenuItem === menuItem.name ? styles.active : ""
-                          }
-                          onClick={() => handleMenuItemClick(menuItem.name)}
-                        >
-                          {menuItem.name}
-                        </ScrollLink>
-                      </li>
-                    ))}
-                    <div>
-                      <div
-                        className={styles.buttons}
-                        style={{ marginTop: "120px", marginLeft: "20px" }}
-                      >
-                        <div className={styles.hero}>
-                          <Link to="/authentication" className={styles.started}>
-                            Get started{" "}
-                            <BsArrowRight className={styles.arrowRight} />
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </ul>
-                </nav>
                 <div
                   onClick={handleClickToCloseToggle}
                   className={styles.closeIcon}
                 >
-                  <h2>X</h2>
+                  <IoCloseOutline className={styles.closeIconX} />
                 </div>
+                {/* // */}
               </div>
+              <nav className={styles.actNav}>
+                <ul className={styles.navList}>
+                  {menuItems.map((menuItem) => (
+                    <li key={menuItem.name}>
+                      <ScrollLink
+                        to={menuItem.to}
+                        spy={true}
+                        smooth={true}
+                        offset={menuItem.offset}
+                        duration={400}
+                        className={
+                          actMenuItem === menuItem.name ? styles.active : ""
+                        }
+                        onClick={() => handleMenuItemClick(menuItem.name)}
+                      >
+                        {menuItem.name}
+                      </ScrollLink>
+                    </li>
+                  ))}
+                </ul>
+                <div
+                  className={styles.buttons}
+                  style={{ marginTop: "120px", marginLeft: "20px" }}
+                >
+                  <div className={styles.hero}>
+                    <Link to="/authentication" className={styles.startedMob}>
+                      Get started <BsArrowRight className={styles.arrowRight} />
+                    </Link>
+                  </div>
+                </div>
+              </nav>
             </div>
           )}
           {show ? (
