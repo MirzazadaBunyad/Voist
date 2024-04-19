@@ -46,13 +46,19 @@ function LandingPage() {
 
   const handleMenuItemClick = (itemName) => {
     setActMenuItem(itemName);
+    handleClickToCloseToggle();
+    document.body.style.overflow = "auto";
   };
 
   const handleToggle = () => {
     setShow(false);
+    if (show) {
+      document.body.style.overflow = "hidden";
+    }
   };
   const handleClickToCloseToggle = () => {
     setShow(true);
+    document.body.style.overflow = "auto";
   };
   const [activeIndex, setActiveIndex] = useState(null);
   const onTitleClick = (index) => {
@@ -190,26 +196,52 @@ function LandingPage() {
               </ul>
             </div>
           ) : (
-            <div className={show ? "nav" : styles.activeNav}>
-              <ul className={styles.navList}>
-                {menuItems.map((menuItem) => (
-                  <li key={menuItem.name}>
-                    <ScrollLink
-                      to={menuItem.to}
-                      spy={true}
-                      smooth={true}
-                      offset={menuItem.offset}
-                      duration={400}
-                      className={
-                        actMenuItem === menuItem.name ? styles.active : ""
-                      }
-                      onClick={() => handleMenuItemClick(menuItem.name)}
-                    >
-                      {menuItem.name}
-                    </ScrollLink>
-                  </li>
-                ))}
-              </ul>
+            <div>
+              <div className={show ? "nav" : styles.activeNav}>
+                <div className={styles.activeLogo}>
+                  <img src={voistLogo} alt="asdsda" />
+                </div>
+                <nav>
+                  <ul className={styles.navList}>
+                    {menuItems.map((menuItem) => (
+                      <li key={menuItem.name}>
+                        <ScrollLink
+                          to={menuItem.to}
+                          spy={true}
+                          smooth={true}
+                          offset={menuItem.offset}
+                          duration={400}
+                          className={
+                            actMenuItem === menuItem.name ? styles.active : ""
+                          }
+                          onClick={() => handleMenuItemClick(menuItem.name)}
+                        >
+                          {menuItem.name}
+                        </ScrollLink>
+                      </li>
+                    ))}
+                    <div>
+                      <div
+                        className={styles.buttons}
+                        style={{ marginTop: "120px", marginLeft: "20px" }}
+                      >
+                        <div className={styles.hero}>
+                          <Link to="/authentication" className={styles.started}>
+                            Get started{" "}
+                            <BsArrowRight className={styles.arrowRight} />
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </ul>
+                </nav>
+                <div
+                  onClick={handleClickToCloseToggle}
+                  className={styles.closeIcon}
+                >
+                  <h2>X</h2>
+                </div>
+              </div>
             </div>
           )}
           {show ? (
@@ -223,12 +255,7 @@ function LandingPage() {
                 <img src={toggleIcon} alt="Toggle Icon" />
               </div>
             </div>
-          ) : (
-            // bunu duzeltmeliyem
-            <div className="closeToggle">
-              <h2 onClick={handleClickToCloseToggle}>X</h2>
-            </div>
-          )}
+          ) : null}
         </div>
       </header>
 
