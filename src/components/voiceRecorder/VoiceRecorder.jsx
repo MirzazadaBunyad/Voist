@@ -1,10 +1,12 @@
 import { useState, useRef } from 'react';
+// import AWS from 'aws-sdk'
 import HeroImg from "../smallComponents/heroImg/HeroImg";
 import styles from "./VoiceRecorder.module.scss";
 import voistWhiteLogo from "../../assets/img/voistWhiteLogo.svg";
 import microphone from "../../assets/img/microphone.svg";
 import stopCircle from "../../assets/img/stopCircle.svg";
 import checkWhiteIcon from "../../assets/img/checkWhiteIcon.svg";
+import Audio from './audio/Audio';
 
 function VoiceRecorder() {
     const [isRecording, setIsRecording] = useState(false);
@@ -14,15 +16,34 @@ function VoiceRecorder() {
     const [recordedAudioUrl, setRecordedAudioUrl] = useState('');
     const [isButtonsVisible, setIsButtonsVisible] = useState(false);
     const [isSendButtonVisible, setIsSendButtonVisible] = useState(true);
+    const [showAudio, setShowAudio] = useState(false);
+
+
+    // AWS S3 configuration
+    // const S3_BUCKET = 'YOUR_BUCKET_NAME_HERE';
+    // const REGION = 'YOUR_DESIRED_REGION_HERE';
+
+    // AWS.config.update({
+    //     accessKeyId: 'YOUR_ACCESS_KEY_HERE',
+    //     secretAccessKey: 'YOUR_SECRET_ACCESS_KEY_HERE'
+    // })
+
+    // const myBucket = new AWS.S3({
+    //     params: { Bucket: S3_BUCKET },
+    //     region: REGION,
+    // });
+
+    function createBlobUrl(blob) {
+        return URL.createObjectURL(blob);
+    }
 
     const handleRecording = async () => {
         if (!isRecording) {
-            setRecordedAudioUrl('');
+            setRecordedAudioUrl("");
             chunksRef.current = [];
-
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                const mediaRecorder = new MediaRecorder(stream);
+                const mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
                 mediaRecorderRef.current = mediaRecorder;
 
                 mediaRecorder.ondataavailable = (event) => {
@@ -33,11 +54,16 @@ function VoiceRecorder() {
 
                 mediaRecorder.onstop = () => {
                     const blob = new Blob(chunksRef.current, { type: 'audio/webm' });
-                    const url = URL.createObjectURL(blob);
+                    const url = createBlobUrl(blob);
                     setRecordedAudioUrl(url);
+                    setShowAudio(true);
                     setIsMicrophoneVisible(true);
                     setIsButtonsVisible(true);
                     setIsSendButtonVisible(false);
+
+                    // Upload recorded audio to S3
+
+                    // uploadFile(blob);
                 };
 
                 mediaRecorder.start();
@@ -58,6 +84,23 @@ function VoiceRecorder() {
     const handleRecAgain = () => {
         window.location.reload();
     };
+
+    // const uploadFile = (file) => {
+    //     const params = {
+    //         ACL: 'public-read',
+    //         Body: file,
+    //         Bucket: S3_BUCKET,
+    //         Key: `recorded_audio_${Date.now()}.webm` // Adjust the Key as needed
+    //     };
+
+    //     myBucket.putObject(params)
+    //         .on('httpUploadProgress', (evt) => {
+    //             console.log(`Upload Progress: ${Math.round((evt.loaded / evt.total) * 100)}%`);
+    //         })
+    //         .send((err) => {
+    //             if (err) console.log(err);
+    //         });
+    // };
 
     return (
         <div className={styles.container}>
@@ -81,13 +124,9 @@ function VoiceRecorder() {
                             <h3 className={styles.header}>Lorem ipsum dolor sit amet consectetur. Tortor mauris vestibulum amet praesent urna lacus euismod et at. Sed urna interdum sit bibendum in. Nec tincidunt eleifend convallis egestas adipiscing.</h3>
                         </div>
                         <div className={styles.buttonContainer}>
-                            {recordedAudioUrl && (
-                                <div className={styles.recordedAudio}>
-                                    <audio className={styles.audio} controls controlsList="nodownload noremoteplayback">
-                                        <source src={recordedAudioUrl} type="audio/webm" />
-                                    </audio>
-                                </div>
-                            )}
+                            <div className={styles.recordedAudio}>
+                                {showAudio && <Audio recordedAudioUrl={recordedAudioUrl} />}
+                            </div>
 
                             <button
                                 className={`${styles.sendButton} ${isRecording ? styles.recordingButton : ''} ${isSendButtonVisible ? styles.sendButtonVisible : styles.sendButtonHidden}`}

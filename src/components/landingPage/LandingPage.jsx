@@ -124,7 +124,6 @@ function LandingPage() {
     setIsTyping(true);
     console.log(formData);
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -175,7 +174,6 @@ function LandingPage() {
               ) : null}
             </ScrollLink>
           </div>
-
           {show ? (
             <div className={styles.nav}>
               <ul className={styles.navList}>
@@ -211,7 +209,6 @@ function LandingPage() {
                 >
                   <IoCloseOutline className={styles.closeIconX} />
                 </div>
-                {/* // */}
               </div>
               <nav className={styles.actNav}>
                 <ul className={styles.navList}>
@@ -367,8 +364,6 @@ function LandingPage() {
             {/* // */}
           </div>
         </section>
-
-        {/* // */}
         <section name="features" className={`${styles.secKeyFeatures} element`}>
           <div className={styles.keyFeatures}>
             <img
@@ -467,9 +462,6 @@ function LandingPage() {
             </div>
           </div>
         </section>
-        {/* // */}
-
-        {/* // */}
         <section className={styles.callLogsSumSec}>
           <img
             className={styles.callLogsSumImg}
@@ -587,9 +579,6 @@ function LandingPage() {
             ))}
           </div>
         </section>
-        {/* // */}
-
-        {/* // */}
         <section name="form" className={styles.contact}>
           <div className={styles.contHeadContainer}>
             <img
@@ -680,8 +669,6 @@ function LandingPage() {
             </div>
           </form>
         </section>
-
-        {/* // */}
       </main>
       <footer name="contact" className={`${styles.footerContainer} element`}>
         <div className={styles.footerInfoContainer}>
