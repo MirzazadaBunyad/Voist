@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import styles from "./landingPage.module.scss";
 import "./fonts.css";
 import voistLogo from "../../assets/img/voistLogo.svg";
@@ -31,7 +31,7 @@ import { Link } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 import Carousel from "../Carousel/Carousel";
 import { IoCloseOutline } from "react-icons/io5";
-
+import emailjs from "@emailjs/browser";
 function LandingPage() {
   const menuItems = [
     { name: "About", to: "about", offset: -300 },
@@ -103,13 +103,6 @@ function LandingPage() {
     },
   ];
 
-  const [formData, setFormData] = useState({
-    name: "",
-    companyName: "",
-    email: "",
-    message: "",
-  });
-
   const [isTyping, setIsTyping] = useState(false);
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -117,40 +110,35 @@ function LandingPage() {
   };
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
+    setIsSent((prevData) => ({
       ...prevData,
       [name]: value,
     }));
     setIsTyping(true);
-    console.log(formData);
   };
-  const handleSubmit = async (e) => {
+
+  const form = useRef();
+  const [isSent, setIsSent] = useState(false);
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch(
-        "https://0ia78onnye.execute-api.eu-central-1.amazonaws.com/api/users/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: formData.name,
-            companyName: formData.companyName,
-            email: formData.email,
-            message: formData.message,
-          }),
+    emailjs
+      .sendForm(
+        "service_60iw7rm",
+        "template_83u6l99",
+        form.current,
+        "1TvpsqZHcYJFzLAM1"
+      )
+      .then(
+        (result) => {
+          setIsSent(true);
+          setTimeout(() => {
+            setIsSent(false);
+          }, 3000);
+        },
+        (error) => {
+          console.log(error.text);
         }
       );
-      // const data = await response.json();
-      if (!response.ok) {
-        throw new Error(`HTTP error: Status ${response.status}`);
-      }
-      console.log("Form data sent successfully!");
-    } catch (error) {
-      console.error("Error sending form data:", error.message);
-    }
-    setIsTyping(false);
   };
   return (
     <>
@@ -596,17 +584,16 @@ function LandingPage() {
               </p>
             </div>
           </div>
-          <form className={styles.contactFormContainer} onSubmit={handleSubmit}>
+          <form className={styles.contactFormContainer} onSubmit={handleSubmit} ref={form}>
             <div className={styles.contactForm}>
               <div className={styles.nameFields}>
                 <div className={styles.nameField}>
                   <label htmlFor="name">Name Surname*</label>
                   <input
                     type="text"
-                    name="name"
+                    name="from_name"
                     placeholder="Enter company domain"
                     onChange={handleChange}
-                    value={formData.name}
                   />
                   <FiUser className={styles.inputIcon} />
                 </div>
@@ -615,9 +602,8 @@ function LandingPage() {
                   <input
                     type="text"
                     placeholder="Enter company name"
-                    name="companyName"
+                    name="from_companyName"
                     onChange={handleChange}
-                    value={formData.companyName}
                   />
                   <img
                     className={styles.inputIcon}
@@ -628,17 +614,12 @@ function LandingPage() {
                 <div className={styles.nameField}>
                   <label htmlFor="email">E-mail*</label>
                   <div
-                    className={`${styles.inputField} ${
-                      isTyping && !isValidEmail(formData.email)
-                        ? styles.invalid
-                        : ""
-                    }`}
+                    className={`${styles.inputField}`}
                   >
                     <input
                       type="email"
                       placeholder="example@company.com"
-                      name="email"
-                      value={formData.email}
+                      name="user_email"
                       onChange={handleChange}
                     />
                   </div>
@@ -653,7 +634,7 @@ function LandingPage() {
                 <label htmlFor="message">Your message shortly*</label>
                 <textarea
                   name="message"
-                  value={formData.message}
+                  // value={formData.message}
                   onChange={handleChange}
                   id="note"
                   cols="30"
