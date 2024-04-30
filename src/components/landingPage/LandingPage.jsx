@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./landingPage.module.scss";
 import "./fonts.css";
 import voistLogo from "../../assets/img/voistLogo.svg";
@@ -140,6 +140,42 @@ function LandingPage() {
         }
       );
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollOffset = window.innerHeight * 0.5;
+      const aboutSection = document.getElementById("about");
+      const featuresSection = document.getElementById("features");
+      const testimonialsSection = document.getElementById("testimonials");
+      const faqSection = document.getElementById("faq");
+      const contactSection = document.getElementById("contact");
+
+      const scrollY = window.scrollY;
+
+      if (aboutSection && scrollY >= aboutSection.offsetTop - scrollOffset) {
+        setActMenuItem(menuItems[0].name);
+      }
+      if (featuresSection && scrollY >= featuresSection.offsetTop - scrollOffset) {
+        setActMenuItem(menuItems[1].name);
+      }
+      if (testimonialsSection && scrollY >= testimonialsSection.offsetTop - scrollOffset) {
+        setActMenuItem(menuItems[2].name);
+      }
+      if (faqSection && scrollY >= faqSection.offsetTop - scrollOffset) {
+        setActMenuItem(menuItems[3].name);
+      }
+      if (contactSection && scrollY >= contactSection.offsetTop - scrollOffset) {
+        setActMenuItem(menuItems[4].name);
+      }
+    };
+
+    document.addEventListener("scroll", handleScroll);
+
+    return () => {
+      document.removeEventListener("scroll", handleScroll);
+    };
+  }, [menuItems]);
+
   return (
     <>
       <header className={styles.headerContainer}>
@@ -187,9 +223,8 @@ function LandingPage() {
           ) : (
             <div className={styles.actCont}>
               <div className={show ? "nav" : styles.activeHead}>
-                {/* // */}
                 <div className={styles.activeLogo}>
-                  <img src={voistLogo} alt="asdsda" />
+                  <img src={voistLogo} alt="Logo" />
                 </div>
                 <div
                   onClick={handleClickToCloseToggle}
@@ -292,7 +327,7 @@ function LandingPage() {
           </div>
 
           {/* burda about hissesi baslayir */}
-          <div name="about" className={`${styles.features} about`}>
+          <div id="about" name="about" className={`${styles.features} about`}>
             {/* // */}
             <div className={styles.featuredImgs}>
               <img
@@ -352,7 +387,7 @@ function LandingPage() {
             {/* // */}
           </div>
         </section>
-        <section name="features" className={`${styles.secKeyFeatures} element`}>
+        <section id="features" name="features" className={`${styles.secKeyFeatures} element`}>
           <div className={styles.keyFeatures}>
             <img
               src={landingPageArrow}
@@ -499,32 +534,34 @@ function LandingPage() {
             </div>
           </div>
         </section>
-        <section name="testimonials" className={`${styles.trustedBy} element`}>
+        <section id="testimonials" name="testimonials" className={`${styles.trustedBy} element`}>
           <div className={styles.trustedByContainer}>
             <img
-              className={styles.trustedByImg}
+              className={styles.trustedByImgOne}
               src={landingPageArrow}
               alt="Arrow one"
             />
+            <div className={styles.trustedByInfo}>
+              <h3 className={styles.trustedByHeading}>
+                Trusted by Leading Companies
+              </h3>
+              <p className={styles.trustedByParagraph}>
+                It is a long established fact that a reader will be distracted by
+                the readable content of a page when looking at its layout. The
+                point of using Lorem Ipsum.
+              </p>
+            </div>
             <img
               className={styles.trustedByImgTwo}
               src={landingPageArrFour}
               alt="Arrow two"
             />
-            <h3 className={styles.trustedByHeading}>
-              Trusted by Leading Companies
-            </h3>
-            <p className={styles.trustedByParagraph}>
-              It is a long established fact that a reader will be distracted by
-              the readable content of a page when looking at its layout. The
-              point of using Lorem Ipsum.
-            </p>
           </div>
           <div className={styles.slider}>
             <Carousel />
           </div>
         </section>
-        <section name="faq" className={`${styles.questions} element`}>
+        <section id="faq" name="faq" className={`${styles.questions} element`}>
           <div className={styles.questionsContainer}>
             <img
               className={styles.arrowOne}
@@ -567,7 +604,7 @@ function LandingPage() {
             ))}
           </div>
         </section>
-        <section name="form" className={styles.contact}>
+        <section id="contact" name="form" className={styles.contact}>
           <div className={styles.contHeadContainer}>
             <img
               className={styles.arrowOne}
@@ -613,16 +650,12 @@ function LandingPage() {
                 </div>
                 <div className={styles.nameField}>
                   <label htmlFor="email">E-mail*</label>
-                  <div
-                    className={`${styles.inputField}`}
-                  >
-                    <input
-                      type="email"
-                      placeholder="example@company.com"
-                      name="user_email"
-                      onChange={handleChange}
-                    />
-                  </div>
+                  <input
+                    type="email"
+                    placeholder="example@company.com"
+                    name="user_email"
+                    onChange={handleChange}
+                  />
                   <img
                     className={styles.inputIcon}
                     src={inputMessageIcon}
@@ -634,7 +667,6 @@ function LandingPage() {
                 <label htmlFor="message">Your message shortly*</label>
                 <textarea
                   name="message"
-                  // value={formData.message}
                   onChange={handleChange}
                   id="note"
                   cols="30"
