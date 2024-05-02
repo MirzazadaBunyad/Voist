@@ -1,9 +1,9 @@
 import styles from "./login.module.scss";
-import smile from "../../../assets/img/smile.gif";
-import eyeClosedIcon from "../../../assets/img/eyeClosedIcon.svg";
-import inputMessageIcon from "../../../assets/img/inputMessageIcon.svg";
-import ayeOpen from "../../../assets/img/passwordEye.svg";
-import arrowRightBlack from "../../../assets/img/arrowRightBlack.svg";
+import smile from "../../../assets/icons/smile.gif";
+import eyeClosedIcon from "../../../assets/icons/eyeClosedIcon.svg";
+import inputMessageIcon from "../../../assets/icons/inputMessageIcon.svg";
+import ayeOpen from "../../../assets/icons/passwordEye.svg";
+import arrowRightBlack from "../../../assets/icons/arrowRightBlack.svg";
 import { useState } from "react";
 
 export default function Login({ openForgetPassword, ChangeComponents }) {

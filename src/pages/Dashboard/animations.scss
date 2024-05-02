@@ -1,0 +1,19 @@
+.dashboard-enter {
+  opacity: 0;
+}
+
+.dashboard-enter-active {
+  opacity: 1;
+  transition: opacity 1s linear, transform 1s linear;
+}
+
+.dashboard-exit {
+  opacity: 1;
+  transform: translateY(0); /* Add this line */
+}
+
+.dashboard-exit-active {
+  opacity: 0;
+  transform: translateY(-20px); /* Add this line */
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}

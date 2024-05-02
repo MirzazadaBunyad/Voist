@@ -1,5 +1,5 @@
 import styles from "./backButton.module.scss";
-import arrowLeftBlack from "../../../assets/img/arrowLeftBlack.svg";
+import arrowLeftBlack from "../../../assets/icons/arrowLeftBlack.svg";
 
 function BackButton() {
   return (

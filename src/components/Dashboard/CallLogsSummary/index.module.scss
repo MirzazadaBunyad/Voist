@@ -1,0 +1,57 @@
+@import "../../../styles/styles";
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  .main {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    .tabs {
+      display: flex;
+      width: 100%;
+      padding: 8px 0;
+      align-items: flex-start;
+      gap: 8px;
+      .tab {
+        display: flex;
+        padding: 6px 16px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 12px;
+        cursor: pointer;
+        background: var(--Natural-natural-4, #f0f0f0);
+        transition: $transition;
+        &:hover {
+          background: var(--Info-info-50, #ecf1ff);
+        }
+        p {
+          @include textStyles($raleway, 14px, 700, #1d2b21, 24px);
+          letter-spacing: 0.5px;
+        }
+
+        &.active {
+          background: var(--Info-info-500, #3d73ff);
+          p {
+            color: #fff;
+          }
+        }
+      }
+    }
+    .slices {
+      display: inline-flex;
+      height: 370px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+      flex-shrink: 0;
+      overflow-y: auto;
+      &::-webkit-scrollbar {
+        width: 1px;
+      }
+    }
+  }
+}

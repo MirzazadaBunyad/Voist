@@ -1,0 +1,88 @@
+@import "../../../../styles/styles";
+
+.container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 40px 0 0;
+  .left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    flex: 1 0 0;
+    > p {
+      @include textStyles($raleway, 12px, 500, #595959, 16px);
+      letter-spacing: 0.4px;
+      span {
+        font-weight: 700;
+      }
+    }
+    .profile_detail {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      align-self: stretch;
+      h3 {
+        @include textStyles($raleway, 24px, 800, #000, 32px);
+        letter-spacing: 0.4px;
+        font-variant-numeric: lining-nums proportional-nums;
+        padding-right: 8px;
+      }
+      p {
+        display: flex;
+        padding: 4px 12px;
+        justify-content: center;
+        align-items: center;
+        @include textStyles($raleway, 12px, 700, #fff, 16px);
+        letter-spacing: 0.5px;
+        border-radius: 16px;
+        &.rude {
+          background: var(--Error-error-600, #e83838);
+        }
+        &.intention {
+          background: var(--Info-info-50, #ecf1ff);
+          color: var(--Info-info-600, #3869e8);
+        }
+      }
+    }
+    .operator_detail {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      > div {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .calendar {
+        @include textStyles($raleway, 16px, 500, #1d2b21, 20px);
+        font-variant-numeric: lining-nums proportional-nums;
+        letter-spacing: 0.4px;
+      }
+      .operatore_field {
+        img {
+          width: 20px;
+          height: 20px;
+          border-radius: 4px;
+          object-fit: cover;
+        }
+        p {
+          overflow: hidden;
+          @include textStyles($raleway, 16px, 500, #1d2b21, 20px);
+          font-variant-numeric: lining-nums proportional-nums;
+          letter-spacing: 0.4px;
+          span {
+            font-weight: 700;
+          }
+        }
+      }
+    }
+  }
+  .right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+}

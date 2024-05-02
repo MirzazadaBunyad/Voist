@@ -1,0 +1,13 @@
+.main {
+  width: calc(100% - 240px);
+  margin-left: auto;
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    &.active_navbar {
+      width: calc(100% - 260px);
+      margin-left: auto;
+    }
+  }
+}

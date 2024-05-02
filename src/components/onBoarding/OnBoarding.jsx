@@ -7,7 +7,7 @@ import styles from "./onBoarding.module.scss";
 // import CreateAccount from "../components/createAccount/CreateAccount";
 import { CSSTransition } from "react-transition-group";
 // import ForgotPassword from "../components/forgotPassword/Forgotpassword";
-import voistWhiteLogo from "../assets/img/voistWhiteLogo.svg";
+import voistWhiteLogo from "../assets/icons/voistWhiteLogo.svg";
 import ConfigureAccount from "./configureAccount/configureAccount";
 function OnBoarding() {
   /* login ile Create Accountu deyismek ucun */
@@ -77,7 +77,7 @@ function OnBoarding() {
           <ConfigureAccount />
         </main>
         {/* <div className="footer"> */}
-          <Footer />
+        <Footer />
         {/* </div> */}
       </div>
     </div>

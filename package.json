@@ -10,12 +10,22 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@nivo/heatmap": "^0.85.1",
+    "@syncfusion/ej2-react-heatmap": "^25.1.35",
+    "chart.js": "^4.4.2",
     "gsap": "^3.12.5",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-datepicker": "^6.6.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
     "react-transition-group": "^4.4.5",
-    "sass": "^1.72.0"
+    "recharts": "^2.12.3",
+    "sass": "^1.72.0",
+    "wavesurfer.js": "^7.7.7"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

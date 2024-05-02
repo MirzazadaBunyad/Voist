@@ -1,0 +1,260 @@
+@import "../../../../styles/styles";
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .modal {
+    display: flex;
+    width: 34%;
+    padding: 32px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0px 23px 39px 0px rgba(0, 0, 0, 0.08);
+    position: relative;
+    transition: $transition;
+
+    button {
+      @include textStyles($raleway, 14px, 700, #000, 24px);
+      letter-spacing: 0.4px;
+      display: flex;
+      padding: 10px 16px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      border-radius: 8px;
+      border: none;
+      transition: $transition;
+      cursor: pointer;
+    }
+    .close_icon {
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      right: 12px;
+      top: 12px;
+      border-radius: 50%;
+      background: #ecf1ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .title {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      h3 {
+        @include textStyles($raleway, 24px, 700, #1d2b21, 32px);
+        letter-spacing: 0.4px;
+      }
+      p {
+        @include textStyles($raleway, 14px, 400, #3f4b42, 24px);
+        letter-spacing: 0.4px;
+      }
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+      align-self: stretch;
+      > div {
+        display: flex;
+        align-items: flex-start;
+        gap: 24px;
+        align-self: stretch;
+        > div {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 9px;
+          align-self: stretch;
+          label {
+            @include textStyles($raleway, 12px, 600, #1d2b21, 12px);
+            letter-spacing: 0.4px;
+          }
+          > div {
+            width: 100%;
+            display: flex;
+            padding: 16px 24px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            align-self: stretch;
+            border-radius: 12px;
+            border: 1px solid var(--Base-base-5, #dddfde);
+            background: var(--Base-base-2, #fdfdfd);
+            position: relative;
+            cursor: pointer;
+            transition: $transition;
+
+            &:hover {
+              border-color: #000;
+            }
+            &.active {
+              border: 1px solid #a6bfff;
+            }
+
+            input {
+              @include textStyles($raleway, 14px, 600, #99a09b, 24px);
+              letter-spacing: 0.4px;
+              width: 100%;
+              border: none;
+            }
+            .select_role {
+              @include textStyles($raleway, 14px, 500, #1d2b21, 24px);
+              letter-spacing: 0.4px;
+              width: 100%;
+              border: none;
+            }
+            .select_icon {
+              transform: scale(1.5);
+              cursor: pointer;
+            }
+            .role_scroll {
+              overflow-y: auto;
+              max-height: 0;
+              position: absolute;
+              top: 50px;
+              width: 100%;
+              background-color: white;
+              border-radius: 12px;
+              left: 0;
+              opacity: 0;
+              transition: $transition;
+              transform: translateY(-10%);
+              &.active {
+                opacity: 1;
+                transform: translateY(0%);
+                max-height: 150px;
+              }
+              &::-webkit-scrollbar {
+                width: 8px; /* Set the width of the scrollbar */
+              }
+
+              &::-webkit-scrollbar-thumb {
+                background-color: #3d73ff; /* Set the color of the scrollbar thumb */
+                border-radius: 4px; /* Set the border radius of the scrollbar thumb */
+              }
+
+              &::-webkit-scrollbar-track {
+                background-color: rgba(
+                  0,
+                  0,
+                  0,
+                  0.1
+                ); /* Set the color of the scrollbar track */
+              }
+              .roles {
+                display: flex;
+                flex-direction: column;
+                > div {
+                  display: flex;
+                  padding: 12px 24px;
+                  align-items: center;
+                  gap: 10px;
+                  align-self: stretch;
+                }
+              }
+            }
+          }
+        }
+
+        .send_btn {
+          background: var(--Main-main-300, #7dff85);
+          &:hover {
+            background: var(--Main-main-700, #2bb534);
+            color: #fff;
+          }
+        }
+        .cancel_btn {
+          &:hover {
+            background: var(--Main-main-50, #ecffed);
+          }
+        }
+      }
+    }
+
+    .alert_modal {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      align-self: stretch;
+      .check_icon {
+        width: 26px;
+        height: 26px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        background: var(--Main-main-50, #ecffed);
+        transform: scale(2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .cancel_icon {
+        width: 26px;
+        height: 26px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        background: var(--Error-error-50, #ffecec);
+        transform: scale(2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      h3 {
+        @include textStyles($raleway, 24px, 700, #1d2b21, 32px);
+        text-align: center;
+        letter-spacing: 0.4px;
+        padding-top: 16px;
+      }
+      p {
+        @include textStyles($raleway, 14px, 400, #3f4b42, 24px);
+        text-align: center;
+        letter-spacing: 0.4px;
+      }
+      .buttons {
+        display: flex;
+        gap: 32px;
+        .success_btn {
+          background: var(--Main-main-300, #7dff85);
+          &:hover {
+            background: var(--Main-main-700, #2bb534);
+            color: #fff;
+          }
+        }
+        .cancel_btn {
+          color: #fff;
+          background: var(--Main-main-300, #e83838);
+        }
+        .close_btn {
+          &:hover {
+            background: var(--Main-main-50, #ecffed);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .container {
+    .modal {
+      width: 50%;
+    }
+  }
+}

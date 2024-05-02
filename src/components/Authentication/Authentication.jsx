@@ -8,7 +8,7 @@ import CreateAccount from "../Authentication/createAccount/CreateAccount";
 import { CSSTransition } from "react-transition-group";
 import "./animations.scss";
 import ForgotPassword from "../Authentication/forgotPassword/Forgotpassword";
-import voistLogo from "../../assets/img/voistLogo.svg";
+import voistLogo from "../../assets/icons/voistLogo.svg";
 function Authentication() {
   /* login ile Create Accountu deyismek ucun */
   const [show, setShow] = useState(true);

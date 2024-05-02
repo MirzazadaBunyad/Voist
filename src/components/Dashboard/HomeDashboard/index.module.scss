@@ -1,0 +1,35 @@
+@import "../../../styles/styles";
+
+.container {
+  display: inline-flex;
+  padding: 16px 80px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 24px;
+  width: 100%;
+  min-height: 100vh;
+  .operators_and_calls {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    width: 100%;
+  }
+  .diagrams {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .operators_and_calls {
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 1234px) {
+  .diagrams {
+    flex-wrap: wrap;
+  }
+}

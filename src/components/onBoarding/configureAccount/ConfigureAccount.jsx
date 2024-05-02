@@ -1,13 +1,13 @@
 import styles from "./configureAccount.module.scss";
-import greenRangeOne from "../../assets/img/greenRangeOne.svg";
-import grayRangeOne from "../../assets/img/grayRangeOne.svg";
-import smileGif from "../../assets/img/smile.gif";
-import companyIcon from "../../assets/img/companyIcon.svg";
-import domainIcon from "../../assets/img/domainIcon.svg";
-import companyNumber from "../../assets/img/companyNumber.svg";
-import azerbaijanFlag from "../../assets/img/azerbaijan.svg";
-import arrowRightBlack from "../../assets/img/arrowRightBlack.svg";
-import coupleRightIcon from "../../assets/img/coupleRightIcon.svg";
+import greenRangeOne from "../../assets/icons/greenRangeOne.svg";
+import grayRangeOne from "../../assets/icons/grayRangeOne.svg";
+import smileGif from "../../assets/icons/smile.gif";
+import companyIcon from "../../assets/icons/companyIcon.svg";
+import domainIcon from "../../assets/icons/domainIcon.svg";
+import companyNumber from "../../assets/icons/companyNumber.svg";
+import azerbaijanFlag from "../../assets/icons/azerbaijan.svg";
+import arrowRightBlack from "../../assets/icons/arrowRightBlack.svg";
+import coupleRightIcon from "../../assets/icons/coupleRightIcon.svg";
 import { useState } from "react";
 
 function ConfigureAccount() {
