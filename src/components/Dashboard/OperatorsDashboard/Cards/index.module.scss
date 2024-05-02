@@ -1,0 +1,43 @@
+@import "../../../../styles/styles";
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  .card:nth-child(1) {
+    background: var(--Warning-warning-50, #fff6ec);
+  }
+  .card:nth-child(2) {
+    background: var(--Main-main-50, #ecffed);
+  }
+  .card:nth-child(3) {
+    background: var(--Info-info-50, #ecf1ff);
+  }
+  .card:nth-child(4) {
+    background: var(--Error-error-50, #ffecec);
+  }
+  .card:nth-child(5) {
+    background: #f7ecff;
+  }
+
+  .card {
+    display: flex;
+    padding: 12px 24px;
+    align-items: center;
+    gap: 16px;
+    flex: 1 0 0;
+    border-radius: 12px;
+    h3 {
+      @include textStyles($raleway, 32px, 800, #000, 32px);
+      font-variant-numeric: lining-nums proportional-nums;
+      letter-spacing: 0.4px;
+    }
+    p {
+      @include textStyles($raleway, 12px, 500, #595959, 16px);
+      letter-spacing: 0.4px;
+    }
+  }
+}

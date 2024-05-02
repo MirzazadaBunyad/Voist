@@ -1,0 +1,40 @@
+@import "../../../../styles/styles";
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  .title {
+    h3 {
+      @include textStyles($raleway, 24px, 800, #000, 32px);
+      letter-spacing: 0.4px;
+    }
+    p {
+      @include textStyles($raleway, 12px, 500, #595959, 16px);
+      letter-spacing: 0.4px;
+      padding-bottom: 6px;
+    }
+  }
+
+  .upload {
+    display: flex;
+    padding: 10px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    background: var(--Main-main-300, #7dff85);
+    p {
+      @include textStyles($raleway, 14px, 700, #000, 24px);
+      letter-spacing: 0.4px;
+      transition: $transition;
+    }
+    &:hover {
+      p {
+        color: #fff;
+      }
+    }
+  }
+}

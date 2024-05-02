@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import BackButton from "../../../smallComponents/backButton/BackButton";
-import gif from "../../../../assets/img/smile.gif";
+import gif from "../../../../assets/icons/smile.gif";
 import styles from "./newPassword.module.scss";
-import checkGreenIcon from "../../../../assets/img/checkGreenIcon.svg";
-import checkCrossIcon from "../../../../assets/img/checkCrossIcon.svg";
-import checkGrayIcon from "../../../../assets/img/checkGrayIcon.svg";
-import eyeClosedIcon from "../../../../assets/img/eyeClosedIcon.svg";
-import passwordEye from "../../../../assets/img/passwordEye.svg";
-import arrowRightBlack from "../../../../assets/img/arrowRightBlack.svg";
+import checkGreenIcon from "../../../../assets/icons/checkGreenIcon.svg";
+import checkCrossIcon from "../../../../assets/icons/checkCrossIcon.svg";
+import checkGrayIcon from "../../../../assets/icons/checkGrayIcon.svg";
+import eyeClosedIcon from "../../../../assets/icons/eyeClosedIcon.svg";
+import passwordEye from "../../../../assets/icons/passwordEye.svg";
+import arrowRightBlack from "../../../../assets/icons/arrowRightBlack.svg";
 
 function NewPassword({ handleGoBack, backToLogin, handleClickToChange }) {
   const [showPassword1, setShowPassword1] = useState(false);

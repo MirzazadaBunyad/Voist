@@ -1,0 +1,66 @@
+@import "../../../../styles/styles";
+
+.container {
+  display: flex;
+  width: 100%;
+  padding: 0 0 24px 0;
+  justify-content: space-between;
+  align-items: center;
+  .profile {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1 0 0;
+    .photo {
+      width: 42px;
+      height: 42px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 15px;
+      }
+    }
+    .text {
+      h4 {
+        @include textStyles($raleway, 18px, 800, #1d2b21, 24px);
+        letter-spacing: 0.4px;
+      }
+      p {
+        @include textStyles($raleway, 12px, 400, #38443c, 18px);
+        letter-spacing: 0.4px;
+      }
+    }
+    .availability {
+      display: flex;
+      margin-bottom: 12px;
+      align-items: center;
+      gap: 10px;
+      p {
+        padding: 4px 8px;
+        border-radius: 19px;
+        @include textStyles($raleway, 10px, 700, #fff, 16px);
+        &.available {
+          background: var(--Main-main-700, #2bb534);
+        }
+
+        &.unavailable {
+          background: var(--Error-error-600, #e83838);
+        }
+      }
+    }
+  }
+  .upload {
+    display: flex;
+    padding: 10px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    background: var(--Base-base-3, #f6f7f6);
+    p {
+      @include textStyles($raleway, 14px, 700, #000, 24px);
+      letter-spacing: 0.4px;
+    }
+  }
+}

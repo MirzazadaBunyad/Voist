@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import img from "../../../../assets/img/smile.gif";
-import inputMessageIcon from "../../../../assets/img/inputMessageIcon.svg";
-import arrowRightBlack from "../../../../assets/img/arrowRightBlack.svg";
+import img from "../../../../assets/icons/smile.gif";
+import inputMessageIcon from "../../../../assets/icons/inputMessageIcon.svg";
+import arrowRightBlack from "../../../../assets/icons/arrowRightBlack.svg";
 import styles from "../sendToEmail/sendToEmail.module.scss";
 import BackButton from "../../../../components/smallComponents/backButton/BackButton";
 

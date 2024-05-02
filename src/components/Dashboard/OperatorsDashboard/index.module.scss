@@ -1,0 +1,65 @@
+@import "../../../styles/styles";
+.main {
+  width: calc(100% - 260px);
+  margin-left: auto;
+  display: flex;
+  height: 80vh;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-shrink: 0;
+  gap: 24px;
+  padding: 32px 80px 24px 80px;
+  .frame {
+    display: flex;
+    padding-bottom: 24px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-end;
+    &_option {
+      display: flex;
+      width: 100%;
+      align-items: flex-start;
+      > div {
+        display: flex;
+        padding: 12px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-bottom: 2px solid var(--Base-base-5, #d9d9d9);
+        p {
+          @include textStyles($raleway, 14px, 400, #1d2b21, 20px);
+          letter-spacing: 0.4px;
+          cursor: pointer;
+        }
+        &.active {
+          border-bottom: 2px solid var(--Info-info-500, #3d73ff);
+          p {
+            font-weight: 700;
+          }
+        }
+      }
+    }
+  }
+  .date_picker {
+    width: 50%;
+  }
+
+  .recent_calls {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1470px) {
+  .main {
+    .date_picker {
+      width: 80%;
+    }
+  }
+}
+@media screen and (max-width: 1256px) {
+  .main {
+    .date_picker {
+      width: 100%;
+    }
+  }
+}

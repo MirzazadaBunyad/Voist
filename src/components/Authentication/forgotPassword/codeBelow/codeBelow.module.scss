@@ -1,4 +1,9 @@
 @import "../../../../Scss/responsive.scss";
+
+.container {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+}
 .backButton{
   margin-bottom: 40px;
 }
@@ -16,6 +21,7 @@
     line-height: 35px;
     letter-spacing: 0.4px;
     margin: 0 0 10px 0;
+  }
   }
 }
 @keyframes container {
@@ -42,6 +48,13 @@
     width: 24px;
     height: 24px;
     margin-left: 3px;
+  }
+}
+.formContainer {
+  width: 500px;
+  height: 230px;
+  margin-right: 40px;
+  gap: 32;
     margin-top: -3px;
     animation: moveRight 0.5s linear;
   }

@@ -1,0 +1,76 @@
+@import "../../../../styles/styles";
+
+.container {
+  display: flex;
+  width: 256px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  cursor: pointer;
+  position: relative;
+  p {
+    @include textStyles($raleway, 14px, 600, #1d2b21, 20px);
+    letter-spacing: 0.4px;
+    font-variant-numeric: lining-nums proportional-nums;
+  }
+  .select {
+    display: flex;
+    padding: 12px 16px;
+    align-items: flex-start;
+    gap: 10px;
+    align-self: stretch;
+    border-radius: 16px;
+    border: 1px solid var(--Base-base-7, #99a09b);
+    background: var(--Natural-natural-1, #fff);
+  }
+  .options {
+    display: flex;
+    padding: 8px 4px;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+    border-radius: 16px;
+    background: var(--Natural-natural-1, #fff);
+    z-index: 1;
+    box-shadow: 0px 23px 39px 0px rgba(0, 0, 0, 0.08);
+    position: absolute;
+    top: 46px;
+    width: 100%;
+    height: 200px;
+    overflow-y: auto;
+    opacity: 0;
+    transition: $transition;
+    transform: translateY(15%);
+
+    &::-webkit-scrollbar {
+      width: 1px; /* Width of the scrollbar */
+    }
+
+    &.active {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+
+    > div {
+      display: flex;
+      padding: 10px 16px;
+      align-items: center;
+      gap: 12px;
+      align-self: stretch;
+      img {
+        width: 20px;
+        height: 20px;
+        border-radius: 4px;
+        object-fit: cover;
+      }
+      label {
+        @include textStyles($raleway, 14px, 500, #1d2b21, 20px);
+        overflow: hidden;
+        font-variant-numeric: lining-nums proportional-nums;
+        text-overflow: ellipsis;
+        text-transform: capitalize;
+        letter-spacing: 0.4px;
+      }
+    }
+  }
+}

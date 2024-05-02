@@ -1,0 +1,29 @@
+// FONTS
+@font-face {
+  font-family: "Raleway";
+  src: url("../assets/fonts/Raleway-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("../assets/fonts/Inter-VariableFont_slnt\,wght.ttf");
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../assets/fonts/Poppins-Regular.ttf");
+}
+@font-face {
+  font-family: "Noto Sans";
+  src: url("../assets/fonts/NotoSans-VariableFont_wdth\,wght.ttf");
+}
+// COLORS
+
+// FONT FAMILIES
+$raleway: "Raleway", sans-serif;
+$inter: "Inter", sans-serif;
+$poppins: "Poppins", sans-serif;
+$noto_sans: "Noto Sans", sans-serif;
+
+//
+$transition: 0.5s linear all;

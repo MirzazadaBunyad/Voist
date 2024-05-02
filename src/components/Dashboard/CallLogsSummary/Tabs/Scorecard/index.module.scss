@@ -1,0 +1,70 @@
+@import "../../../../../styles/styles";
+
+.score_cards {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  align-content: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  .score_card {
+    display: flex;
+    width: 45%;
+    min-height: 180px;
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    border-radius: 16px;
+    border: 1px solid var(--Natural-natural-5, #d9d9d9);
+    background: var(--Natural-natural-1, #fff);
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      h3 {
+        @include textStyles($raleway, 16px, 700, #000, 24px);
+        letter-spacing: 0.5px;
+      }
+      p {
+        display: flex;
+        padding: 4px 12px;
+        align-items: flex-start;
+        gap: 10px;
+        border-radius: 8px;
+        background: var(--Natural-natural-3, #f5f5f5);
+        @include textStyles($raleway, 16px, 900, #1d2b21, 24px);
+        font-variant-numeric: lining-nums proportional-nums;
+        letter-spacing: 0.5px;
+      }
+    }
+    .bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      > div {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        align-self: stretch;
+        p {
+          @include textStyles($raleway, 12px, 400, #000, 17px);
+          letter-spacing: 0.5px;
+        }
+        .icon {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .score_cards {
+    .score_card {
+      width: 80%;
+    }
+  }
+}

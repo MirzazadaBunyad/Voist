@@ -10,7 +10,6 @@ import "./animations.scss";
 import ForgotPassword from "../Authentication/forgotPassword/Forgotpassword";
 import voistLogo from "../../assets/img/voistLogo.svg";
 import checkCrossIcon from "../../assets/img/checkCrossIcon.svg";
-
 function Authentication() {
   /* login ile Create Accountu deyismek ucun */
   const [show, setShow] = useState(true);

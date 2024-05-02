@@ -1,0 +1,85 @@
+@import "../../../../styles/styles";
+
+.container {
+  display: flex;
+  padding: 16px 24px 24px 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1 0 0;
+  border-radius: 16px;
+  border: 1px solid var(--Natural-natural-5, #d9d9d9);
+  background: var(--Natural-natural-2, #fcfcfc);
+  height: 514px;
+
+  .label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    p {
+      @include textStyles($raleway, 12px, 600, #000, 16px);
+      text-align: center;
+      font-variant-numeric: lining-nums proportional-nums;
+      letter-spacing: -0.159px;
+    }
+    > div {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      p {
+        @include textStyles($raleway, 14px, 800, #000, 16px);
+        text-decoration-line: underline;
+        padding-right: 12px;
+      }
+    }
+  }
+  .table {
+    width: 100%;
+    height: 514px;
+    overflow-y: auto;
+    border-radius: 16px;
+
+    &::-webkit-scrollbar {
+      width: 3px; /* Width of the scrollbar */
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      th,
+      td {
+        padding: 15px;
+        text-align: left;
+      }
+      thead {
+        position: sticky;
+        top: 0;
+      }
+
+      th {
+        background-color: #f2f2f2;
+        @include textStyles($raleway, 10px, 600, #8c8c8c, 16px);
+        text-transform: uppercase;
+      }
+      td {
+        @include textStyles($raleway, 14px, 500, #000, 16px);
+        font-variant-numeric: lining-nums proportional-nums;
+      }
+      .first {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        align-self: stretch;
+        p {
+          @include textStyles($raleway, 14px, 700, #000, 16px);
+          text-decoration-line: underline;
+        }
+      }
+    }
+  }
+}
