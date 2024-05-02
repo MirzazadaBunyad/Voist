@@ -1,15 +1,17 @@
 @import "../../../../Scss/responsive.scss";
+
 .container {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
 }
-.backButton {
+.backButton{
   margin-bottom: 40px;
 }
 .accountСreation {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  animation: container 1.5s ease-in-out;
   h1 {
     color: #1d2b21;
     font-family: Raleway;
@@ -19,6 +21,15 @@
     line-height: 35px;
     letter-spacing: 0.4px;
     margin: 0 0 10px 0;
+  }
+  }
+}
+@keyframes container {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 .accountAlready {
@@ -31,6 +42,7 @@
     font-weight: 500;
     line-height: 16px;
     letter-spacing: 0.4px;
+    margin-top: 2px;
   }
   img {
     width: 24px;
@@ -43,6 +55,23 @@
   height: 230px;
   margin-right: 40px;
   gap: 32;
+    margin-top: -3px;
+    animation: moveRight 0.5s linear;
+  }
+}
+@-webkit-keyframes moveRight {
+  0% {
+    transform: translateX(-190px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.formContainer {
+  width: 500px;
+  margin-right: 40px;
+  gap: 32;
+  margin-bottom: 50px;
 }
 .loginLabel {
   font-family: "Raleway", sans-serif;

@@ -8,7 +8,8 @@ import CreateAccount from "../Authentication/createAccount/CreateAccount";
 import { CSSTransition } from "react-transition-group";
 import "./animations.scss";
 import ForgotPassword from "../Authentication/forgotPassword/Forgotpassword";
-import voistLogo from "../../assets/icons/voistLogo.svg";
+import voistLogo from "../../assets/img/voistLogo.svg";
+import checkCrossIcon from "../../assets/img/checkCrossIcon.svg";
 function Authentication() {
   /* login ile Create Accountu deyismek ucun */
   const [show, setShow] = useState(true);
@@ -16,11 +17,13 @@ function Authentication() {
   const [tl, setTl] = useState(false);
   /* ekran sagdadn sola gedende qabag Forget passwordu Display none edir  */
   const [forgetPasswordVisible, setForgetPasswordVisible] = useState(false);
-  const [loginVisible, setLoginVisible] = useState(true);
-
+  const [showActivation, setShowActivation] = useState(false);
+  const handleActivationComplete = () => {
+    setShowActivation(false);
+  };
   const openForgetPassword = () => {
     if (tl) {
-      tl.to(".footer", { xPercent: 82, duration: 0.5, textAlign: "center" })
+      tl.to(".footer", { xPercent: 140, duration: 0.5, textAlign: "center" })
         .to(".formContainer", { opacity: 0, duration: 0.3 }, "<")
         .to(
           ".heroImg",
@@ -51,6 +54,7 @@ function Authentication() {
         .to(".active", { opacity: 0, duration: 0, xPercent: 0 }, "<")
         .to(".logo", { filter: "none", duration: 0, zIndex: 2 }, "<")
         .then(() => {
+          setShow(true);
           setForgetPasswordVisible(false);
         });
     }
@@ -72,7 +76,15 @@ function Authentication() {
             <img src={voistLogo} alt="" />
           </div>
         </header>
-        <main className="formContainer">
+        <div className={styles.mobileInfo}>
+          <img src={checkCrossIcon} alt="Cross icon" />
+          <div className={styles.mobileInfoText}>
+            <h2 className={styles.title}>
+              Currently, the current version does not support mobile devices.
+            </h2>
+          </div>
+        </div>
+        <main className={`${styles.formContainer} formContainer`}>
           <CSSTransition
             in={show}
             timeout={500}
@@ -95,13 +107,15 @@ function Authentication() {
             unmountOnExit
           >
             <div>
-              <CreateAccount show={!show} ChangeComponents={handleChangeForm} />
+              <CreateAccount
+                show={!show}
+                ChangeComponents={handleChangeForm}
+                backToLogin={() => setShowActivation(false)}
+              />
             </div>
           </CSSTransition>
         </main>
-        <div className="footer">
-          <Footer />
-        </div>
+        <Footer />
       </div>
       <div className={`${styles.right__side} heroImg`}>
         <HeroImg />

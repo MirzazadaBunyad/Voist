@@ -4,34 +4,50 @@ import img from "../../../../assets/icons/smile.gif";
 import arrowRightBlack from "../../../../assets/icons/arrowRightBlack.svg";
 import { useRef, useState } from "react";
 
-function CodeBelow({ handleClickToChange }) {
+function CodeBelow({
+  handleClickToChange,
+  handleGoBack,
+  backToLogin,
+  sendInformation,
+}) {
   const [show, setShow] = useState(false);
+  const [inputs, setInputs] = useState(["", "", "", ""]);
 
   const input1 = useRef(null),
     input2 = useRef(null),
     input3 = useRef(null),
     input4 = useRef(null);
-  function handleInput(event) {
+
+  function handleInput(event, index) {
+    const value = event.target.value;
     const maxLength = parseInt(event.target.getAttribute("maxlength"));
-    if (event.target.value.length >= maxLength) {
-      input1.current.focus();
-      if (event.target === input1.current) {
-        input2.current.focus();
-      } else if (event.target === input2.current) {
-        input3.current.focus();
-      } else if (event.target === input3.current) {
-        input4.current.focus();
+
+    if (value.length <= maxLength) {
+      setInputs((prevInputs) => {
+        const newInputs = [...prevInputs];
+        newInputs[index] = value;
+        return newInputs;
+      });
+
+      if (value.length >= maxLength && index < 3) {
+        if (index === 0) {
+          input2.current.focus();
+        } else if (index === 1) {
+          input3.current.focus();
+        } else if (index === 2) {
+          input4.current.focus();
+        }
       }
     }
   }
-  const handleClickToNewPassword = () => {};
-
-  const handleGoBack = () => {};
 
   const handleSubmit = (e) => {
     e.preventDefault();
     handleClickToChange();
+    const combinedInputs = inputs.join("");
+    console.log(combinedInputs);
   };
+
   return (
     <div className={styles.container}>
       <div className={styles.backButton} onClick={handleGoBack}>
@@ -39,60 +55,42 @@ function CodeBelow({ handleClickToChange }) {
       </div>
 
       <div className={styles.accountСreation}>
-        <h1>Enter the the code below</h1>
+        <h1>Enter the code below</h1>
         <div className={styles.accountAlready}>
-          <p>OTP code sent to ulya@company domein.com</p>
+          <p>OTP code sent to {sendInformation.input} </p>
           <img src={img} className={styles.smile} alt="smile" loading="lazy" />
         </div>
         <form className={styles.formContainer} onSubmit={handleSubmit}>
           <div className={styles.inputContainer}>
-            <input
-              className={styles.LoginInput}
-              type="number"
-              id=""
-              name="number"
-              placeholder="•"
-              ref={input1}
-              maxLength={1}
-              onInput={handleInput}
-            />
-            <input
-              className={styles.LoginInput}
-              type="number"
-              id=""
-              name="number"
-              placeholder="•"
-              ref={input2}
-              maxLength={1}
-              onInput={handleInput}
-            />
-            <input
-              className={styles.LoginInput}
-              type="number"
-              id=""
-              name="number"
-              placeholder="•"
-              ref={input3}
-              maxLength={1}
-              onInput={handleInput}
-            />
-            <input
-              className={styles.LoginInput}
-              type="number"
-              id=""
-              name="number"
-              placeholder="•"
-              ref={input4}
-              maxLength={1}
-            />
+            {inputs.map((value, index) => (
+              <input
+                key={index}
+                className={styles.LoginInput}
+                type="number"
+                id={`belowInput-${index}`}
+                name="number"
+                placeholder="•"
+                ref={
+                  index === 0
+                    ? input1
+                    : index === 1
+                    ? input2
+                    : index === 2
+                    ? input3
+                    : input4
+                }
+                maxLength={1}
+                value={value}
+                onChange={(e) => handleInput(e, index)}
+              />
+            ))}
           </div>
           <div className={styles.buttonElement}>
             <button type="submit" className={styles.sendButton}>
               Send code
               <img src={arrowRightBlack} alt="Error" />
             </button>
-
-            <button onClick={handleGoBack} className={styles.cancelButton}>
+            <button onClick={backToLogin} className={styles.cancelButton}>
               Cancel
             </button>
           </div>

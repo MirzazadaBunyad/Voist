@@ -2,13 +2,16 @@
 
 .headerContainer {
   display: inline-block;
+  @include mobileresponsive {
+    width: 100%;
+  }
 }
 .container {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   display: flex;
   width: 100%;
-  overflow: hidden; /*bu burda olmali deyil*/
+  overflow-x: hidden;
 }
 .logo {
   display: inline-block;
@@ -16,18 +19,23 @@
   width: 91px;
   height: 24px;
   position: relative;
-  z-index: 312231;
+  z-index: 3;
 
   @include responsive769to1057 {
     margin: 36px 50px;
   }
+
+  @include mobileresponsive {
+    margin: 35px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    img {
+      margin-left: 0.3rem;
+    }
+  }
 }
-/* .forgetPasswordContainer {
-  position: absolute;
-  right: 20%;
-  text-align: center;
-  top: 40%;
-} */
 
 .right__side {
   width: 40%;
@@ -35,8 +43,57 @@
   justify-content: space-between;
   position: fixed;
   right: 0;
-  z-index: 9999999;
+  z-index: 9;
+  @include mobileresponsive {
+    display: none;
+  }
 }
+
 .left__side {
   width: 60%;
+
+  @include mobileresponsive {
+    width: 100%;
+  }
+}
+
+.mobileInfo {
+  display: none;
+
+  @include mobileresponsive {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    .title {
+      width: 80%;
+      color: #000;
+      font-size: 1.25rem;
+      font-style: normal;
+      font-weight: 800;
+      line-height: 1.25em;
+      letter-spacing: 2px;
+    }
+
+    img {
+      width: 45%;
+      height: 50%;
+    }
+  }
+  .mobileInfoText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.formContainer {
+  @include mobileresponsive {
+    display: none;
+  }
+}
+.forgetPasswordContainer {
+  @include mobileresponsive {
+    display: none;
+  }
 }

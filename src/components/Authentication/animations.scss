@@ -1,59 +1,127 @@
-/* animation.scss */
-
 .login-enter {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  
-  .login-enter-active {
-    opacity: 1;
-    transform: translateX(20px);
-    transition: opacity 1s linear, transform 1s linear ;
-    
-  }
-  
-  .login-exit {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  
-  .login-exit-active {
-    opacity: 0;
-    transform: translateX(-300px);
-    transition: opacity 0.5s ease-in-out, transform ease 0.5s ;
-  }
-  
+  opacity: 0;
+  transform: translateX(-20px);
+}
 
-  .CreateAccount-enter {
-    opacity: 0;
-    transform: translateX(-30px);
-    position: absolute;
+.login-enter-active {
+  opacity: 1;
+  transform: translateX(20px);
+  transition: opacity 1s linear, transform 1s linear;
+}
 
+.login-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.login-exit-active {
+  opacity: 0;
+  transform: translateX(-300px);
+  transition: opacity 0.5s ease-in-out, transform ease 0.5s;
+}
+
+/* burda createAccountun animasiyasidir */
+.CreateAccount-enter {
+  opacity: 0;
+  transform: translateX(-30px);
+  position: absolute;
 }
 
 .CreateAccount-enter-active {
-    opacity: 1;
-    transform: translateX(31px); 
-    transition: opacity 1s ease, transform 1s linear ;
-    top: 138px;
+  opacity: 1;
+  transform: translateX(31px);
+  transition: opacity 1s ease, transform 1s linear;
+  top: 138px;
 }
 
 .CreateAccount-exit {
-    opacity: 1;
-    transform: translateX(0); 
-    position: absolute;
-    top: 138px;
-    
-  }
-  
-  .CreateAccount-exit-active {
-    opacity: 0;
-    transform: translateX(-200px); 
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-  }
- 
-  .active{
-    display: block;
-    margin-top: 150px;
-    margin-bottom: 150px;
-  }
+  opacity: 1;
+  transform: translateX(0);
+  position: absolute;
+  top: 138px;
+}
+
+.CreateAccount-exit-active {
+  opacity: 0;
+  transform: translateX(-200px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.active {
+  display: block;
+  margin-top: 150px;
+  margin-bottom: 150px;
+}
+
+/* burda forgetPasswordun animasiyasidir */
+
+.sendToEmail-enter {
+  opacity: 0;
+  position: absolute;
+  top: 5px;
+}
+
+.sendToEmail-enter-active {
+  opacity: 1;
+  position: absolute;
+  transition: opacity 0.5s ease-in-out, transform ease 0.5s;
+  top: -4px;
+}
+
+.sendToEmail-exit {
+  opacity: 1;
+}
+
+.sendToEmail-exit-active {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out, transform ease 0.5s;
+  position: absolute;
+}
+
+.CodeBelow-enter {
+  opacity: 0;
+  position: absolute;
+}
+
+.CodeBelow-enter-active {
+  opacity: 1;
+  transition: opacity 1s ease, transform 1s linear;
+  position: absolute;
+  top: 208px;
+}
+
+.CodeBelow-exit {
+  opacity: 1;
+  position: absolute;
+  top: 138px;
+}
+
+.CodeBelow-exit-active {
+  opacity: 0;
+  position: absolute;
+}
+
+.newPassword-enter {
+  opacity: 0;
+  position: absolute;
+  margin-top: -213px;
+  margin-left: -10px;
+}
+
+.newPassword-enter-active {
+  opacity: 1;
+  position: absolute;
+  top: 208px;
+  transition: opacity 1s ease, transform 1s linear;
+}
+
+.newPassword-exit {
+  opacity: 1;
+  position: absolute;
+  top: 138px;
+}
+
+.newPassword-exit-active {
+  opacity: 0;
+  position: absolute;
+}
