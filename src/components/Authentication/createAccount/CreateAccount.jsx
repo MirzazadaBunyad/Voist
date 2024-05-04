@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useState } from "react";
 import styles from "./createAccount.module.scss";
 import img from "../../../assets/img/smile.gif";
 import inputIcon from "../../../assets/img/inputIcon.svg";
@@ -11,7 +11,7 @@ import arrowRightBlack from "../../../assets/img/arrowRightBlack.svg";
 import passwordEye from "../../../assets/img/passwordEye.svg";
 import ActivateAccount from "../../activateAccount/ActivateAccount";
 
-const CreateAccount = ({ ChangeComponents, show, backToLogin }) => {
+const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
   const [showActivation, setShowActivation] = useState(false);
@@ -92,9 +92,9 @@ const CreateAccount = ({ ChangeComponents, show, backToLogin }) => {
     setShowPassword2(!showPassword2);
   };
 
-  const toggleActivation = () => {
-    setShowActivation(!showActivation);
-  };
+  // const toggleActivation = () => {
+  //   setShowActivation(!showActivation);
+  // };
 
   return (
     <section className={styles.container}>

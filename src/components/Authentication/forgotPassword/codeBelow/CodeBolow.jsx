@@ -1,7 +1,7 @@
 import BackButton from "../../../smallComponents/backButton/BackButton";
 import styles from "./codeBelow.module.scss";
-import img from "../../../../assets/icons/smile.gif";
-import arrowRightBlack from "../../../../assets/icons/arrowRightBlack.svg";
+import img from "../../../../assets/img/smile.gif";
+import arrowRightBlack from "../../../../assets/img/arrowRightBlack.svg";
 import { useRef, useState } from "react";
 
 function CodeBelow({
@@ -10,7 +10,7 @@ function CodeBelow({
   backToLogin,
   sendInformation,
 }) {
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
   const [inputs, setInputs] = useState(["", "", "", ""]);
 
   const input1 = useRef(null),

@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./successfully.module.scss";
 import checkWhiteIcon from "../../../../assets/img/checkWhiteIcon.svg";
 import { Link } from "react-router-dom";

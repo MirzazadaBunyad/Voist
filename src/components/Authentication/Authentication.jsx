@@ -18,9 +18,9 @@ function Authentication() {
   /* ekran sagdadn sola gedende qabag Forget passwordu Display none edir  */
   const [forgetPasswordVisible, setForgetPasswordVisible] = useState(false);
   const [showActivation, setShowActivation] = useState(false);
-  const handleActivationComplete = () => {
-    setShowActivation(false);
-  };
+  // const handleActivationComplete = () => {
+  //   setShowActivation(false);
+  // };
   const openForgetPassword = () => {
     if (tl) {
       tl.to(".footer", { xPercent: 140, duration: 0.5, textAlign: "center" })

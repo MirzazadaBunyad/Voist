@@ -4,7 +4,7 @@
   font-family: "Poppins", sans-serif;
   font-weight: 400;
 }
-.backButton{
+.backButton {
   margin-bottom: 40px;
 }
 .accountСreation {
@@ -21,7 +21,6 @@
     line-height: 35px;
     letter-spacing: 0.4px;
     margin: 0 0 10px 0;
-  }
   }
 }
 @keyframes container {
@@ -55,9 +54,8 @@
   height: 230px;
   margin-right: 40px;
   gap: 32;
-    margin-top: -3px;
-    animation: moveRight 0.5s linear;
-  }
+  margin-top: -3px;
+  animation: moveRight 0.5s linear;
 }
 @-webkit-keyframes moveRight {
   0% {

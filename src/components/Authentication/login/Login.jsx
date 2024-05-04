@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./login.module.scss";
 import smile from "../../../assets/img/smile.gif";
 import eyeClosedIcon from "../../../assets/img/eyeClosedIcon.svg";
@@ -91,9 +91,13 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
             Hey there,<span>welcome</span> <br /> to voist!
           </h1>
           <div className={styles.accountСreation}>
-            <p className={styles.accountСreationText}>Don't you have an account?</p>
+            <p className={styles.accountСreationText}>
+              Don't you have an account?
+            </p>
             <span className={styles.accountСreationBtn}>
-              <button className={styles.createBtn} onClick={goToCreateAccount}>Create account</button>
+              <button className={styles.createBtn} onClick={goToCreateAccount}>
+                Create account
+              </button>
             </span>
             <img className={styles.smile} src={smile} alt="Smile" />
           </div>

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import styles from "./activateAccount.module.scss";
 import checkWhiteIcon from "../../assets/img/checkWhiteIcon.svg";
 import arrowRightBlack from "../../assets/img/arrowRightBlack.svg";
@@ -28,8 +28,8 @@ function ActivateAccount({ data, backToLogin, goToLogin }) {
       }
 
       console.log("Data sent successfully!");
-      setActivationCodeSent(true);
-      setShowActivation(true);
+      // setActivationCodeSent(true);
+      // setShowActivation(true);
     } catch (error) {
       console.error("Error sending data:", error.message);
       // Add error handling logic here
