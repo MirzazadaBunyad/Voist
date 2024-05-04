@@ -5,6 +5,7 @@ import eyeClosedIcon from "../../../assets/img/eyeClosedIcon.svg";
 import inputMessageIcon from "../../../assets/img/inputMessageIcon.svg";
 import ayeOpen from "../../../assets/img/passwordEye.svg";
 import arrowRightBlack from "../../../assets/img/arrowRightBlack.svg";
+import { Link } from "react-router-dom";
 
 export default function Login({ openForgetPassword, ChangeComponents }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -173,10 +174,10 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
             </div>
           </div>
           <div className={styles.button}>
-            <button type="Submit" className={styles.buttonElement}>
+            <Link to="/dashboard" type="Submit" className={styles.buttonElement}>
               Let's go
               <img src={arrowRightBlack} alt="" />
-            </button>
+            </Link>
           </div>
         </form>
       </main>
