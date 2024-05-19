@@ -1,3 +1,4 @@
+import { useState } from "react";
 import IncomingCall from "../../../Icon/Calls/IncomingCall";
 import OutgoingCall from "../../../Icon/Calls/OutgoingCall";
 import SilentCall from "../../../Icon/Calls/SilentCall";
@@ -89,12 +90,13 @@ const calls = [
 ];
 
 const RecentCalls = () => {
+  const [slice, setSlice] = useState(true);
   return (
     <div className={styles.container}>
       <div className={styles.label}>
         <p>Latest Analyses</p>
         <div>
-          <p>See all</p>
+          <p onClick={() => setSlice(false)}>See all</p>
           <InfoIcon />
           <MoreVertIcon />
         </div>
@@ -110,7 +112,7 @@ const RecentCalls = () => {
             </tr>
           </thead>
           <tbody>
-            {calls.map((call) => (
+            {calls.slice(0, slice ? 10 : calls.length).map((call) => (
               <tr key={call.id} className={styles.tbody}>
                 <td className={styles.first}>
                   {call.status === "outgoing" ? (

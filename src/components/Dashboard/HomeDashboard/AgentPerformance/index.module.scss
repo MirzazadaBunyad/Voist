@@ -23,6 +23,16 @@
       font-variant-numeric: lining-nums proportional-nums;
       letter-spacing: -0.159px;
     }
+    > div {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      p {
+        @include textStyles($raleway, 14px, 800, #000, 16px);
+        text-decoration-line: underline;
+        padding-right: 12px;
+      }
+    }
   }
   .table {
     width: 100%;

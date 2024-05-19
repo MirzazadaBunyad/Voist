@@ -1,3 +1,4 @@
+import { useState } from "react";
 import InfoIcon from "../../../Icon/InfoIcon";
 import MoreVertIcon from "../../../Icon/MoreVertIcon";
 import RangeIcon from "../../../Icon/RangeIcon";
@@ -87,11 +88,13 @@ const agents = [
 ];
 
 const AgentPerformance = () => {
+  const [slice, setSlice] = useState(true);
   return (
     <div className={styles.container}>
       <div className={styles.label}>
         <p>Agent performance</p>
         <div>
+          <p onClick={() => setSlice(false)}>See all</p>
           <InfoIcon />
           <MoreVertIcon />
         </div>
@@ -108,7 +111,7 @@ const AgentPerformance = () => {
             </tr>
           </thead>
           <tbody>
-            {agents.map((agent, index) => (
+            {agents.slice(0, slice ? 10 : agents.length).map((agent, index) => (
               <tr key={index} className={styles.tbody}>
                 <td className={styles.first}>
                   <img src={agent.image} alt="" />

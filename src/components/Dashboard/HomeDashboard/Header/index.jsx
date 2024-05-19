@@ -1,5 +1,5 @@
 import styles from "./index.module.scss";
-import filterIcon from "../../../../assets/icons/filterIcon.svg";
+// import filterIcon from "../../../../assets/icons/filterIcon.svg";
 
 const HomeDashboardHeader = () => {
   return (
@@ -8,12 +8,12 @@ const HomeDashboardHeader = () => {
         <p>Welcome to</p>
         <h3>Home dashboard</h3>
       </div>
-      <div className={styles.filter}>
+      {/* <div className={styles.filter}>
         <div>
           <img src={filterIcon} alt="" />
         </div>
         <p>Filter</p>
-      </div>
+      </div> */}
     </div>
   );
 };
