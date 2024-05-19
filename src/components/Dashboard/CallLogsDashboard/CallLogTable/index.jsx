@@ -5,7 +5,7 @@ import MyPagination from "../../../Pagination";
 import styles from "./index.module.scss";
 import { useEffect } from "react";
 import { call_logs } from "../../../data/call_logs.data";
-import ChatAddIcon from "../../../Icon/ChatAdd";
+// import ChatAddIcon from "../../../Icon/ChatAdd";
 
 const CallLogTable = ({
   startDateFilter,
@@ -56,7 +56,7 @@ const CallLogTable = ({
               </th>
               <th>Call intention</th>
               <th>Score</th>
-              <th>Actions</th>
+              {/* <th>Actions</th> */}
             </tr>
           </thead>
           <tbody>
@@ -90,9 +90,9 @@ const CallLogTable = ({
                   {dt?.call_intention}
                 </td>
                 <td>{dt?.score}</td>
-                <td className={styles.actions}>
+                {/* <td className={styles.actions}>
                   <ChatAddIcon />
-                </td>
+                </td> */}
               </tr>
             ))}
           </tbody>

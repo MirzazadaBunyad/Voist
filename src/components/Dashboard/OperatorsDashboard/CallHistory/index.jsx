@@ -5,7 +5,7 @@ import MyPagination from "../../../Pagination";
 import styles from "./index.module.scss";
 import { useEffect } from "react";
 import { call_logs } from "../../../data/call_logs.data";
-import ChatAddIcon from "../../../Icon/ChatAdd";
+// import ChatAddIcon from "../../../Icon/ChatAdd";
 
 const CallHistory = ({ startDateFilter, endDateFilter }) => {
   const [historyData, setHistoryData] = useState(call_logs);
@@ -29,13 +29,15 @@ const CallHistory = ({ startDateFilter, endDateFilter }) => {
             <tr>
               <th className={styles.th_sortdown}>
                 <p>Started at</p>
+                {/* <p onClick={() => setData((prev) => prev.reverse())}> */}
                 <SortDown />
+                {/* </p> */}
               </th>
               <th>Duration</th>
               <th>Call ID</th>
               <th>Score</th>
               <th>Call intention</th>
-              <th>Actions</th>
+              {/* <th>Actions</th> */}
             </tr>
           </thead>
           <tbody>
@@ -59,9 +61,9 @@ const CallHistory = ({ startDateFilter, endDateFilter }) => {
                 <td style={{ textTransform: "capitalize" }}>
                   {dt?.call_intention}
                 </td>
-                <td className={styles.actions}>
+                {/* <td className={styles.actions}>
                   <ChatAddIcon />
-                </td>
+                </td> */}
               </tr>
             ))}
           </tbody>
