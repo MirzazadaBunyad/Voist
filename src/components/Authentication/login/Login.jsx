@@ -1,11 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./login.module.scss";
 import smile from "../../../assets/img/smile.gif";
 import eyeClosedIcon from "../../../assets/img/eyeClosedIcon.svg";
 import inputMessageIcon from "../../../assets/img/inputMessageIcon.svg";
 import ayeOpen from "../../../assets/img/passwordEye.svg";
 import arrowRightBlack from "../../../assets/img/arrowRightBlack.svg";
-import { Link } from "react-router-dom";
 
 export default function Login({ openForgetPassword, ChangeComponents }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -15,6 +15,8 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
   });
 
   const [isTyping, setIsTyping] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -38,35 +40,41 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
     e.preventDefault();
 
     if (!formData.email || !formData.password) {
+      setErrorMessage("Please fill in both fields");
       return;
     }
 
     if (!isValidEmail(formData.email)) {
-      console.log("Invalid email format");
+      setErrorMessage("Invalid email format");
       return;
     }
 
     if (!validatePassword()) {
-      alert("Password must be at least 8 characters long");
+      setErrorMessage("Password must be at least 8 characters long");
       return;
     }
 
+
     try {
-      const response = await fetch("https://safaraliyev.live/api/user/token/", {
+      const response = await fetch("http://46.101.152.88:8000/api/v1/auth/login/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error: Status ${response.status}`);
+      if (response.status === 401) {
       }
 
+      if (!response.ok) {
+        setErrorMessage("Invalid email or password");
+        return;
+      }
       console.log("Data sent successfully!");
+      navigate("/dashboard");
     } catch (error) {
       console.error("Error sending data:", error.message);
+      setErrorMessage("Error sending data");
     }
 
     setIsTyping(false);
@@ -105,7 +113,6 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
         </div>
         <form
           className={styles.form}
-          action="Submit"
           onSubmit={sendInformation}
         >
           <div className={styles.inputBox}>
@@ -113,9 +120,7 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
               E-mail*
             </label>
             <div
-              className={`${styles.LoginInput} ${
-                isTyping && !isValidEmail(formData.email) ? styles.invalid : ""
-              }`}
+              className={`${styles.LoginInput} ${isTyping && !isValidEmail(formData.email) ? styles.invalid : ""}`}
             >
               <input
                 type="email"
@@ -149,7 +154,7 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
               className={styles.passwordIcon}
               onClick={handleShowPassword}
               src={showPassword ? ayeOpen : eyeClosedIcon}
-              alt="error"
+              alt="Show/Hide Password"
             />
           </div>
           <div className={styles.rememberMe}>
@@ -166,6 +171,7 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
             </div>
             <div className={styles.forgotPasswordContainer}>
               <button
+                type="button"
                 onClick={handleChangeForgetPassword}
                 className={styles.forgotPassword}
               >
@@ -173,11 +179,12 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
               </button>
             </div>
           </div>
+          {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
           <div className={styles.button}>
-            <Link to="/dashboard" type="Submit" className={styles.buttonElement}>
+            <button type="submit" className={styles.buttonElement}>
               Let's go
-              <img src={arrowRightBlack} alt="" />
-            </Link>
+              <img src={arrowRightBlack} alt="Arrow Right" />
+            </button>
           </div>
         </form>
       </main>

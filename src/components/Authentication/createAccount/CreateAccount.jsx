@@ -25,7 +25,6 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
     last_name: "",
     email: "",
     password: "",
-    confirm_password: "",
   });
 
   const handleSubmit = async (e) => {
@@ -38,7 +37,7 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
 
     try {
       const response = await fetch(
-        "http://46.101.152.88:8000/api/v1/auth/register/",
+        "http://46.101.152.88:8000/api/v1/auth/register",
         {
           method: "POST",
           headers: {

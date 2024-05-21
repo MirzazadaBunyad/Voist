@@ -27,6 +27,7 @@
     "jsap": "^2.0.0",
     "react": "^18.2.0",
     "react-audio-voice-recorder": "^2.2.0",
+    "react-bootstrap": "^2.10.2",
     "react-chartjs-2": "^5.2.0",
     "react-datepicker": "^6.6.0",
     "react-dom": "^18.2.0",
