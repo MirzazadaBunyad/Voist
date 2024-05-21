@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 // import AWS from 'aws-sdk'
 import HeroImg from "../smallComponents/heroImg/HeroImg";
-import styles from "./VoiceRecorder.module.scss";
+import styles from "./voiceRecorder.module.scss";
 import voistWhiteLogo from "../../assets/img/voistWhiteLogo.svg";
 import microphone from "../../assets/img/microphone.svg";
 import stopCircle from "../../assets/img/stopCircle.svg";
