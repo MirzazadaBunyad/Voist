@@ -48,7 +48,7 @@
     }
     .buttonElement {
       margin-top: 22px;
-      button {
+      .letsGoButton {
         display: flex;
         padding: 16px 24px;
         justify-content: center;
@@ -58,6 +58,7 @@
         border-radius: 12px;
         background: #7dff85;
         transition: all 0.3s ease;
+        color: #000;
         cursor: pointer;
         &:hover {
           background-color: #2bb534;
@@ -76,7 +77,6 @@
           letter-spacing: 0.4px;
         }
       }
-    
     }
     .sendAgain {
       display: flex;
@@ -229,7 +229,6 @@
       &:hover {
         background-color: #ecf1ff;
         color: #7da1ff;
-        line-height: 24px;
       }
     }
     img {
