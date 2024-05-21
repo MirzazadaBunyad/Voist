@@ -32,7 +32,7 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
 
     try {
       const response = await fetch(
-        "https://safaraliyev.live/api/user/register/",
+        "http://46.101.152.88:8000/api/v1/auth/register/",
         {
           method: "POST",
           headers: {
@@ -43,7 +43,6 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
             last_name: data.last_name,
             email: data.email,
             password: data.password,
-            confirm_password: data.confirm_password,
           }),
         }
       );
@@ -57,7 +56,6 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
       setShowActivation(true);
     } catch (error) {
       console.error("Error sending data:", error.message);
-      // Add error handling logic here
     }
   };
 
@@ -156,9 +154,8 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
                   E-mail*
                 </label>
                 <div
-                  className={`${styles.inputE} ${
-                    isTyping && !emailValid ? styles.invalid : ""
-                  }`}
+                  className={`${styles.inputE} ${isTyping && !emailValid ? styles.invalid : ""
+                    }`}
                 >
                   <input
                     type="email"
