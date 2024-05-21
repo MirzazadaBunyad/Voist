@@ -19,6 +19,7 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
   const [isTyping, setIsTyping] = useState(false);
   const [emailValid, setEmailValid] = useState(true);
   const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const [data, setData] = useState({
     first_name: "",
     last_name: "",
@@ -28,6 +29,11 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
 
   const handleSubmit = async (e) => {
     e && e.preventDefault();
+
+    if (data.password !== data.confirm_password) {
+      setPasswordError("Passwords do not match");
+      return;
+    }
 
     try {
       const response = await fetch(
@@ -55,7 +61,6 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
       setShowActivation(true);
     } catch (error) {
       console.error("Error sending data:", error.message);
-      // Add error handling logic here
     }
   };
 
@@ -76,6 +81,13 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
       setEmailValid(isValidEmail(value));
       setEmailError(isValidEmail(value) ? "" : "Invalid email format");
     }
+    if (name === "password" || name === "confirm_password") {
+      if (data.password !== data.confirm_password) {
+        setPasswordError("Passwords do not match");
+      } else {
+        setPasswordError("");
+      }
+    }
   };
 
   const goToLogin = () => {
@@ -89,10 +101,6 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
   const togglePasswordVisibility2 = () => {
     setShowPassword2(!showPassword2);
   };
-
-  // const toggleActivation = () => {
-  //   setShowActivation(!showActivation);
-  // };
 
   return (
     <section className={styles.container}>
@@ -128,6 +136,7 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
                       value={data.first_name}
                       name="first_name"
                       onChange={handleChange}
+                      autoComplete="given-name"
                     />
                     <img src={inputIcon} alt="" />
                   </div>
@@ -144,6 +153,7 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
                       value={data.last_name}
                       name="last_name"
                       onChange={handleChange}
+                      autoComplete="family-name"
                     />
                     <img src={inputIcon} alt="" />
                   </div>
@@ -164,6 +174,7 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
                     value={data.email}
                     name="email"
                     onChange={handleChange}
+                    autoComplete="email"
                   />
                 </div>
                 <img src={inputMessageIcon} alt="" />
@@ -171,7 +182,7 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
               </div>
               <div className={styles.nameSurname}>
                 <div className={styles.input}>
-                  <label className={styles.label} htmlFor="Password">
+                  <label className={styles.label} htmlFor="password">
                     Password*
                   </label>
                   <div className={styles.inputShow}>
@@ -209,6 +220,7 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
                       onClick={togglePasswordVisibility2}
                     />
                   </div>
+                  {/* {passwordError && <p className={styles.error}>{passwordError}</p>} */}
                 </div>
               </div>
               <div className={styles.characters}>
@@ -229,7 +241,7 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
                 </div>
               </div>
               <div className={styles.buttonElement}>
-                <button type="submit">
+                <button className={styles.letsGoButton} type="submit">
                   <p>Let’s go</p>
                   <img
                     className={styles.arrowRight}
