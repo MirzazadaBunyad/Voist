@@ -3,55 +3,6 @@
   overflow: hidden;
   margin: 40px auto 24px;
   height: 85vh;
-  .range {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-    margin-bottom: 55px;
-    width: 600px;
-    .totalCount {
-      color: #1d2b21;
-      font-variant-numeric: lining-nums proportional-nums;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 900;
-      line-height: 16px;
-      letter-spacing: 0.4px;
-      span {
-        color: #99a09b;
-        font-variant-numeric: lining-nums proportional-nums;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 16px;
-        letter-spacing: 0.4px;
-      }
-    }
-    .rangeColors {
-      display: flex;
-      width: 100%;
-      height: 10px;
-      .greenRange {
-        background: #7dff85;
-        height: 100%;
-        border-top-left-radius: 20px;
-        border-bottom-left-radius: 20px;
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-        transition: width 0.3s ease;
-      }
-      .grayRange {
-        background: #dddfde;
-        height: 100%;
-        border-top-right-radius: 20px;
-        border-bottom-right-radius: 20px;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-        transition: width 0.3s ease;
-      }
-    }
-  }
   .fullForm {
     display: flex;
     width: 600px;

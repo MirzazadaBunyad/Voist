@@ -4,12 +4,37 @@ import styles from "./onBoarding.module.scss";
 // import gsap from "gsap";
 // import Login from "../components/login/login";
 // import CreateAccount from "../components/createAccount/CreateAccount";
-import { CSSTransition } from "react-transition-group";
+// import { CSSTransition } from "react-transition-group";
 // import ForgotPassword from "../components/forgotPassword/Forgotpassword";
 import voistWhiteLogo from "../../assets/img/voistWhiteLogo.svg";
 import ConfigureAccount from "./configureAccount/configureAccount";
 import HeroImg from "../smallComponents/heroImg/HeroImg";
+import { useState } from "react";
+import LittleDetails from "./littleDetails/LittleDetails";
+import ChooseTheme from "./chooseTheme/ChooseTheme";
 function OnBoarding() {
+  const [step, setStep] = useState(1);
+
+  const nextStep = () => {
+    setStep(step + 1);
+  };
+
+  const prevStep = () => {
+    setStep(step - 1);
+  };
+
+  const renderStep = () => {
+    switch (step) {
+      case 1:
+        return <ConfigureAccount nextStep={nextStep} />;
+      case 2:
+        return <LittleDetails nextStep={nextStep} prevStep={prevStep} />;
+      case 3:
+        return <ChooseTheme prevStep={prevStep} />;
+      default:
+        return null;
+    }
+  };
   /* login ile Create Accountu deyismek ucun */
   //   const [show, setShow] = useState(true);
   /* jsap kitabxanasi ucun (animasiyalar) */
@@ -74,11 +99,9 @@ function OnBoarding() {
           </div>
         </header>
         <main className="formContainer">
-          <ConfigureAccount />
+          {renderStep()}
         </main>
-        {/* <div className="footer"> */}
         <Footer />
-        {/* </div> */}
       </div>
     </div>
   );

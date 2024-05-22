@@ -5,34 +5,22 @@ import companyIcon from "../../../assets/img/companyIcon.svg";
 import domainIcon from "../../../assets/img/domainIcon.svg";
 import arrowRightBlack from "../../../assets/img/arrowRightBlack.svg";
 import coupleRightIcon from "../../../assets/img/coupleRightIcon.svg";
+import Range from "../../smallComponents/onBoardRange/Range";
 
-function ConfigureAccount() {
+function ConfigureAccount({ nextStep }) {
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 3;
 
   const goToNextStep = () => {
     if (currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
+      nextStep();
     }
   };
 
   return (
     <div className={styles.container}>
-      <div className={styles.range}>
-        <p className={styles.totalCount}>
-          {currentStep}/{totalSteps}
-        </p>
-        <div className={styles.rangeColors}>
-          <div
-            className={styles.greenRange}
-            style={{ width: `${(currentStep / totalSteps) * 100}%` }}
-          />
-          <div
-            className={styles.grayRange}
-            style={{ width: `${((totalSteps - currentStep) / totalSteps) * 100}%` }}
-          />
-        </div>
-      </div>
+      <Range currentStep={currentStep} totalSteps={totalSteps}/>
       <div className={styles.fullForm}>
         <div className={styles.header}>
           <h1>Let’s configure your account</h1>
