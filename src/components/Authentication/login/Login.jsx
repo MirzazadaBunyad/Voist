@@ -63,8 +63,8 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
         },
         body: JSON.stringify(formData),
       });
-      if (response.status === 401) {
-      }
+      // if (response.status === 401) {
+      // }
 
       if (!response.ok) {
         setErrorMessage("Invalid email or password");
