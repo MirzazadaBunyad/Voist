@@ -1,22 +1,14 @@
 import styles from "./configureAccount.module.scss";
-import greenRangeOne from "../../assets/icons/greenRangeOne.svg";
-import grayRangeOne from "../../assets/icons/grayRangeOne.svg";
-import smileGif from "../../assets/icons/smile.gif";
-import companyIcon from "../../assets/icons/companyIcon.svg";
-import domainIcon from "../../assets/icons/domainIcon.svg";
-import companyNumber from "../../assets/icons/companyNumber.svg";
-import azerbaijanFlag from "../../assets/icons/azerbaijan.svg";
-import arrowRightBlack from "../../assets/icons/arrowRightBlack.svg";
-import coupleRightIcon from "../../assets/icons/coupleRightIcon.svg";
 import { useState } from "react";
+import smileGif from "../../../assets/img/smile.gif";
+import companyIcon from "../../../assets/img/companyIcon.svg";
+import domainIcon from "../../../assets/img/domainIcon.svg";
+import arrowRightBlack from "../../../assets/img/arrowRightBlack.svg";
+import coupleRightIcon from "../../../assets/img/coupleRightIcon.svg";
 
 function ConfigureAccount() {
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 3;
-
-  const calculateGreenWidth = () => {
-    return `${(currentStep / totalSteps) * 100}%`;
-  };
 
   const goToNextStep = () => {
     if (currentStep < totalSteps) {
@@ -31,17 +23,13 @@ function ConfigureAccount() {
           {currentStep}/{totalSteps}
         </p>
         <div className={styles.rangeColors}>
-          <img
-            src={greenRangeOne}
+          <div
             className={styles.greenRange}
-            alt="Green range"
-            style={{ width: calculateGreenWidth() }}
+            style={{ width: `${(currentStep / totalSteps) * 100}%` }}
           />
-          <img
-            src={grayRangeOne}
+          <div
             className={styles.grayRange}
-            alt="Gray range"
-            style={{ width: `calc(100% - ${calculateGreenWidth()})` }}
+            style={{ width: `${((totalSteps - currentStep) / totalSteps) * 100}%` }}
           />
         </div>
       </div>
@@ -67,22 +55,10 @@ function ConfigureAccount() {
                 <img src={domainIcon} alt="" />
               </div>
             </div>
-            <div className={styles.formNumber}>
-              <div className={styles.companyNumber}>
-                <label>Company phone number*</label>
-                <img className={styles.flag} src={azerbaijanFlag} alt="" />
-                <input placeholder="Phone number" type="text" />
-                <img
-                  className={styles.companyNumber}
-                  src={companyNumber}
-                  alt=""
-                />
-              </div>
-            </div>
             <div className={styles.formDescription}>
               <div className={styles.companyNumber}>
                 <label>Company Description Shortly*</label>
-                <input placeholder="Describe your company..." type="text" />
+                <textarea placeholder="Describe your company..." type="text" />
               </div>
             </div>
           </form>

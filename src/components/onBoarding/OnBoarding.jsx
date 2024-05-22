@@ -1,14 +1,14 @@
 // import { useEffect, useState } from "react";
 import Footer from "../footer/Footer";
-import HeroImg from "../components/heroImg/HeroImg";
 import styles from "./onBoarding.module.scss";
 // import gsap from "gsap";
 // import Login from "../components/login/login";
 // import CreateAccount from "../components/createAccount/CreateAccount";
 import { CSSTransition } from "react-transition-group";
 // import ForgotPassword from "../components/forgotPassword/Forgotpassword";
-import voistWhiteLogo from "../assets/icons/voistWhiteLogo.svg";
+import voistWhiteLogo from "../../assets/img/voistWhiteLogo.svg";
 import ConfigureAccount from "./configureAccount/configureAccount";
+import HeroImg from "../smallComponents/heroImg/HeroImg";
 function OnBoarding() {
   /* login ile Create Accountu deyismek ucun */
   //   const [show, setShow] = useState(true);

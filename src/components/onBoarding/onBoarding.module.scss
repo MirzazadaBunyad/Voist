@@ -1,9 +1,10 @@
-@import "../Scss/responsive.scss";
+@import "../../Scss/responsive.scss";
 
 .container {
   display: flex;
   width: 100%;
   overflow: hidden; /*bu burda olmali deyil*/
+  height: 100vh;
 }
 .logo {
   margin: 56px 130px;

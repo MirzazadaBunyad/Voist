@@ -2,6 +2,7 @@
   width: 680px;
   overflow: hidden;
   margin: 40px auto 24px;
+  height: 85vh;
   .range {
     display: inline-flex;
     flex-direction: column;
@@ -12,7 +13,6 @@
     .totalCount {
       color: #1d2b21;
       font-variant-numeric: lining-nums proportional-nums;
-      font-family: Raleway;
       font-size: 16px;
       font-style: normal;
       font-weight: 900;
@@ -21,7 +21,6 @@
       span {
         color: #99a09b;
         font-variant-numeric: lining-nums proportional-nums;
-        font-family: Raleway;
         font-size: 16px;
         font-style: normal;
         font-weight: 500;
@@ -32,11 +31,24 @@
     .rangeColors {
       display: flex;
       width: 100%;
-      input {
-        color: green;
+      height: 10px;
+      .greenRange {
+        background: #7dff85;
+        height: 100%;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        transition: width 0.3s ease;
       }
       .grayRange {
-        width: 100%;
+        background: #dddfde;
+        height: 100%;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        transition: width 0.3s ease;
       }
     }
   }
@@ -111,7 +123,7 @@
             }
             input {
               display: flex;
-              padding: 16px 24px;
+              padding: 16px 48px 16px 24px;
               align-items: center;
               gap: 10px;
               align-self: stretch;
@@ -133,50 +145,6 @@
             }
           }
         }
-        .formNumber {
-          .companyNumber {
-            label {
-              color: #1d2b21;
-              font-family: Raleway;
-              font-size: 12px;
-              font-style: normal;
-              font-weight: 600;
-              line-height: 12px;
-              letter-spacing: 0.4px;
-            }
-            input {
-              display: flex;
-              padding: 16px 24px;
-              align-items: center;
-              gap: 10px;
-              align-self: stretch;
-              border-radius: 12px;
-              border: 1px solid #dddfde;
-              background-color: #fdfdfd;
-              width: 100%;
-              &::placeholder {
-                color: #99a09b;
-                font-family: Raleway;
-                font-size: 14px;
-                font-style: normal;
-                font-weight: 600;
-                line-height: 24px;
-                letter-spacing: 0.4px;
-                padding-left: 20px;
-              }
-            }
-            .flag {
-              width: 24px;
-              height: 24px;
-              transform: translate(-140px, 40px);
-            }
-            .companyNumber {
-              width: 24px;
-              height: 24px;
-              transform: translate(555px, -37px);
-            }
-          }
-        }
         .formDescription {
           .companyNumber {
             display: flex;
@@ -193,26 +161,25 @@
               line-height: 12px;
               letter-spacing: 0.4px;
             }
-            input {
-              display: flex;
+            textarea {
               height: 124px;
-              padding-top: 10px;
               padding: 16px 24px;
-              //   align-items: flex-start;
+              resize: none;
               gap: 10px;
-              align-self: stretch;
+              width: 100%;
               border-radius: 12px;
+              font-family: Raleway;
               border: 1px solid #dddfde;
               background-color: #fdfdfd;
-              width: 100%;
+              color: #000;
+              font-size: 14px;
+              font-variant-numeric: lining-nums proportional-nums;
+              font-weight: 600;
+              line-height: 24px;
+              letter-spacing: 0.4px;
+              outline: #3d73ff;
               &::placeholder {
                 color: #99a09b;
-                font-family: Raleway;
-                font-size: 14px;
-                font-style: normal;
-                font-weight: 600;
-                line-height: 24px;
-                letter-spacing: 0.4px;
               }
             }
             .flag {

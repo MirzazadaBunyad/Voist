@@ -2,6 +2,7 @@ import styles from "./activateAccount.module.scss";
 import checkWhiteIcon from "../../assets/img/checkWhiteIcon.svg";
 
 function ActivateAccount({ data }) {
+  // data propu ile datalar gelir
   return (
     <div className={styles.activation}>
       <div className={styles.checkIcon}>

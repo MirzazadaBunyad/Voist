@@ -42,8 +42,10 @@ function LandingPage() {
   ];
 
   const [actMenuItem, setActMenuItem] = useState(menuItems[0].name);
-
   const [show, setShow] = useState(true);
+  const [activeIndex, setActiveIndex] = useState(null);
+  const [isTyping, setIsTyping] = useState(false);
+  const [isSent, setIsSent] = useState(false);
 
   const handleMenuItemClick = (itemName) => {
     setActMenuItem(itemName);
@@ -61,7 +63,6 @@ function LandingPage() {
     setShow(true);
     document.body.style.overflow = "auto";
   };
-  const [activeIndex, setActiveIndex] = useState(null);
   const onTitleClick = (index) => {
     setActiveIndex(index === activeIndex ? null : index);
   };
@@ -103,7 +104,6 @@ function LandingPage() {
     },
   ];
 
-  const [isTyping, setIsTyping] = useState(false);
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -118,7 +118,6 @@ function LandingPage() {
   };
 
   const form = useRef();
-  const [isSent, setIsSent] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
     emailjs

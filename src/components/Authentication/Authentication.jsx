@@ -106,7 +106,7 @@ function Authentication() {
             classNames="CreateAccount"
             unmountOnExit
           >
-            <div>
+            <div className={styles.createAccount}>
               <CreateAccount
                 show={!show}
                 ChangeComponents={handleChangeForm}

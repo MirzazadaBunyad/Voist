@@ -4,6 +4,7 @@ import LandingPage from "./components/landingPage/LandingPage";
 import Authentication from "./components/Authentication/Authentication";
 import VoiceRecorder from "./components/voiceRecorder/VoiceRecorder";
 import Dashboard from "./pages/Dashboard";
+import OnBoarding from "./components/onBoarding/OnBoarding";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/authentication" element={<Authentication />} />
         <Route path="/voicerecorder" element={<VoiceRecorder />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/onboarding" element={<OnBoarding />} />
       </Routes>
     </>
   );

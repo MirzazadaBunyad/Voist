@@ -86,6 +86,11 @@
 }
 
 .formContainer {
+  .createAccount{
+    height: 75vh;
+    display: flex;
+    align-items: center;
+  }
   @include mobileresponsive {
     display: none;
   }
