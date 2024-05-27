@@ -1,5 +1,9 @@
 @import "../../Scss//responsive.scss";
-
+html,
+body {
+  height: 100%;
+  scroll-behavior: smooth;
+}
 .header {
   display: flex;
   justify-content: space-between;
@@ -168,7 +172,6 @@
     }
   }
 }
-
 .buttons {
   @include mobileresponsive {
     display: flex;
@@ -246,7 +249,6 @@
     }
   }
 }
-
 .mainContainer {
   .backgroundVector {
     background-image: url("/src/assets/img/backgroundVector.png");
@@ -1421,8 +1423,6 @@
       color: #595959;
       font-family: "Visby CF";
       font-size: 16px;
-      font-style: normal;
-      font-weight: 500;
       line-height: 24px;
       letter-spacing: 0.4px;
 
@@ -1435,7 +1435,6 @@
         color: #000;
         font-family: "Visby CF";
         font-size: 16px;
-        font-style: normal;
         font-weight: 800;
         line-height: 24px;
         letter-spacing: 0.4px;
@@ -1454,14 +1453,12 @@
         color: #000;
         font-family: "Visby CF";
         font-size: 16px;
-        font-style: normal;
-        font-weight: 500;
         line-height: 24px;
         letter-spacing: 0.4px;
         text-decoration-line: underline;
 
         @include mobileresponsive {
-          color: var(--Natural-natural-13, #000);
+          color: #000;
           font-size: 14px;
           font-weight: 400;
         }

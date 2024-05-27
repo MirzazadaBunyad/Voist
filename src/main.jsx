@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
-import { RouterProvider } from "react-router-dom";
+// import { RouterProvider } from "react-router-dom";
 import { registerLicense } from "@syncfusion/ej2-base";
 import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";

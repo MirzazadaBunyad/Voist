@@ -1,0 +1,27 @@
+[
+  {
+    "name": "About",
+    "to": "about",
+    "offset": -300
+  },
+  {
+    "name": "Features",
+    "to": "features",
+    "offset": -200
+  },
+  {
+    "name": "Testimonials",
+    "to": "testimonials",
+    "offset": -150
+  },
+  {
+    "name": "FAQ",
+    "to": "faq",
+    "offset": -80
+  },
+  {
+    "name": "Contact",
+    "to": "contact",
+    "offset": -50
+  }
+]

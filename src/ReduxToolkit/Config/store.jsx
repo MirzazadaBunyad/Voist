@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import stateSliceReducer from "../features/states/slice";
+import stateSliceReducer from "../fetaures/slice"
 
 const rootReducer = combineReducers({
   states: stateSliceReducer,

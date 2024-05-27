@@ -176,7 +176,7 @@ function LandingPage() {
   }, [menuItems]);
 
   return (
-    <>
+    <div className={styles.mainContainer}>
       <header className={styles.headerContainer}>
         <div className={styles.header}>
           <div className={styles.logo}>
@@ -603,7 +603,7 @@ function LandingPage() {
             ))}
           </div>
         </section>
-        <section id="contact" name="form" className={styles.contact}>
+        <section id="contact" name="contact" className={styles.contact}>
           <div className={styles.contHeadContainer}>
             <img
               className={styles.arrowOne}
@@ -682,7 +682,7 @@ function LandingPage() {
           </form>
         </section>
       </main>
-      <footer name="contact" className={`${styles.footerContainer} element`}>
+      <footer className={styles.footerContainer}>
         <div className={styles.footerInfoContainer}>
           <div className={styles.footerInfo}>
             <h3 className={styles.footerInfoHeading}>Get in Touch</h3>
@@ -747,7 +747,7 @@ function LandingPage() {
           </div>
         </div>
       </footer>
-    </>
+    </div>
   );
 }
 export default LandingPage;
