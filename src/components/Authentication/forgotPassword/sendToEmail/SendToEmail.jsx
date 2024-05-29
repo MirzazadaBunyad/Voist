@@ -26,7 +26,7 @@ function SendToEmail({
     if (inputValue.trim() !== "") {
       setSendInformation({ ...initialData, email: inputValue });
       handleClickToChange();
-      console.log(initialData); // Make sure initialData is updated
+      console.log(initialData);
 
       try {
         const response = await fetch(
@@ -37,7 +37,7 @@ function SendToEmail({
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              email: inputValue, // Change this to inputValue
+              email: inputValue,
             }),
           }
         );

@@ -254,7 +254,6 @@ function LandingPage() {
                 </ul>
                 <div
                   className={styles.buttons}
-                  style={{ marginTop: "120px", marginLeft: "20px" }}
                 >
                   <div className={styles.hero}>
                     <Link to="/authentication" className={styles.startedMob}>
