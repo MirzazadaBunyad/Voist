@@ -6,6 +6,7 @@ import eyeClosedIcon from "../../../assets/img/eyeClosedIcon.svg";
 import inputMessageIcon from "../../../assets/img/inputMessageIcon.svg";
 import ayeOpen from "../../../assets/img/passwordEye.svg";
 import arrowRightBlack from "../../../assets/img/arrowRightBlack.svg";
+import axios from "axios";
 
 export default function Login({ openForgetPassword, ChangeComponents }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -54,19 +55,13 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
       return;
     }
 
-
     try {
-      const response = await fetch("http://46.101.152.88:8000/api/v1/auth/login/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      // if (response.status === 401) {
-      // }
+      const response = await axios.post(
+        "http://46.101.152.88:8000/api/v1/auth/login/",
+        formData
+      );
 
-      if (!response.ok) {
+      if (response.status !== 200) {
         setErrorMessage("Invalid email or password");
         return;
       }
@@ -111,16 +106,15 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
             <img className={styles.smile} src={smile} alt="Smile" />
           </div>
         </div>
-        <form
-          className={styles.form}
-          onSubmit={sendInformation}
-        >
+        <form className={styles.form} onSubmit={sendInformation}>
           <div className={styles.inputBox}>
             <label className={styles.loginLabel} htmlFor="email">
               E-mail*
             </label>
             <div
-              className={`${styles.LoginInput} ${isTyping && !isValidEmail(formData.email) ? styles.invalid : ""}`}
+              className={`${styles.LoginInput} ${
+                isTyping && !isValidEmail(formData.email) ? styles.invalid : ""
+              }`}
             >
               <input
                 type="email"
@@ -179,7 +173,9 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
               </button>
             </div>
           </div>
-          {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
+          {errorMessage && (
+            <p className={styles.errorMessage}>{errorMessage}</p>
+          )}
           <div className={styles.button}>
             <button type="submit" className={styles.buttonElement}>
               Let's go

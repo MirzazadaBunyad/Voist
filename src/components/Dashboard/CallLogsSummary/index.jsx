@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CallRecording from "./CallRecording";
 import SummaryHeader from "./Header";
 import styles from "./index.module.scss";
@@ -6,11 +6,29 @@ import SummaryTab from "./Tabs/Summary";
 import ScorecardTab from "./Tabs/Scorecard";
 // import QuestionsTab from "./Tabs/Questions";
 // import ObjectionsTab from "./Tabs/Objections";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const tabs = ["Summary", "Scorecard"]; //, "Questions", "Objections"
 
-const CallLogsSummary = ({ log }) => {
+const CallLogsSummary = () => {
+  const { id } = useParams();
   const [activeTab, setActiveTab] = useState("Summary");
+  const [log, setLog] = useState(null);
+
+  useEffect(() => {
+    const getCall = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_BASE_URL}/calls/${id}/`
+        );
+        setLog(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getCall();
+  }, [id]);
 
   return (
     <div className={styles.container}>
@@ -33,9 +51,9 @@ const CallLogsSummary = ({ log }) => {
         </div>
         <div className={styles.slices}>
           {activeTab === "Summary" ? (
-            <SummaryTab />
+            <SummaryTab summary={log} />
           ) : activeTab === "Scorecard" ? (
-            <ScorecardTab />
+            <ScorecardTab data={log} />
           ) : (
             // activeTab === "Questions" ? (
             //   <QuestionsTab />

@@ -1,20 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DeleteIcon from "../../../Icon/DeleteIcon";
 import EditIcon from "../../../Icon/EditIcon";
 // import MoreVertIcon from "../../Icon/MoreVertIcon";
 import SortDown from "../../../Icon/SortDown";
 import MyPagination from "../../../Pagination";
 import styles from "./index.module.scss";
-import { members } from "../../../data/team_members";
+// import { members } from "../../../data/team_members";
 import SearchIcon from "../../../Icon/SearchIcon";
 import MarkIcon from "../../../Icon/Mark";
 import CloseIcon from "../../../Icon/CloseIcon";
+import axios from "axios";
 
-const SettingsTable = ({ setActiveUser, setActiveModal }) => {
-  const [data, setData] = useState(members);
+const SettingsTable = ({
+  setActiveUser,
+  setActiveModal,
+  members,
+  searchValue,
+  setSearchValue,
+}) => {
+  const [data, setData] = useState(null);
   const [activeSearch, setActiveSearch] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
+
   const [isHovered, setIsHovered] = useState(null);
+
+  useEffect(() => {
+    setData([...(members?.admins ?? []), ...(members?.operators ?? [])]);
+  }, [members]);
 
   return (
     <div className={styles.container}>
@@ -61,7 +72,15 @@ const SettingsTable = ({ setActiveUser, setActiveModal }) => {
                       <CloseIcon color="#99A09B" />
                     </div>
                   ) : (
-                    <SortDown />
+                    <div
+                      onClick={() =>
+                        setData((prev) =>
+                          [...prev].sort((a, b) => a.email - b.email)
+                        )
+                      }
+                    >
+                      <SortDown />
+                    </div>
                   )}
                 </div>
               </th>
@@ -70,13 +89,13 @@ const SettingsTable = ({ setActiveUser, setActiveModal }) => {
             </tr>
           </thead>
           <tbody>
-            {data?.map((dt) => {
-              if (dt?.email.toLowerCase().includes(searchValue.toLowerCase())) {
+            {data &&
+              data?.map((dt, index) => {
                 return (
                   <tr
-                    key={dt.id}
+                    key={index}
                     className={styles.tbody}
-                    onMouseEnter={() => setIsHovered(dt.id)}
+                    onMouseEnter={() => setIsHovered(index)}
                     onMouseLeave={() => setIsHovered(null)}
                   >
                     <td className={styles.first}>
@@ -104,12 +123,17 @@ const SettingsTable = ({ setActiveUser, setActiveModal }) => {
                         }}
                       >
                         <EditIcon
-                          color={isHovered === dt?.id ? " #3d73ff" : "#99A09B"}
+                          color={isHovered === index ? " #3d73ff" : "#99A09B"}
                         />
                       </div>
-                      <div onClick={() => setActiveModal("delete")}>
+                      <div
+                        onClick={() => {
+                          setActiveUser(dt);
+                          setActiveModal("delete");
+                        }}
+                      >
                         <DeleteIcon
-                          color={isHovered === dt?.id ? "#FF3D3D" : "#99A09B"}
+                          color={isHovered === index ? "#FF3D3D" : "#99A09B"}
                         />
                       </div>
 
@@ -117,14 +141,13 @@ const SettingsTable = ({ setActiveUser, setActiveModal }) => {
                     </td>
                   </tr>
                 );
-              }
-            })}
+              })}
           </tbody>
         </table>
       </div>
-      <div>
+      {/* <div>
         <MyPagination data={data} setData={setData} />
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -1,38 +1,36 @@
 import styles from "./index.module.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MaskIcon from "../../../Icon/MaskIcon";
+import axios from "axios";
 
-const intentions = [
-  {
-    id: 1,
-    name: "help",
-  },
-  {
-    id: 2,
-    name: "get information",
-  },
-  {
-    id: 3,
-    name: "other",
-  },
-  {
-    id: 4,
-    name: "other intention",
-  },
-];
 const IntentionRange = ({ intentionRange, setIntentionRange }) => {
   const [selected, setSelected] = useState(false);
+  const [data, setData] = useState(null);
 
-  const handleCheckboxChange = (e) => {
-    const value = e.target.name;
+  const handleCheckboxChange = (e, id) => {
     if (e.target.checked) {
-      if (!intentionRange.includes(value)) {
-        setIntentionRange((prev) => [...prev, value]);
+      if (!intentionRange.includes(id)) {
+        setIntentionRange((prev) => [...prev, id]);
       }
     } else {
-      setIntentionRange((prev) => prev.filter((item) => item !== value));
+      setIntentionRange((prev) => prev.filter((item) => item !== id));
     }
   };
+
+  useEffect(() => {
+    const getIntentions = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_BASE_URL}/intentions/`
+        );
+        setData(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getIntentions();
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -45,17 +43,17 @@ const IntentionRange = ({ intentionRange, setIntentionRange }) => {
         </p>
       </div>
       <div className={`${styles.options} ${selected ? styles.active : ""}`}>
-        {intentions?.map((intention) => (
-          <div key={intention?.id}>
-            <input
-              type="checkbox"
-              name={intention?.name}
-              id={intention?.id}
-              onChange={handleCheckboxChange}
-            />
-            <label>{intention?.name}</label>
-          </div>
-        ))}
+        {data &&
+          data?.map((intention) => (
+            <div key={intention?.id}>
+              <input
+                type="checkbox"
+                id={intention?.id}
+                onChange={(e) => handleCheckboxChange(e, intention?.id)}
+              />
+              <label>{intention?.name}</label>
+            </div>
+          ))}
       </div>
     </div>
   );

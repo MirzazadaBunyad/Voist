@@ -2,7 +2,9 @@ import { useState } from "react";
 import UserIcon from "../../Icon/UserIcon";
 import styles from "./index.module.scss";
 import MessageIcon from "../../Icon/MessageIcon";
-const Account = ({ profile }) => {
+import axios from "axios";
+import Swal from "sweetalert2";
+const Account = ({ profile, setProfile }) => {
   const [data, setData] = useState(profile);
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -10,7 +12,65 @@ const Account = ({ profile }) => {
     const imageFile = event.target.files[0];
     if (!imageFile) return; // No file selected
 
+    const { name } = event.target;
+    setData({
+      ...data,
+      [name]: imageFile,
+    });
+
     setSelectedImage(imageFile);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData({
+      ...data,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async () => {
+    console.log(data);
+    const body = {
+      first_name: data?.first_name ?? profile?.first_name,
+      last_name: data?.last_name ?? profile?.last_name,
+      email: data?.email ?? profile?.email,
+      is_active: profile?.is_active,
+      role: profile?.role,
+      image_url: profile?.image_url ?? null,
+    };
+
+    console.log(body);
+
+    if (data?.photoFile) {
+      body.image_url = data?.photoFile;
+    }
+
+    try {
+      const response = await axios.put(
+        `${import.meta.env.VITE_BASE_URL}/users/${profile?.id}/`,
+        body
+      );
+      if (response.status === 200 || response.status === 201) {
+        Swal.fire({
+          position: "center-center",
+          icon: "success",
+          title: "Your work has been saved",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        setProfile(response.data);
+      }
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        position: "center-center",
+        icon: "error",
+        title: "Error: Your work could not be saved",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
   };
 
   return (
@@ -20,14 +80,16 @@ const Account = ({ profile }) => {
           <div className={styles.image}>
             <img
               src={
-                selectedImage ? URL.createObjectURL(selectedImage) : data?.image
+                selectedImage
+                  ? URL.createObjectURL(selectedImage)
+                  : data && data?.image_url
+                  ? data?.image_url
+                  : "/img/user.png"
               }
               alt=""
             />
           </div>
-          <h3>
-            {data.name} {data.surname}
-          </h3>
+          <h3>{profile && profile.first_name + " " + profile.last_name}</h3>
           <label htmlFor="file_upload" className={styles.custom_file_input}>
             <span className={styles.custom_file_label}>
               Click to change photo
@@ -36,6 +98,7 @@ const Account = ({ profile }) => {
               id="file_upload"
               accept="image/*"
               type="file"
+              name="photoFile"
               onChange={handleImageChange}
             />
           </label>
@@ -49,11 +112,9 @@ const Account = ({ profile }) => {
                   type="text"
                   placeholder="Enter name"
                   id="name"
-                  name="name"
-                  defaultValue={data?.name}
-                  // onChange={(e) => {
-                  //   handleChange(e);
-                  // }}
+                  name="first_name"
+                  defaultValue={profile && profile?.first_name}
+                  onChange={handleChange}
                 />
                 <UserIcon color="#1D2B21" />
               </div>
@@ -65,11 +126,9 @@ const Account = ({ profile }) => {
                   type="text"
                   placeholder="Enter surname"
                   id="surname"
-                  name="surname"
-                  defaultValue={data?.surname}
-                  // onChange={(e) => {
-                  //   handleChange(e);
-                  // }}
+                  name="last_name"
+                  defaultValue={profile && profile?.last_name}
+                  onChange={handleChange}
                 />
                 <UserIcon color="#1D2B21" />
               </div>
@@ -84,10 +143,8 @@ const Account = ({ profile }) => {
                   placeholder="Enter email address"
                   id="email"
                   name="email"
-                  defaultValue={data?.email}
-                  // onChange={(e) => {
-                  //   handleChange(e);
-                  // }}
+                  defaultValue={profile && profile?.email}
+                  onChange={handleChange}
                 />
                 <MessageIcon />
               </div>
@@ -95,7 +152,11 @@ const Account = ({ profile }) => {
           </div>
           <div className={styles.buttons}>
             <div className={styles.button_left}>
-              <button type="button" className={styles.save_btn}>
+              <button
+                type="button"
+                className={styles.save_btn}
+                onClick={handleSubmit}
+              >
                 Save
               </button>
               <button type="button" className={styles.cancel_btn}>

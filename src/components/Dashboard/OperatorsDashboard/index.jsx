@@ -7,31 +7,28 @@ import OperatorDashboardCharts from "./Charts";
 import RecentCalls from "../HomeDashboard/RecentCalls";
 import DatePickerComponent from "../../DatePicker";
 import CallHistory from "./CallHistory";
-import { operators } from "../../data/operators";
+// import { operators } from "../../data/operators";
 
 const Operators = () => {
-  const [operator, setOperator] = useState(operators[0]);
+  const [operator, setOperator] = useState(null);
   const [activeAnalysis, setActiveAnalysis] = useState(true);
   const [startDateFilter, setStartDateFilter] = useState(() => {
     const today = new Date();
     const tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() - 1);
+    tomorrow.setDate(today.getDate() - 30);
     return tomorrow;
   });
 
   const [endDateFilter, setEndDateFilter] = useState(() => {
     const today = new Date();
     const tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1);
+    tomorrow.setDate(today.getDate());
     return tomorrow;
   });
+
   return (
     <div>
-      <OperatorsMenu
-        operators={operators}
-        setOperator={setOperator}
-        operatorMenu={operator}
-      />
+      <OperatorsMenu setOperator={setOperator} operatorMenu={operator} />
       <div className={styles.main}>
         <OperatorHeader operator={operator} />
         <div className={styles.frame}>
@@ -64,13 +61,14 @@ const Operators = () => {
         {activeAnalysis ? (
           <>
             {/* <OperatorDashboardCards /> */}
-            <OperatorDashboardCharts />
+            <OperatorDashboardCharts operator={operator} />
             <div className={styles.recent_calls}>
-              <RecentCalls />
+              <RecentCalls operator={operator} />
             </div>
           </>
         ) : (
           <CallHistory
+            operator={operator}
             startDateFilter={startDateFilter}
             endDateFilter={endDateFilter}
           />
