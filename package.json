@@ -19,6 +19,7 @@
     "@syncfusion/ej2-react-heatmap": "^25.1.35",
     "aws-s3": "^2.0.5",
     "aws-sdk": "^2.1603.0",
+    "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.2",
     "emailjs": "^4.0.3",
@@ -45,6 +46,7 @@
     "s3-upload": "^0.1.0",
     "sass": "^1.72.0",
     "scrollreveal": "^4.0.9",
+    "sweetalert2": "^11.11.0",
     "wavesurfer.js": "^7.7.11"
   },
   "devDependencies": {

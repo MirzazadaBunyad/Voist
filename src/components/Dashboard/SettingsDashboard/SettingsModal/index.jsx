@@ -4,16 +4,16 @@ import CloseIcon from "../../../Icon/CloseIcon";
 import MessageIcon from "../../../Icon/MessageIcon";
 import UserIcon from "../../../Icon/UserIcon";
 import styles from "./index.module.scss";
-import { members } from "../../../data/team_members";
 import CheckIcon from "../../../Icon/CheckIcon";
 import HesaWarningIcon from "../../../Icon/HesaWarning";
+import axios from "axios";
 
 const SettingsModal = ({ setActiveModal, activeUser, activeModal }) => {
-  const roles = ["Admin", "Operator"];
+  const roles = ["admin", "operator"];
   const [activeDropdown, setActiveDropdown] = useState(false);
   const [formData, setFormData] = useState({
-    name: activeModal === "edit" ? activeUser?.username?.split(" ")[0] : "",
-    surname: activeModal === "edit" ? activeUser?.username?.split(" ")[1] : "",
+    first_name: activeModal === "edit" ? activeUser?.first_name : "",
+    last_name: activeModal === "edit" ? activeUser?.last_name : "",
     email: activeModal === "edit" ? activeUser?.email : "",
     role: activeModal === "edit" ? activeUser?.role : roles[0],
   });
@@ -45,26 +45,64 @@ const SettingsModal = ({ setActiveModal, activeUser, activeModal }) => {
     setIsTyping(null);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (activeModal === "add") {
       try {
-        members.push({
-          id: Math.random(),
-          username: formData.name + formData.surname,
-          email: formData.email,
-          role: formData.role,
-        });
-        setStatus("success");
-        setFormData({
-          name: "",
-          surname: "",
-          email: "",
-        });
+        const response = await axios.post(
+          `${import.meta.env.VITE_BASE_URL}/company/members/invite/`,
+          formData
+        );
+        if (response.status === 200 || response.status === 201) {
+          setStatus("success");
+          setFormData({
+            name: "",
+            surname: "",
+            email: "",
+          });
+        }
       } catch (error) {
         setStatus("error");
       }
     } else if (activeModal === "edit") {
-      console.log("Salam");
+      try {
+        const response = await axios.patch(
+          `${import.meta.env.VITE_BASE_URL}/company/members/`,
+          {
+            id: activeUser?.id,
+            ...formData,
+          }
+        );
+        if (response.status === 200 || response.status === 201) {
+          setStatus("success");
+          setFormData({
+            name: "",
+            surname: "",
+            email: "",
+          });
+        }
+      } catch (error) {
+        setStatus("error");
+      }
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      const response = await axios.delete(
+        `${import.meta.env.VITE_BASE_URL}/company/members/`,
+        {
+          data: {
+            id: activeUser?.id,
+            role: activeUser?.role,
+          },
+        }
+      );
+      if (response?.status === 200 || response?.status === 201) {
+        setActiveModal(null);
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log("error");
     }
   };
 
@@ -91,6 +129,7 @@ const SettingsModal = ({ setActiveModal, activeUser, activeModal }) => {
                 className={styles.success_btn}
                 onClick={() => {
                   setActiveModal(null);
+                  window.location.reload();
                 }}
               >
                 Okay
@@ -142,12 +181,7 @@ const SettingsModal = ({ setActiveModal, activeUser, activeModal }) => {
               it back.
             </p>
             <div className={styles.buttons}>
-              <button
-                className={styles.cancel_btn}
-                // onClick={() => {
-                //   setActiveModal(null);
-                // }}
-              >
+              <button className={styles.cancel_btn} onClick={handleDelete}>
                 Delete user
               </button>
               <button
@@ -177,8 +211,8 @@ const SettingsModal = ({ setActiveModal, activeUser, activeModal }) => {
                       type="text"
                       placeholder="Enter name"
                       id="name"
-                      name="name"
-                      value={formData.name}
+                      name="first_name"
+                      defaultValue={formData.first_name}
                       onChange={(e) => {
                         handleChange(e);
                       }}
@@ -197,8 +231,8 @@ const SettingsModal = ({ setActiveModal, activeUser, activeModal }) => {
                       type="text"
                       placeholder="Ente surname"
                       id="surname"
-                      name="surname"
-                      value={formData.surname}
+                      name="last_name"
+                      defaultValue={formData.last_name}
                       onChange={(e) => {
                         handleChange(e);
                       }}
@@ -220,7 +254,7 @@ const SettingsModal = ({ setActiveModal, activeUser, activeModal }) => {
                       placeholder="example@company.com"
                       id="email"
                       name="email"
-                      value={formData.email}
+                      defaultValue={formData.email}
                       onChange={(e) => {
                         handleChange(e);
                       }}
@@ -241,22 +275,25 @@ const SettingsModal = ({ setActiveModal, activeUser, activeModal }) => {
                     >
                       <p>{formData.role}</p>
                     </div>
-                    <div
-                      className={`${styles.role_scroll} ${
-                        activeDropdown ? styles.active : ""
-                      }`}
-                    >
-                      <div className={styles.roles}>
-                        {roles?.map((role, index) => (
-                          <div
-                            key={index}
-                            onClick={() => handleSelectRole(role)}
-                          >
-                            <p>{role}</p>
-                          </div>
-                        ))}
+                    {activeModal !== "edit" && (
+                      <div
+                        className={`${styles.role_scroll} ${
+                          activeDropdown ? styles.active : ""
+                        }`}
+                      >
+                        <div className={styles.roles}>
+                          {activeDropdown &&
+                            roles?.map((role, index) => (
+                              <div
+                                key={index}
+                                onClick={() => handleSelectRole(role)}
+                              >
+                                <p>{role}</p>
+                              </div>
+                            ))}
+                        </div>
                       </div>
-                    </div>
+                    )}
 
                     <div className={styles.select_icon}>
                       <ArrowDown />

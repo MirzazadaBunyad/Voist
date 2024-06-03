@@ -1,96 +1,65 @@
-import { useState } from "react";
-import IncomingCall from "../../../Icon/Calls/IncomingCall";
+import { useEffect, useState } from "react";
+// import IncomingCall from "../../../Icon/Calls/IncomingCall";
 import OutgoingCall from "../../../Icon/Calls/OutgoingCall";
-import SilentCall from "../../../Icon/Calls/SilentCall";
+// import SilentCall from "../../../Icon/Calls/SilentCall";
 import InfoIcon from "../../../Icon/InfoIcon";
 import MoreVertIcon from "../../../Icon/MoreVertIcon";
 import styles from "./index.module.scss";
+import axios from "axios";
+import { formatDuration } from "../../../../helpers/formatDuration";
 
-const calls = [
-  {
-    id: 1,
-    operator: "Kadin Schlei...",
-    date: "12/02",
-    time: "16:30",
-    duration: "1h 32min",
-    status: "outgoing",
-  },
-  {
-    id: 2,
-    operator: "Emery Rhiel",
-    date: "12/02",
-    time: "16:30",
-    duration: "1h 32min",
-    status: "incoming",
-  },
-  {
-    id: 3,
-    operator: "Martin Botosh",
-    date: "12/02",
-    time: "16:30",
-    duration: "1h 32min",
-    status: "outgoing",
-  },
-  {
-    id: 4,
-    operator: "Lydia Bothman",
-    date: "12/02",
-    time: "16:30",
-    duration: "1h 32min",
-    status: "silent",
-  },
-  {
-    id: 5,
-    operator: "Makenna Carder",
-    date: "12/02",
-    time: "16:30",
-    duration: "1h 32min",
-    status: "outgoing",
-  },
-  {
-    id: 6,
-    operator: "Wilson Schleifer",
-    date: "12/02",
-    time: "16:30",
-    duration: "1h 32min",
-    status: "silent",
-  },
-  {
-    id: 7,
-    operator: "Martin Botosh",
-    date: "12/02",
-    time: "16:30",
-    duration: "1h 32min",
-    status: "outgoing",
-  },
-  {
-    id: 8,
-    operator: "Lydia Bothman",
-    date: "12/02",
-    time: "16:30",
-    duration: "1h 32min",
-    status: "incoming",
-  },
-  {
-    id: 9,
-    operator: "Makenna Carder",
-    date: "12/02",
-    time: "16:30",
-    duration: "1h 32min",
-    status: "incoming",
-  },
-  {
-    id: 10,
-    operator: "Wilson Schleifer",
-    date: "12/02",
-    time: "16:30",
-    duration: "1h 32min",
-    status: "outgoing",
-  },
-];
-
-const RecentCalls = () => {
+const RecentCalls = ({ operator }) => {
   const [slice, setSlice] = useState(true);
+  const [data, setData] = useState(null);
+
+  const formattedDateBefore1Week = () => {
+    const date = new Date();
+
+    date.setDate(date.getDate() - 7);
+
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+  };
+
+  useEffect(() => {
+    const getCalls = async () => {
+      let query = `from_date=${formattedDateBefore1Week()}`;
+      if (operator) query += `&operator_ids=${operator.id}`;
+
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_BASE_URL}/calls/?${query}`
+        );
+        setData(response && response?.data.calls);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getCalls();
+  }, [operator]);
+
+  const formattedDate = (dateStr) => {
+    const date = new Date(dateStr);
+
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+
+    return `${month}/${day}`;
+  };
+
+  const formattedTime = (dateTimeStr) => {
+    const date = new Date(dateTimeStr);
+
+    const hours = String(date.getUTCHours()).padStart(2, "0"); // Using getUTCHours() for the UTC time
+    const minutes = String(date.getUTCMinutes()).padStart(2, "0"); // Using getUTCMinutes() for the UTC time
+
+    return `${hours}:${minutes}`;
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.label}>
@@ -112,23 +81,29 @@ const RecentCalls = () => {
             </tr>
           </thead>
           <tbody>
-            {calls.slice(0, slice ? 10 : calls.length).map((call) => (
-              <tr key={call.id} className={styles.tbody}>
-                <td className={styles.first}>
-                  {call.status === "outgoing" ? (
+            {data &&
+              data?.slice(0, slice ? 10 : data.length)?.map((call) => (
+                <tr key={call.id} className={styles.tbody}>
+                  <td className={styles.first}>
                     <OutgoingCall />
-                  ) : call.status === "incoming" ? (
-                    <IncomingCall />
-                  ) : (
-                    <SilentCall />
-                  )}
-                  <p>{call.operator}</p>
-                </td>
-                <td>{call.date}</td>
-                <td>{call.time}</td>
-                <td>{call.duration}</td>
-              </tr>
-            ))}
+                    {/* {call.status === "outgoing" ? (
+                      <OutgoingCall />
+                    ) : call.status === "incoming" ? (
+                      <IncomingCall />
+                    ) : (
+                      <SilentCall />
+                    )} */}
+                    <p>
+                      {call?.name.length > 20
+                        ? call?.name.slice(0, 20) + "..."
+                        : call?.name}
+                    </p>
+                  </td>
+                  <td>{formattedDate(call.started_at.split("T")[0])}</td>
+                  <td>{formattedTime(call.started_at)}</td>
+                  <td>{formatDuration(call.duration)}</td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

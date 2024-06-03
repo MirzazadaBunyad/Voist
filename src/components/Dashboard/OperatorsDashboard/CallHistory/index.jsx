@@ -4,22 +4,51 @@ import SortDown from "../../../Icon/SortDown";
 import MyPagination from "../../../Pagination";
 import styles from "./index.module.scss";
 import { useEffect } from "react";
-import { call_logs } from "../../../data/call_logs.data";
+// import { call_logs } from "../../../data/call_logs.data";
+import axios from "axios";
+import { formatDuration } from "../../../../helpers/formatDuration";
+import { formattedTargetDate } from "../../../../helpers/formattedTargetDate";
+import { useNavigate } from "react-router-dom";
 // import ChatAddIcon from "../../../Icon/ChatAdd";
 
-const CallHistory = ({ startDateFilter, endDateFilter }) => {
-  const [historyData, setHistoryData] = useState(call_logs);
-  const [data, setData] = useState(historyData);
+const CallHistory = ({ startDateFilter, endDateFilter, operator }) => {
+  const [data, setData] = useState(null);
+  const [totalPages, setTotalPages] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
+
+  const formatDate = (date) => {
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
   useEffect(() => {
-    setHistoryData(
-      call_logs.filter((item) => {
-        const itemDate = new Date(item.date);
-        const startDate = new Date(startDateFilter);
-        const endDate = new Date(endDateFilter);
-        return itemDate > startDate && itemDate < endDate;
-      })
-    );
-  }, [startDateFilter, endDateFilter]);
+    const getCalls = async () => {
+      let query = `page=${currentPage}&limit=10`;
+      if (operator) {
+        query += `&operator_ids=${operator.id}`;
+      }
+      if (startDateFilter) {
+        query += `&from_date=${formatDate(startDateFilter)}`;
+      }
+      if (endDateFilter) {
+        query += `&to_date=${formatDate(endDateFilter)}`;
+      }
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_BASE_URL}/calls/?${query}`
+        );
+        setData(response?.data?.calls);
+        setTotalPages(response?.data?.total_pages);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getCalls();
+  }, [currentPage, operator, startDateFilter, endDateFilter]);
 
   return (
     <div className={styles.container}>
@@ -29,9 +58,18 @@ const CallHistory = ({ startDateFilter, endDateFilter }) => {
             <tr>
               <th className={styles.th_sortdown}>
                 <p>Started at</p>
-                {/* <p onClick={() => setData((prev) => prev.reverse())}> */}
-                <SortDown />
-                {/* </p> */}
+                <p
+                  onClick={() =>
+                    setData((prev) =>
+                      [...prev].sort(
+                        (a, b) =>
+                          new Date(a.started_at) - new Date(b.started_at)
+                      )
+                    )
+                  }
+                >
+                  <SortDown />
+                </p>
               </th>
               <th>Duration</th>
               <th>Call ID</th>
@@ -41,36 +79,43 @@ const CallHistory = ({ startDateFilter, endDateFilter }) => {
             </tr>
           </thead>
           <tbody>
-            {data?.map((dt) => (
-              <tr key={dt.id} className={styles.tbody}>
-                <td className={styles.first}>
-                  <IncomingCall color="#99A09B" />
-                  <p>
-                    {dt.date.toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "short",
-                      day: "2-digit",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
-                  </p>
-                </td>
-                <td>{dt?.duration}min</td>
-                <td>{dt?.call_id}</td>
-                <td>{dt?.score}</td>
-                <td style={{ textTransform: "capitalize" }}>
-                  {dt?.call_intention}
-                </td>
-                {/* <td className={styles.actions}>
+            {data &&
+              data?.map((dt) => {
+                return (
+                  <tr
+                    key={dt.id}
+                    className={styles.tbody}
+                    onClick={() => {
+                      navigate(`/dashboard/call_logs/${dt.id}`);
+                    }}
+                  >
+                    <td className={styles.first}>
+                      <IncomingCall color="#99A09B" />
+                      <p>{formattedTargetDate(dt.started_at)}</p>
+                    </td>
+                    <td>{formatDuration(dt.duration)}</td>
+                    <td>{dt?.id}</td>
+                    <td>{dt?.score}</td>
+                    <td style={{ textTransform: "capitalize" }}>
+                      {dt?.intention?.name}
+                    </td>
+                    ;
+                    {/* <td className={styles.actions}>
                   <ChatAddIcon />
                 </td> */}
-              </tr>
-            ))}
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>
       <div>
-        <MyPagination data={historyData} setData={setData} />
+        <MyPagination
+          data={data}
+          totalPages={totalPages}
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
+        />
       </div>
     </div>
   );

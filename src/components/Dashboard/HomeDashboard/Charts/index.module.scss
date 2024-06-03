@@ -38,6 +38,10 @@
         font-variant-numeric: lining-nums proportional-nums;
       }
       .marks {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        gap: 6px;
         > div {
           display: flex;
           gap: 3px;

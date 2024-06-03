@@ -1,94 +1,112 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InfoIcon from "../../../Icon/InfoIcon";
 import MoreVertIcon from "../../../Icon/MoreVertIcon";
 import RangeIcon from "../../../Icon/RangeIcon";
 import styles from "./index.module.scss";
+import axios from "axios";
 
-const agents = [
-  {
-    operator: "Kadin Schleifer",
-    satisfaction: 30,
-    avScore: "3/10",
-    totalCalls: 120,
-    aht: "3:40",
-    image: "./img/profile.jpeg",
-  },
-  {
-    operator: "Emery Rhiel",
-    satisfaction: 70,
-    avScore: "3/10",
-    totalCalls: 120,
-    aht: "3:40",
-    image: "./img/profile.jpeg",
-  },
-  {
-    operator: "Emery Rhiel",
-    satisfaction: 90,
-    avScore: "3/10",
-    totalCalls: 120,
-    aht: "3:40",
-    image: "./img/profile.jpeg",
-  },
-  {
-    operator: "Emery Rhiel",
-    satisfaction: 33,
-    avScore: "3/10",
-    totalCalls: 120,
-    aht: "3:40",
-    image: "./img/profile.jpeg",
-  },
-  {
-    operator: "Kadin Schleifer",
-    satisfaction: 63,
-    avScore: "3/10",
-    totalCalls: 120,
-    aht: "3:40",
-    image: "./img/profile.jpeg",
-  },
-  {
-    operator: "Emery Rhiel",
-    satisfaction: 96,
-    avScore: "3/10",
-    totalCalls: 120,
-    aht: "3:40",
-    image: "./img/profile.jpeg",
-  },
-  {
-    operator: "Emery Rhiel",
-    satisfaction: 63,
-    avScore: "3/10",
-    totalCalls: 120,
-    aht: "3:40",
-    image: "./img/profile.jpeg",
-  },
-  {
-    operator: "Emery Rhiel",
-    satisfaction: 78,
-    avScore: "3/10",
-    totalCalls: 120,
-    aht: "3:40",
-    image: "./img/profile.jpeg",
-  },
-  {
-    operator: "Emery Rhiel",
-    satisfaction: 13,
-    avScore: "3/10",
-    totalCalls: 120,
-    aht: "3:40",
-    image: "./img/profile.jpeg",
-  },
-  {
-    operator: "Emery Rhiel",
-    satisfaction: 93,
-    avScore: "3/10",
-    totalCalls: 120,
-    aht: "3:40",
-    image: "./img/profile.jpeg",
-  },
-];
+// const agents = [
+//   {
+//     operator: "Kadin Schleifer",
+//     satisfaction: 30,
+//     avScore: "3/10",
+//     totalCalls: 120,
+//     aht: "3:40",
+//     image: "./img/profile.jpeg",
+//   },
+//   {
+//     operator: "Emery Rhiel",
+//     satisfaction: 70,
+//     avScore: "3/10",
+//     totalCalls: 120,
+//     aht: "3:40",
+//     image: "./img/profile.jpeg",
+//   },
+//   {
+//     operator: "Emery Rhiel",
+//     satisfaction: 90,
+//     avScore: "3/10",
+//     totalCalls: 120,
+//     aht: "3:40",
+//     image: "./img/profile.jpeg",
+//   },
+//   {
+//     operator: "Emery Rhiel",
+//     satisfaction: 33,
+//     avScore: "3/10",
+//     totalCalls: 120,
+//     aht: "3:40",
+//     image: "./img/profile.jpeg",
+//   },
+//   {
+//     operator: "Kadin Schleifer",
+//     satisfaction: 63,
+//     avScore: "3/10",
+//     totalCalls: 120,
+//     aht: "3:40",
+//     image: "./img/profile.jpeg",
+//   },
+//   {
+//     operator: "Emery Rhiel",
+//     satisfaction: 96,
+//     avScore: "3/10",
+//     totalCalls: 120,
+//     aht: "3:40",
+//     image: "./img/profile.jpeg",
+//   },
+//   {
+//     operator: "Emery Rhiel",
+//     satisfaction: 63,
+//     avScore: "3/10",
+//     totalCalls: 120,
+//     aht: "3:40",
+//     image: "./img/profile.jpeg",
+//   },
+//   {
+//     operator: "Emery Rhiel",
+//     satisfaction: 78,
+//     avScore: "3/10",
+//     totalCalls: 120,
+//     aht: "3:40",
+//     image: "./img/profile.jpeg",
+//   },
+//   {
+//     operator: "Emery Rhiel",
+//     satisfaction: 13,
+//     avScore: "3/10",
+//     totalCalls: 120,
+//     aht: "3:40",
+//     image: "./img/profile.jpeg",
+//   },
+//   {
+//     operator: "Emery Rhiel",
+//     satisfaction: 93,
+//     avScore: "3/10",
+//     totalCalls: 120,
+//     aht: "3:40",
+//     image: "./img/profile.jpeg",
+//   },
+// ];
 
 const AgentPerformance = () => {
   const [slice, setSlice] = useState(true);
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const getOperators = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_BASE_URL}/operators/`
+        );
+        setData(response.data.operators);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getOperators();
+  }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.label}>
@@ -111,51 +129,47 @@ const AgentPerformance = () => {
             </tr>
           </thead>
           <tbody>
-            {agents.slice(0, slice ? 10 : agents.length).map((agent, index) => (
-              <tr key={index} className={styles.tbody}>
-                <td className={styles.first}>
-                  <img src={agent.image} alt="" />
-                  <p>
-                    {agent.operator.length >= 11
-                      ? agent.operator.slice(0, 11) + "..."
-                      : agent.operator}
-                  </p>
-                </td>
-                <td className={styles.satisfaction}>
-                  <RangeIcon
-                    width={`${agent?.satisfaction}%`}
-                    color={
-                      agent?.satisfaction > 75
-                        ? "#2BB534"
-                        : agent?.satisfaction > 45
-                        ? "#FFA63D"
-                        : "#FF3D3D"
-                    }
-                    fill={
-                      agent?.satisfaction > 75
-                        ? "#ECFFED"
-                        : agent?.satisfaction > 45
-                        ? "#FFF6EC"
-                        : "#FFECEC"
-                    }
-                  />
-                  {/* <p
-                    className={`${
-                      agent.satisfaction == "Available"
-                        ? styles.available
-                        : styles.unavailable
-                    }`}
-                  >
-                    {agent.satisfaction}
-                  </p> */}
-                </td>
-                <td>{agent.avScore}</td>
-                <td className={styles.aht}>
-                  <p>{agent.aht}</p>
-                </td>
-                <td>{agent.totalCalls}</td>
-              </tr>
-            ))}
+            {data &&
+              data.slice(0, slice ? 10 : data.length).map((agent, index) => (
+                <tr key={index} className={styles.tbody}>
+                  <td className={styles.first}>
+                    <img src={agent?.photo ?? "/img/user.png"} alt="" />
+                    <p>
+                      {}
+                      {(agent.first_name + " " + agent.last_name).length >= 11
+                        ? (agent.first_name + " " + agent.last_name).slice(
+                            0,
+                            11
+                          ) + "..."
+                        : agent.first_name + " " + agent.last_name}
+                    </p>
+                  </td>
+                  <td className={styles.satisfaction}>
+                    <RangeIcon
+                      width={`${agent?.average_score}%`}
+                      color={
+                        agent?.average_score > 75
+                          ? "#2BB534"
+                          : agent?.average_score > 45
+                          ? "#FFA63D"
+                          : "#FF3D3D"
+                      }
+                      fill={
+                        agent?.average_score > 75
+                          ? "#ECFFED"
+                          : agent?.average_score > 45
+                          ? "#FFF6EC"
+                          : "#FFECEC"
+                      }
+                    />
+                  </td>
+                  <td>{agent.average_score}</td>
+                  <td className={styles.aht}>
+                    <p>{agent.aht}</p>
+                  </td>
+                  <td>{agent.total_calls}</td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
