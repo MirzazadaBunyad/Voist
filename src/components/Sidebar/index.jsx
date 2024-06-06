@@ -8,19 +8,14 @@ import OperatorIcon from "../Icon/Dashboard/OperatorIcon";
 import CallIcon from "../Icon/Dashboard/CallIcon";
 import { useState } from "react";
 import CloseSidebarIcon from "../Icon/CloseSidebar";
+import { useLocation } from "react-router-dom";
 
-const Sidebar = ({ component, setComponent, company }) => {
-  const [activeDropdown, setActiveDropdown] = useState(false);
+const Sidebar = ({ company }) => {
   const [isHoveredButton, setIsHoveredButton] = useState(false);
 
-  const handleClick = (val) => {
-    setComponent(val);
-    if (val !== "home" && val !== "operators" && val !== "call_logs") {
-      setActiveDropdown(true);
-    } else {
-      setActiveDropdown(false);
-    }
-  };
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   return (
     <div className={styles.container}>
       <div className={styles.container_menu}>
@@ -39,63 +34,67 @@ const Sidebar = ({ component, setComponent, company }) => {
           </div>
         </div>
         <div className={styles.container_menu_items}>
-          <div
+          <a
             className={`${styles.item} ${
-              component === "home" ? styles.active : ""
+              currentPath === "/dashboard" ? styles.active : ""
             }`}
-            onClick={() => handleClick("home")}
+            href="/dashboard"
           >
             <div className={`${styles.icon}`}>
-              <HomeIcon color={component === "home" ? "white" : "#1A6B1F"} />
+              <HomeIcon
+                color={currentPath === "/dashboard" ? "white" : "#1A6B1F"}
+              />
             </div>
             <div className={`${styles.text}`}>
               <p>Home dashboard</p>
             </div>
-          </div>
-          <div
+          </a>
+          <a
             className={`${styles.item} ${
-              component === "operators" ? styles.active : ""
+              currentPath === "/dashboard/operators" ? styles.active : ""
             }`}
-            onClick={() => {
-              handleClick("operators");
-            }}
+            href="/dashboard/operators"
           >
             <div className={`${styles.icon}`}>
               <OperatorIcon
-                color={component === "operators" ? "white" : "#1A6B1F"}
+                color={
+                  currentPath === "/dashboard/operators" ? "white" : "#1A6B1F"
+                }
               />
             </div>
             <div className={`${styles.text}`}>
               <p>Operators</p>
             </div>
-          </div>
-          <div
+          </a>
+          <a
             className={`${styles.item} ${
-              component === "call_logs" ? styles.active : ""
+              currentPath === "/dashboard/call_logs" ? styles.active : ""
             }`}
-            onClick={() => handleClick("call_logs")}
+            href="/dashboard/call_logs"
           >
             <div className={`${styles.icon}`}>
               <CallIcon
-                color={component === "call_logs" ? "white" : "#1A6B1F"}
+                color={
+                  currentPath === "/dashboard/call_logs" ? "white" : "#1A6B1F"
+                }
               />
             </div>
             <div className={`${styles.text}`}>
               <p>Call logs</p>
             </div>
-          </div>
-          <div
+          </a>
+          <a
             className={`${styles.item_setting} ${
-              component === "settings" ? styles.active : ""
+              currentPath === "/dashboard/settings" ? styles.active : ""
             }`}
-            onClick={() => {
-              handleClick("settings");
-            }}
+            href="/dashboard/settings"
           >
             <div className={styles.first}>
               <div className={`${styles.icon}`}>
                 <SettingsIcon
-                  color={component === "settings" ? "white" : "#1A6B1F"}
+                  color={
+                    currentPath === "/dashboard/settings" ? "white" : "#1A6B1F"
+                  }
                 />
               </div>
               <div className={`${styles.text}`}>
@@ -103,41 +102,42 @@ const Sidebar = ({ component, setComponent, company }) => {
               </div>
             </div>
             <div className={styles.arrow_down}>
-              <ArrowDown opacity={activeDropdown ? "1" : "0.3"} />
+              <ArrowDown
+                opacity={currentPath === "/dashboard/settings" ? "1" : "0.3"}
+              />
             </div>
-          </div>
-          {activeDropdown && (
+          </a>
+          {currentPath === "/dashboard/settings" && (
             <div className={styles.dropdown}>
               <div
-                className={`${component === "settings" ? styles.active : ""}`}
-                onClick={() => {
-                  handleClick("settings");
-                }}
+                className={`${
+                  currentPath === "/dashboard/settings" ? styles.active : ""
+                }`}
               >
                 <p>Team members</p>
               </div>
-              <div
+              {/* <div
                 className={`${component === "security" ? styles.active : ""}`}
-                // onClick={() => {
-                //   handleClick("security");
-                // }}
+                onClick={() => {
+                  handleClick("security");
+                }}
               >
                 <p>Security</p>
-              </div>
+              </div> */}
             </div>
           )}
         </div>
       </div>
-      <div
-        className={styles.container_company_profile}
-        onClick={() => setComponent("company")}
-      >
+      <a className={styles.container_company_profile} href="/dashboard/company">
         <div className={styles.image}>
-          <img src={company.image} alt="" />
+          <img
+            src={company && (company?.photo ?? "./img/company.png")}
+            alt=""
+          />
         </div>
         <div>
           <div className={styles.top}>
-            <p>{company.nickname}</p>
+            <p>{company && company.name}</p>
             <div>
               <img src={arrowRight} alt="" />
             </div>
@@ -146,7 +146,7 @@ const Sidebar = ({ component, setComponent, company }) => {
             <p>Click to see profiles</p>
           </div>
         </div>
-      </div>
+      </a>
     </div>
   );
 };

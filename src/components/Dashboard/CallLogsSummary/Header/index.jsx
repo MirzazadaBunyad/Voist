@@ -1,3 +1,4 @@
+import { formattedTargetDate } from "../../../../helpers/formattedTargetDate";
 import CalendarIcon from "../../../Icon/Calendar";
 // import CopyIcon from "../../../Icon/CopyIcon";
 // import DeleteIcon from "../../Icon/DeleteIcon";
@@ -5,34 +6,40 @@ import CalendarIcon from "../../../Icon/Calendar";
 import styles from "./index.module.scss";
 
 const SummaryHeader = ({ data }) => {
+  console.log(data);
   return (
     <div className={styles.container}>
       <div className={styles.left}>
         <p>
-          Home / Call logs / <span>Ulviyya Imamova</span>
+          Home / Call logs /{" "}
+          <span>
+            {data &&
+              `${data && data?.operator?.first_name} ${
+                data && data?.operator?.last_name
+              }`}
+          </span>
         </p>
         <div className={styles.profile_detail}>
-          <h3>Call ID: {data?.call_id}</h3>
-          <p className={`${styles.rude}`}>Rude</p>
-          <p className={`${styles.intention}`}>#{data?.call_intention}</p>
+          <h3>Call ID: {data && data?.id}</h3>
+          {/* <p className={`${styles.rude}`}>Rude</p> */}
+          <p className={`${styles.intention}`}>
+            #{data && data?.intention?.name}
+          </p>
         </div>
         <div className={styles.operator_detail}>
           <div className={styles.calendar}>
             <CalendarIcon color="#3D73FF" />
-            <p>
-              {data.date.toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "short",
-                day: "2-digit",
-                hour: "2-digit",
-                minute: "2-digit",
-              })}
-            </p>
+            <p>{formattedTargetDate(data && data.started_at)}</p>
           </div>
           <div className={styles.operatore_field}>
-            <img src={data?.operator?.image} alt="" />
+            <img
+              src={data && (data?.operator?.image_url ?? "/img/user.png")}
+              alt=""
+            />
             <p>
-              Operator <span>{data?.operator?.name}</span>
+              {`${data && data?.operator?.first_name} ${
+                data && data?.operator?.last_name
+              }`}
             </p>
           </div>
         </div>

@@ -4,31 +4,37 @@ import NetworkIcon from "../../Icon/NetworkIcon";
 import TextFormattingIcon from "../../Icon/TextFormatting";
 import PhoneIcon from "../../Icon/PhoneIcon";
 import ArrowDown from "../../Icon/ArrowDown";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const countries = [
-  { name: "United States", code: "US" },
-  { name: "Canada", code: "CA" },
-  { name: "United Kingdom", code: "GB" },
+  { name: "Azerbaijan", code: "Az" },
+  // { name: "Canada", code: "CA" },
+  // { name: "United Kingdom", code: "GB" },
   // ... add more countries
 ];
-const timeZones = [
-  { label: "(GMT-08:00)", value: "America/Los_Angeles" },
-  { label: "(GMT-05:00)", value: "America/New_York" },
-  { label: "(GMT+01:00)", value: "Europe/Paris" },
-  // ... add more time zones
-];
+// const timeZones = [
+//   { label: "(GMT-08:00)", value: "America/Los_Angeles" },
+//   { label: "(GMT-05:00)", value: "America/New_York" },
+//   { label: "(GMT+01:00)", value: "Europe/Paris" },
+// ];
 const counts = ["1-10", "11-20", "21-50", "51-100", "More than 100"];
 
-const CompanySettings = ({ company }) => {
+const CompanySettings = ({ company, setCompany }) => {
   const [data, setData] = useState(company);
   const [selectedImage, setSelectedImage] = useState(null);
   const [activeCountries, setActiveCountries] = useState(null);
-  const [activeTimeZones, setActiveTimeZones] = useState(null);
-  const [activeCount, setActiveCount] = useState(0);
+  // const [activeTimeZones, setActiveTimeZones] = useState(null);
 
   const handleImageChange = (event) => {
     const imageFile = event.target.files[0];
     if (!imageFile) return; // No file selected
+
+    const { name } = event.target;
+    setData({
+      ...data,
+      [name]: imageFile,
+    });
 
     setSelectedImage(imageFile);
   };
@@ -41,13 +47,65 @@ const CompanySettings = ({ company }) => {
     setActiveCountries(!activeCountries);
   };
 
-  const handleSelectTimeZones = (timeZone) => {
+  const handleSubmit = async () => {
+    const body = {
+      name: data?.name ?? company?.name,
+      domain: data?.domain ?? company?.domain,
+      description: data?.description ?? company?.description,
+      phone_number: data?.phone_number
+        ? data?.phone_number.startsWith("+")
+          ? data?.phone_number
+          : "+994" + data?.phone_number
+        : company?.phone_number,
+      country: data?.country ?? company?.country,
+    };
+
+    if (data?.photoFile) {
+      body.photo = data?.photoFile;
+    }
+
+    try {
+      const response = await axios.patch(
+        `${import.meta.env.VITE_BASE_URL}/company/`,
+        body
+      );
+      if (response.status === 200 || response.status === 201) {
+        Swal.fire({
+          position: "center-center",
+          icon: "success",
+          title: "Your work has been saved",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        setCompany(response.data);
+      }
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        position: "center-center",
+        icon: "error",
+        title: "Error: Your work could not be saved",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
     setData({
       ...data,
-      timeZone,
+      [name]: value,
     });
-    setActiveTimeZones(!activeTimeZones);
   };
+
+  // const handleSelectTimeZones = (timeZone) => {
+  //   setData({
+  //     ...data,
+  //     timeZone,
+  //   });
+  //   setActiveTimeZones(!activeTimeZones);
+  // };
 
   return (
     <div className={styles.container}>
@@ -56,12 +114,16 @@ const CompanySettings = ({ company }) => {
           <div className={styles.image}>
             <img
               src={
-                selectedImage ? URL.createObjectURL(selectedImage) : data?.image
+                selectedImage
+                  ? URL.createObjectURL(selectedImage)
+                  : company
+                  ? company?.photo
+                  : "./img/company.png"
               }
-              alt=""
+              alt="company"
             />
           </div>
-          <h3>{data.nickname}</h3>
+          <h3>{company && company.name}</h3>
           <label htmlFor="file_upload" className={styles.custom_file_input}>
             <span className={styles.custom_file_label}>
               Click to change photo
@@ -70,7 +132,8 @@ const CompanySettings = ({ company }) => {
               id="file_upload"
               accept="image/*"
               type="file"
-              onChange={handleImageChange}
+              name="photoFile"
+              onChange={(e) => handleImageChange(e)}
             />
           </label>
         </div>
@@ -84,10 +147,10 @@ const CompanySettings = ({ company }) => {
                   placeholder="Enter company name"
                   id="name"
                   name="name"
-                  defaultValue={data?.name}
-                  // onChange={(e) => {
-                  //   handleChange(e);
-                  // }}
+                  defaultValue={company && company?.name}
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                 />
                 <NetworkIcon />
               </div>
@@ -100,10 +163,10 @@ const CompanySettings = ({ company }) => {
                   placeholder="Enter company domain"
                   id="domain"
                   name="domain"
-                  defaultValue={data?.domain}
-                  // onChange={(e) => {
-                  //   handleChange(e);
-                  // }}
+                  defaultValue={company && company?.domain}
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                 />
                 <TextFormattingIcon />
               </div>
@@ -119,11 +182,12 @@ const CompanySettings = ({ company }) => {
                   type="tel"
                   placeholder="enter phone number"
                   id="phone"
-                  name="phone"
-                  defaultValue={data?.phone}
-                  // onChange={(e) => {
-                  //   handleChange(e);
-                  // }}
+                  name="phone_number"
+                  maxLength="9"
+                  defaultValue={company && company?.phone_number.slice(4)}
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                 />
                 <PhoneIcon />
               </div>
@@ -137,10 +201,10 @@ const CompanySettings = ({ company }) => {
                   placeholder="Enter description"
                   id="description"
                   name="description"
-                  defaultValue={data?.description}
-                  // onChange={(e) => {
-                  //   handleChange(e);
-                  // }}
+                  defaultValue={company && company?.description}
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                 />
               </div>
             </div>
@@ -150,7 +214,11 @@ const CompanySettings = ({ company }) => {
               <label htmlFor="country">Country*</label>
               <div>
                 <div className={styles.select_country}>
-                  <p>{data?.country ? data?.country?.name : "Choose one"}</p>
+                  <p>
+                    {company && company?.country
+                      ? company?.country
+                      : "Choose one"}
+                  </p>
                 </div>
                 <div
                   className={`${styles.country_scroll} ${
@@ -161,7 +229,7 @@ const CompanySettings = ({ company }) => {
                     {countries?.map((country, index) => (
                       <div
                         key={index}
-                        onClick={() => handleSelectCountry(country)}
+                        onClick={() => handleSelectCountry(country.name)}
                       >
                         <p>{country.name}</p>
                       </div>
@@ -177,7 +245,7 @@ const CompanySettings = ({ company }) => {
                 </div>
               </div>
             </div>
-            <div>
+            {/* <div>
               <label htmlFor="Time_zone">Time zone*</label>
               <div>
                 <div className={styles.select_timeZone}>
@@ -207,7 +275,7 @@ const CompanySettings = ({ company }) => {
                   <ArrowDown />
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
           <div>
             <div>
@@ -216,8 +284,17 @@ const CompanySettings = ({ company }) => {
                 {counts.map((count, index) => (
                   <p
                     key={index}
-                    className={`${activeCount === index ? styles.active : ""}`}
-                    onClick={() => setActiveCount(index)}
+                    className={`${
+                      count.split("-")[0] <= (company?.operators_count ?? 0) &&
+                      count.split("-")[1] >= (company?.operators_count ?? 0)
+                        ? styles.active
+                        : count === counts[counts.length - 1]
+                        ? counts[counts.length - 1].split(" ")[2] <
+                          (company?.operators_count ?? 0)
+                          ? styles.active
+                          : ""
+                        : ""
+                    }`}
                   >
                     {count}
                   </p>
@@ -227,7 +304,11 @@ const CompanySettings = ({ company }) => {
           </div>
           <div className={styles.buttons}>
             <div className={styles.button_left}>
-              <button type="button" className={styles.save_btn}>
+              <button
+                type="button"
+                className={styles.save_btn}
+                onClick={handleSubmit}
+              >
                 Save
               </button>
               <button type="button" className={styles.cancel_btn}>
