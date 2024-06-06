@@ -4,14 +4,11 @@ import LandingPage from "./components/landingPage/LandingPage";
 import VoiceRecorder from "./components/voiceRecorder/VoiceRecorder";
 import Dashboard from "./pages/Dashboard";
 import OnBoarding from "./components/onBoarding/OnBoarding";
-<<<<<<< HEAD
 import Login from "./components/Authentication/login/Login";
 import CreateAccount from "./components/Authentication/createAccount/CreateAccount";
 import ForgotPassword from "./components/Authentication/forgotPassword/Forgotpassword";
-=======
 import { axiosInterceptorHandle } from "./utils/AxiosInterceptor";
 import { useEffect } from "react";
->>>>>>> 063c39e89ee1ecd24ac3d8ad28f206d1b90c01a2
 
 function App() {
   let navigate = useNavigate();
