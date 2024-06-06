@@ -1,11 +1,14 @@
-.container {
-  border-radius: 10px;
-  display: flex;
-  flex-direction: row;
+.container{
+  width: 60%
 }
 
+.logo {
+  margin-top: 40px;
+  margin-left: 130px;
+}
 .loginContainer {
-  margin: -20px 0 0 130px;
+  margin-top: 40px;
+  margin-left: 130px;
   .main {
     display: flex;
     width: 500px;

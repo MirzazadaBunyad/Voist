@@ -1,8 +1,10 @@
 .right__banner {
-  width: 100%;
-  height: 100vh;
+  width: 40%;
+  height: 100%;
   background-color: #3dff49;
-  position: relative;
+  position: fixed;
+  top: 0;
+  right: 0;
 }
 .rightBannerText {
   position: absolute;
@@ -11,7 +13,6 @@
   gap: 10px;
 
   h2 {
-    font-family: "Raleway", sans-serif;
     font-weight: 900;
     font-size: 56px; /* Font size */
     line-height: 55px; /* Line height */
@@ -25,7 +26,7 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
-    margin: 70px 0 0 0;
+    margin-top: 70px;
     padding: 10px 16px;
     border-radius: 8px;
     border: 2px solid;

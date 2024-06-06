@@ -32,20 +32,41 @@ import { Link as ScrollLink } from "react-scroll";
 import Carousel from "../Carousel/Carousel";
 import { IoCloseOutline } from "react-icons/io5";
 import emailjs from "@emailjs/browser";
+import axios from "axios";
 function LandingPage() {
-  const menuItems = [
-    { name: "About", to: "about", offset: -300 },
-    { name: "Features", to: "features", offset: -200 },
-    { name: "Testimonials", to: "testimonials", offset: -150 },
-    { name: "FAQ", to: "faq", offset: -80 },
-    { name: "Contact", to: "contact", offset: -50 },
-  ];
-
-  const [actMenuItem, setActMenuItem] = useState(menuItems[0].name);
+  const [menuItems, setMenuItems] = useState([]);
+  const [actMenuItem, setActMenuItem] = useState(menuItems[0]?.name);
+  const [accItems, setAccItems] = useState([]);
   const [show, setShow] = useState(true);
   const [activeIndex, setActiveIndex] = useState(null);
   const [isTyping, setIsTyping] = useState(false);
   const [isSent, setIsSent] = useState(false);
+
+  const menuIt = async () => {
+    try {
+      const response = await axios.get("/menuItems.json");
+      setMenuItems(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    menuIt();
+  }, []);
+
+  const accIt = async () => {
+    try {
+      const response = await axios.get("/accItems.json");
+      setAccItems(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    accIt();
+  }, []);
 
   const handleMenuItemClick = (itemName) => {
     setActMenuItem(itemName);
@@ -65,48 +86,6 @@ function LandingPage() {
   };
   const onTitleClick = (index) => {
     setActiveIndex(index === activeIndex ? null : index);
-  };
-  const accordionItems = [
-    {
-      title: "What is Voist?",
-      content:
-        "Voist is an AI-powered platform that transforms customer service through automated transcripts, emotion analysis, AI-powered scoring, and call intent identification.",
-    },
-    {
-      title: "How does Voist's AI improve customer service?",
-      content:
-        "By analyzing call content and emotions in real-time, Voist provides insights for personalized customer interactions and continuous improvement in service quality.",
-    },
-    {
-      title: "Can Voist integrate with existing customer service systems?",
-      content:
-        "Yes, Voist is designed for easy integration with most existing customer service platforms to enhance functionality without disrupting current operations.",
-    },
-    {
-      title: "Is Voist suitable for businesses of all sizes?",
-      content:
-        "Absolutely, Voist offers scalable solutions tailored to meet the needs of both small businesses and large enterprises.",
-    },
-    {
-      title: "How does Voist ensure the privacy and security of data?",
-      content:
-        "Voist adheres to strict data privacy and security protocols, ensuring all customer and call data are encrypted and securely stored.",
-    },
-    {
-      title: "What kind of support does Voist offer?",
-      content:
-        "Voist provides comprehensive support ranging from online resources and email support to dedicated account management for enterprise clients.",
-    },
-    {
-      title: "How can I get started with Voist?",
-      content:
-        "To get started, simply contact us for a demo request. Our team will guide you through the setup process and help customize Voist for your specific needs.",
-    },
-  ];
-
-  const isValidEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
   };
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -256,7 +235,7 @@ function LandingPage() {
                   className={styles.buttons}
                 >
                   <div className={styles.hero}>
-                    <Link to="/authentication" className={styles.startedMob}>
+                    <Link to="/login" className={styles.startedMob}>
                       Get started <BsArrowRight className={styles.arrowRight} />
                     </Link>
                   </div>
@@ -267,7 +246,7 @@ function LandingPage() {
           {show ? (
             <div className={styles.buttons}>
               <div className={styles.hero}>
-                <Link to="/authentication" className={styles.started}>
+                <Link to="/login" className={styles.started}>
                   Get started <BsArrowRight className={styles.arrowRight} />
                 </Link>
               </div>
@@ -309,7 +288,7 @@ function LandingPage() {
               </p>
             </div>
             <div className={styles.btns}>
-              <Link to="/authentication" className={styles.btnStarted}>
+              <Link to="/login" className={styles.btnStarted}>
                 Get started <BsArrowRight className={styles.arrowRight} />
               </Link>
               {/* <button className={styles.learnMoreBtn}>Learn more</button> */}
@@ -364,7 +343,7 @@ function LandingPage() {
                   </p>
                 </div>
                 <div className={styles.btns}>
-                  <Link to="/authentication" className={styles.btnRequest}>
+                  <Link to="/login" className={styles.btnRequest}>
                     Get started
                     <BsArrowRight className={styles.arrowRight} />
                   </Link>
@@ -514,7 +493,7 @@ function LandingPage() {
               </p>
             </div>
             <div className={styles.requestDemoBtns}>
-              <Link to="/authentication" className={styles.requestDemoBtn}>
+              <Link to="/login" className={styles.requestDemoBtn}>
                 Get started
                 <BsArrowRight className={styles.arrowRight} />
               </Link>
@@ -582,7 +561,7 @@ function LandingPage() {
             />
           </div>
           <div className={styles.questionsContent}>
-            {accordionItems.map((item, index) => (
+            {accItems.map((item, index) => (
               <div key={index} className={styles.accordionItem}>
                 <div
                   className={styles.title}

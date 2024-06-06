@@ -2,7 +2,8 @@ import BackButton from "../../../smallComponents/backButton/BackButton";
 import styles from "./codeBelow.module.scss";
 import img from "../../../../assets/img/smile.gif";
 import arrowRightBlack from "../../../../assets/img/arrowRightBlack.svg";
-import { useRef, useState } from "react";
+import { useState } from "react";
+import OTPInput from "react-otp-input";
 
 function CodeBelow({
   handleClickToChange,
@@ -10,36 +11,7 @@ function CodeBelow({
   backToLogin,
   sendInformation,
 }) {
-  // const [show, setShow] = useState(false);
-  const [inputs, setInputs] = useState(["", "", "", ""]);
-
-  const input1 = useRef(null),
-    input2 = useRef(null),
-    input3 = useRef(null),
-    input4 = useRef(null);
-
-  function handleInput(event, index) {
-    const value = event.target.value;
-    const maxLength = parseInt(event.target.getAttribute("maxlength"));
-
-    if (value.length <= maxLength) {
-      setInputs((prevInputs) => {
-        const newInputs = [...prevInputs];
-        newInputs[index] = value;
-        return newInputs;
-      });
-
-      if (value.length >= maxLength && index < 3) {
-        if (index === 0) {
-          input2.current.focus();
-        } else if (index === 1) {
-          input3.current.focus();
-        } else if (index === 2) {
-          input4.current.focus();
-        }
-      }
-    }
-  }
+  const [otp, setOtp] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -62,28 +34,13 @@ function CodeBelow({
         </div>
         <form className={styles.formContainer} onSubmit={handleSubmit}>
           <div className={styles.inputContainer}>
-            {inputs.map((value, index) => (
-              <input
-                key={index}
-                className={styles.LoginInput}
-                type="number"
-                id={`belowInput-${index}`}
-                name="number"
-                placeholder="•"
-                ref={
-                  index === 0
-                    ? input1
-                    : index === 1
-                    ? input2
-                    : index === 2
-                    ? input3
-                    : input4
-                }
-                maxLength={1}
-                value={value}
-                onChange={(e) => handleInput(e, index)}
-              />
-            ))}
+            <OTPInput
+              value={otp}
+              onChange={setOtp}
+              numInputs={4}
+              renderInput={(props) => <input {...props} className={styles.LoginInput} placeholder="•" inputMode="numeric" />}
+            />
+
           </div>
           <div className={styles.buttonElement}>
             <button type="submit" className={styles.sendButton}>

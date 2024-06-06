@@ -10,8 +10,11 @@ import checkCrossIcon from "../../../assets/img/checkCrossIcon.svg";
 import arrowRightBlack from "../../../assets/img/arrowRightBlack.svg";
 import passwordEye from "../../../assets/img/passwordEye.svg";
 import ActivateAccount from "../../activateAccount/ActivateAccount";
+import HeroImg from "../../smallComponents/heroImg/HeroImg";
+import Logo from "../../../assets/img/voistLogo.svg";
+import Footer from "../../footer/Footer";
 
-const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
+const CreateAccount = ({ ChangeComponents }) => {
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
   const [showActivation, setShowActivation] = useState(false);
@@ -104,155 +107,153 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
 
   return (
     <section className={styles.container}>
+      <div className={styles.logo}>
+        <img src={Logo} alt="Voist Logo" />
+      </div>
       <div className={styles.loginContainer}>
-        <div className={styles.headline}></div>
-        {show && !showActivation && (
-          <div className={styles.main}>
-            <div className={styles.accountСreation}>
-              <h1>
-                Create <span>account</span>
-              </h1>
-              <div className={styles.accountAlready}>
-                <p>Already have an account?</p>
-                <button onClick={goToLogin} className={styles.loginButton}>
-                  Login here
-                </button>
-                <img src={img} alt="smile" loading="lazy" />
+        <div className={styles.main}>
+          <div className={styles.accountСreation}>
+            <h1>
+              Create <span>account</span>
+            </h1>
+            <div className={styles.accountAlready}>
+              <p>Already have an account?</p>
+              <button onClick={goToLogin} className={styles.loginButton}>
+                Login here
+              </button>
+              <img src={img} alt="smile" loading="lazy" />
+            </div>
+          </div>
+          <form className={styles.formContainer} onSubmit={handleSubmit}>
+            <div className={styles.nameSurname}>
+              <div className={styles.input}>
+                <label className={styles.label} htmlFor="Name">
+                  Name*
+                </label>
+                <div className={styles.inputShow}>
+                  <input
+                    type="text"
+                    placeholder="Enter name"
+                    id="EnterName"
+                    value={data.first_name}
+                    name="first_name"
+                    onChange={handleChange}
+                    autoComplete="given-name"
+                  />
+                  <img src={inputIcon} alt="" />
+                </div>
+              </div>
+              <div className={styles.input}>
+                <label className={styles.label} htmlFor="password">
+                  Surname*
+                </label>
+                <div className={styles.inputShow}>
+                  <input
+                    type="text"
+                    id="EnterSurname"
+                    placeholder="Enter surname"
+                    value={data.last_name}
+                    name="last_name"
+                    onChange={handleChange}
+                    autoComplete="family-name"
+                  />
+                  <img src={inputIcon} alt="" />
+                </div>
               </div>
             </div>
-
-            {/* Form section */}
-            <form className={styles.formContainer} onSubmit={handleSubmit}>
-              <div className={styles.nameSurname}>
-                <div className={styles.input}>
-                  <label className={styles.label} htmlFor="Name">
-                    Name*
-                  </label>
-                  <div className={styles.inputShow}>
-                    <input
-                      type="text"
-                      placeholder="Enter name"
-                      id="EnterName"
-                      value={data.first_name}
-                      name="first_name"
-                      onChange={handleChange}
-                      autoComplete="given-name"
-                    />
-                    <img src={inputIcon} alt="" />
-                  </div>
-                </div>
-                <div className={styles.input}>
-                  <label className={styles.label} htmlFor="password">
-                    Surname*
-                  </label>
-                  <div className={styles.inputShow}>
-                    <input
-                      type="text"
-                      id="EnterSurname"
-                      placeholder="Enter surname"
-                      value={data.last_name}
-                      name="last_name"
-                      onChange={handleChange}
-                      autoComplete="family-name"
-                    />
-                    <img src={inputIcon} alt="" />
-                  </div>
-                </div>
+            <div className={styles.inputEmail}>
+              <label className={styles.label} htmlFor="password">
+                E-mail*
+              </label>
+              <div
+                className={`${styles.inputE} ${isTyping && !emailValid ? styles.invalid : ""
+                  }`}
+              >
+                <input
+                  type="email"
+                  placeholder="example@company.com"
+                  id="EnterEmail"
+                  value={data.email}
+                  name="email"
+                  onChange={handleChange}
+                  autoComplete="email"
+                />
               </div>
-              <div className={styles.inputEmail}>
+              <img src={inputMessageIcon} alt="" />
+              {!emailValid && <p className={styles.error}>{emailError}</p>}
+            </div>
+            <div className={styles.nameSurname}>
+              <div className={styles.input}>
                 <label className={styles.label} htmlFor="password">
-                  E-mail*
+                  Password*
                 </label>
-                <div
-                  className={`${styles.inputE} ${isTyping && !emailValid ? styles.invalid : ""
-                    }`}
-                >
+                <div className={styles.inputShow}>
                   <input
-                    type="email"
-                    placeholder="example@company.com"
-                    id="EnterEmail"
-                    value={data.email}
-                    name="email"
+                    type={showPassword1 ? "text" : "password"}
+                    placeholder="Enter password"
+                    id="password"
+                    value={data.password}
+                    name="password"
                     onChange={handleChange}
-                    autoComplete="email"
                   />
-                </div>
-                <img src={inputMessageIcon} alt="" />
-                {!emailValid && <p className={styles.error}>{emailError}</p>}
-              </div>
-              <div className={styles.nameSurname}>
-                <div className={styles.input}>
-                  <label className={styles.label} htmlFor="password">
-                    Password*
-                  </label>
-                  <div className={styles.inputShow}>
-                    <input
-                      type={showPassword1 ? "text" : "password"}
-                      placeholder="Enter password"
-                      id="password"
-                      value={data.password}
-                      name="password"
-                      onChange={handleChange}
-                    />
-                    <img
-                      src={showPassword1 ? passwordEye : eyeClosedIcon}
-                      alt=""
-                      onClick={togglePasswordVisibility1}
-                    />
-                  </div>
-                </div>
-                <div className={styles.input}>
-                  <label className={styles.label} htmlFor="password">
-                    Repeat password*
-                  </label>
-                  <div className={styles.inputShow}>
-                    <input
-                      type={showPassword2 ? "text" : "password"}
-                      id="confirmPassword"
-                      placeholder="Enter password"
-                      value={data.confirm_password}
-                      name="confirm_password"
-                      onChange={handleChange}
-                    />
-                    <img
-                      src={showPassword2 ? passwordEye : eyeClosedIcon}
-                      alt=""
-                      onClick={togglePasswordVisibility2}
-                    />
-                  </div>
-                  {/* {passwordError && <p className={styles.error}>{passwordError}</p>} */}
-                </div>
-              </div>
-              <div className={styles.characters}>
-                <div>
-                  <img src={checkGreenIcon} alt="Green Icon" />
-                  <p>Upper and lower case letters</p>
-                </div>
-                <div>
-                  <img src={checkCrossIcon} alt="Cross Icon" />
-                  <p>
-                    At least one number and one character (@!$%& symbols
-                    allowed)
-                  </p>
-                </div>
-                <div>
-                  <img src={checkGrayIcon} alt="Gray Icon" />
-                  <p>Between 8 and 72 characters</p>
-                </div>
-              </div>
-              <div className={styles.buttonElement}>
-                <button className={styles.letsGoButton} type="submit">
-                  <p>Let’s go</p>
                   <img
-                    className={styles.arrowRight}
-                    src={arrowRightBlack}
-                    alt="Error"
+                    src={showPassword1 ? passwordEye : eyeClosedIcon}
+                    alt=""
+                    onClick={togglePasswordVisibility1}
                   />
-                </button>
+                </div>
               </div>
-            </form>
-          </div>
-        )}
+              <div className={styles.input}>
+                <label className={styles.label} htmlFor="password">
+                  Repeat password*
+                </label>
+                <div className={styles.inputShow}>
+                  <input
+                    type={showPassword2 ? "text" : "password"}
+                    id="confirmPassword"
+                    placeholder="Enter password"
+                    value={data.confirm_password}
+                    name="confirm_password"
+                    onChange={handleChange}
+                  />
+                  <img
+                    src={showPassword2 ? passwordEye : eyeClosedIcon}
+                    alt=""
+                    onClick={togglePasswordVisibility2}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className={styles.characters}>
+              <div>
+                <img src={checkGreenIcon} alt="Green Icon" />
+                <p>Upper and lower case letters</p>
+              </div>
+              <div>
+                <img src={checkCrossIcon} alt="Cross Icon" />
+                <p>
+                  At least one number and one character (@!$%& symbols
+                  allowed)
+                </p>
+              </div>
+              <div>
+                <img src={checkGrayIcon} alt="Gray Icon" />
+                <p>Between 8 and 72 characters</p>
+              </div>
+            </div>
+            <div className={styles.buttonElement}>
+              <button className={styles.letsGoButton} type="submit">
+                <p>Let’s go</p>
+                <img
+                  className={styles.arrowRight}
+                  src={arrowRightBlack}
+                  alt="Error"
+                />
+              </button>
+            </div>
+          </form>
+          <Footer />
+        </div>
         {showActivation && activationCodeSent && (
           <ActivateAccount
             data={data}
@@ -261,6 +262,7 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
           />
         )}
       </div>
+      <HeroImg />
     </section>
   );
 };
