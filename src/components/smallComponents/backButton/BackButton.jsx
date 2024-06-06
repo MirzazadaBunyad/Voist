@@ -1,12 +1,13 @@
 import styles from "./backButton.module.scss";
 import arrowLeftBlack from "../../../assets/img/arrowLeftBlack.svg";
+import { Link } from "react-router-dom";
 
-function BackButton({ handleBack }) {
+function BackButton() {
   return (
     <>
-      <button onClick={handleBack} className={styles.arrowLeft}>
+      <Link to={"/login"} className={styles.arrowLeft}>
         <img src={arrowLeftBlack} alt="" />
-      </button>
+      </Link>
     </>
   );
 }

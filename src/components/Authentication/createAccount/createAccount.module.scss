@@ -5,7 +5,10 @@
   justify-content: space-between;
 }
 .loginContainer {
-  margin: 20px 0 0 130px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin: 56px 0 0 130px;
   .main {
     display: flex;
     width: 500px;

@@ -5,7 +5,6 @@ import Successfully from "./successfully/Successfully";
 import CodeBelow from "./codeBelow/CodeBolow";
 import SendToEmail from "./sendToEmail/SendToEmail";
 import { CSSTransition } from "react-transition-group";
-import "../animations.scss";
 import HeroImg from "../../smallComponents/heroImg/HeroImg";
 
 export default function ForgotPassword({ backToLogin }) {
