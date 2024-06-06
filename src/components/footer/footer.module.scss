@@ -3,7 +3,6 @@
 .footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   @include responsive769to1057 {
     margin-left: 50px;
   }

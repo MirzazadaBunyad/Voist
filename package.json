@@ -51,6 +51,7 @@
     "s3-upload": "^0.1.0",
     "sass": "^1.72.0",
     "scrollreveal": "^4.0.9",
+    "sweetalert2": "^11.11.0",
     "wavesurfer.js": "^7.7.11"
   },
   "devDependencies": {

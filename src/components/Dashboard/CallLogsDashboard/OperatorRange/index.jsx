@@ -1,20 +1,36 @@
+import axios from "axios";
 import UserGroupIcon from "../../../Icon/UserGroup";
 import styles from "./index.module.scss";
-import { operators } from "../../../data/operators";
-import { useState } from "react";
+// import { operators } from "../../../data/operators";
+import { useEffect, useState } from "react";
 const OpeatorRange = ({ operatorRange, setOperatorRange }) => {
   const [selected, setSelected] = useState(false);
+  const [data, setData] = useState(null);
 
-  const handleCheckboxChange = (e) => {
-    const value = e.target.name;
+  const handleCheckboxChange = (e, id) => {
     if (e.target.checked) {
-      if (!operatorRange.includes(value)) {
-        setOperatorRange((prev) => [...prev, value]);
+      if (!operatorRange.includes(id)) {
+        setOperatorRange((prev) => [...prev, id]);
       }
     } else {
-      setOperatorRange((prev) => prev.filter((item) => item !== value));
+      setOperatorRange((prev) => prev.filter((item) => item !== id));
     }
   };
+
+  useEffect(() => {
+    const getOperators = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_BASE_URL}/operators/`
+        );
+        setData(response.data.operators);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getOperators();
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -27,18 +43,25 @@ const OpeatorRange = ({ operatorRange, setOperatorRange }) => {
         </p>
       </div>
       <div className={`${styles.options} ${selected ? styles.active : ""}`}>
-        {operators?.map((operator) => (
-          <div key={operator?.id}>
-            <input
-              type="checkbox"
-              name={operator?.name}
-              id={operator?.id}
-              onChange={handleCheckboxChange}
-            />
-            <img src={operator?.image} alt="" />
-            <label htmlFor={operator?.id}>{operator?.name}</label>
-          </div>
-        ))}
+        {data &&
+          data?.map((operator) => (
+            <div key={operator?.id}>
+              <input
+                type="checkbox"
+                id={operator?.id}
+                onChange={(e) => handleCheckboxChange(e, operator?.id)}
+              />
+              <img src={operator?.image_url ?? "/img/user.png"} alt="" />
+              <label htmlFor={operator?.id}>
+                {`${operator?.first_name} ${operator?.last_name}`.length > 18
+                  ? `${operator?.first_name} ${operator?.last_name}`.slice(
+                      0,
+                      18
+                    ) + "..."
+                  : `${operator?.first_name} ${operator?.last_name}`}
+              </label>
+            </div>
+          ))}
       </div>
     </div>
   );

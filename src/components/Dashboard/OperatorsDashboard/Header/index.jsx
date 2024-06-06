@@ -6,21 +6,23 @@ const OperatorHeader = ({ operator }) => {
     <div className={styles.container}>
       <div className={styles.profile}>
         <div className={styles.photo}>
-          <img src={operator?.image} alt="" />
+          <img src={operator?.photo ?? "/img/user.png"} alt="" />
         </div>
         <div className={styles.text}>
-          <h4>{operator?.name}</h4>
-          <p>{operator?.email}</p>
+          <h4>
+            {operator && operator?.first_name + " " + operator?.last_name}
+          </h4>
+          <p>{operator && operator?.email}</p>
         </div>
         <div className={styles.availability}>
           <p
             className={`${
-              operator.availability == "Available"
+              operator && operator.availability.toLowerCase() == "available"
                 ? styles.available
                 : styles.unavailable
             }`}
           >
-            {operator.availability}
+            {operator && operator.availability}
           </p>
         </div>
       </div>
