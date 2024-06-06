@@ -2,10 +2,11 @@
   border-radius: 10px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 
 .loginContainer {
-  margin: -20px 0 0 130px;
+  margin: 20px 0 0 130px;
   .main {
     display: flex;
     width: 500px;

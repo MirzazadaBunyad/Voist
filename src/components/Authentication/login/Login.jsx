@@ -1,11 +1,14 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./login.module.scss";
 import smile from "../../../assets/img/smile.gif";
 import eyeClosedIcon from "../../../assets/img/eyeClosedIcon.svg";
 import inputMessageIcon from "../../../assets/img/inputMessageIcon.svg";
 import ayeOpen from "../../../assets/img/passwordEye.svg";
 import arrowRightBlack from "../../../assets/img/arrowRightBlack.svg";
+import HeroImg from "../../smallComponents/heroImg/HeroImg";
+import Footer from "../../footer/Footer";
+import logo from "../../../assets/img/voistLogo.svg";
 
 export default function Login({ openForgetPassword, ChangeComponents }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -93,35 +96,46 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
   };
 
   return (
-    <section className={styles.container}>
+    <section className={styles.login}>
+      <div className={styles.container}>
+
       <main className={styles.info__main}>
+      <img  src={logo} alt="Error" className={styles.logo}/>
         <div className={styles.login__header}>
           <h1 className={styles.headLine}>
             Hey there,<span>welcome</span> <br /> to voist!
           </h1>
           <div className={styles.accountСreation}>
+            <div>
             <p className={styles.accountСreationText}>
               Don't you have an account?
             </p>
+            </div>
+            <div>
+
             <span className={styles.accountСreationBtn}>
-              <button className={styles.createBtn} onClick={goToCreateAccount}>
-                Create account
-              </button>
+              <Link to={"/createAccount"} className={styles.createBtn}>
+                Create an account
+              </Link>
+              
             </span>
+            </div>
+            <div>
             <img className={styles.smile} src={smile} alt="Smile" />
+            </div>
           </div>
         </div>
         <form
-          className={styles.form}
+          className={styles.formContainer}
           onSubmit={sendInformation}
         >
+          <div className="inputContainer">
           <div className={styles.inputBox}>
             <label className={styles.loginLabel} htmlFor="email">
               E-mail*
             </label>
             <div
-              className={`${styles.LoginInput} ${isTyping && !isValidEmail(formData.email) ? styles.invalid : ""}`}
-            >
+              className={`${styles.LoginInput} ${isTyping && !isValidEmail(formData.email) ? styles.invalid : ""}`} >
               <input
                 type="email"
                 id="email"
@@ -137,10 +151,11 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
               alt="Error"
             />
           </div>
-          <div className={styles.password}>
+          <div className={styles.inputBox}>
             <label className={styles.loginLabel} htmlFor="password">
               Password*
             </label>
+            <div className={styles.LoginInput2}>
             <input
               className={styles.LoginInput}
               type={showPassword ? "text" : "password"}
@@ -149,13 +164,14 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
               placeholder="Enter password"
               value={formData.password}
               onChange={handleChange}
-            />
+              />
             <img
               className={styles.passwordIcon}
               onClick={handleShowPassword}
               src={showPassword ? ayeOpen : eyeClosedIcon}
               alt="Show/Hide Password"
-            />
+              />
+              </div>
           </div>
           <div className={styles.rememberMe}>
             <div className={styles.rememberMeContainer}>
@@ -180,6 +196,8 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
             </div>
           </div>
           {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
+          </div>
+          
           <div className={styles.button}>
             <button type="submit" className={styles.buttonElement}>
               Let's go
@@ -187,7 +205,11 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
             </button>
           </div>
         </form>
+          <Footer/>
       </main>
+      </div >
+      <HeroImg/>
+
     </section>
   );
 }

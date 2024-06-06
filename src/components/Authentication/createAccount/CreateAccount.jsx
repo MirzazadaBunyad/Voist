@@ -10,6 +10,10 @@ import checkCrossIcon from "../../../assets/img/checkCrossIcon.svg";
 import arrowRightBlack from "../../../assets/img/arrowRightBlack.svg";
 import passwordEye from "../../../assets/img/passwordEye.svg";
 import ActivateAccount from "../../activateAccount/ActivateAccount";
+import HeroImg from "../../smallComponents/heroImg/HeroImg";
+import { Link } from "react-router-dom";
+import logo from "../../../assets/img/voistLogo.svg";
+
 
 const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
   const [showPassword1, setShowPassword1] = useState(false);
@@ -104,19 +108,22 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
 
   return (
     <section className={styles.container}>
+<div>
+</div>
+      
       <div className={styles.loginContainer}>
         <div className={styles.headline}></div>
-        {show && !showActivation && (
           <div className={styles.main}>
+  <img src={logo} alt="error" />
             <div className={styles.accountСreation}>
               <h1>
                 Create <span>account</span>
               </h1>
               <div className={styles.accountAlready}>
                 <p>Already have an account?</p>
-                <button onClick={goToLogin} className={styles.loginButton}>
+                <Link to="/login" className={styles.loginButton}>
                   Login here
-                </button>
+                </Link>
                 <img src={img} alt="smile" loading="lazy" />
               </div>
             </div>
@@ -252,7 +259,6 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
               </div>
             </form>
           </div>
-        )}
         {showActivation && activationCodeSent && (
           <ActivateAccount
             data={data}
@@ -261,6 +267,8 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
           />
         )}
       </div>
+      <HeroImg/>
+  
     </section>
   );
 };
