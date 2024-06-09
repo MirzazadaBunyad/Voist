@@ -8,12 +8,10 @@
 }
 .container {
   display: flex;
-  width: 100%;
-  overflow-x: hidden;
 }
 .logo {
   display: inline-block;
-  margin: 56px 130px;
+  margin: 26px 130px;
   width: 91px;
   height: 24px;
   position: relative;
@@ -49,6 +47,7 @@
 
 .left__side {
   width: 60%;
+
 
   @include mobileresponsive {
     width: 100%;
@@ -87,7 +86,6 @@
 
 .formContainer {
   .createAccount{
-    height: 75vh;
     display: flex;
     align-items: center;
   }

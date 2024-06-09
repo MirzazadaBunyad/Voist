@@ -256,7 +256,7 @@ function LandingPage() {
                   className={styles.buttons}
                 >
                   <div className={styles.hero}>
-                    <Link to="/authentication" className={styles.startedMob}>
+                    <Link to="/authentication/login" className={styles.startedMob}>
                       Get started <BsArrowRight className={styles.arrowRight} />
                     </Link>
                   </div>
@@ -267,7 +267,7 @@ function LandingPage() {
           {show ? (
             <div className={styles.buttons}>
               <div className={styles.hero}>
-                <Link to="/authentication" className={styles.started}>
+                <Link to="/authentication/login" className={styles.started}>
                   Get started <BsArrowRight className={styles.arrowRight} />
                 </Link>
               </div>
@@ -309,7 +309,7 @@ function LandingPage() {
               </p>
             </div>
             <div className={styles.btns}>
-              <Link to="/authentication" className={styles.btnStarted}>
+              <Link to="/authentication/login" className={styles.btnStarted}>
                 Get started <BsArrowRight className={styles.arrowRight} />
               </Link>
               {/* <button className={styles.learnMoreBtn}>Learn more</button> */}
@@ -364,7 +364,7 @@ function LandingPage() {
                   </p>
                 </div>
                 <div className={styles.btns}>
-                  <Link to="/authentication" className={styles.btnRequest}>
+                  <Link to="/authentication/login" className={styles.btnRequest}>
                     Get started
                     <BsArrowRight className={styles.arrowRight} />
                   </Link>
@@ -514,7 +514,7 @@ function LandingPage() {
               </p>
             </div>
             <div className={styles.requestDemoBtns}>
-              <Link to="/authentication" className={styles.requestDemoBtn}>
+              <Link to="/authentication/login" className={styles.requestDemoBtn}>
                 Get started
                 <BsArrowRight className={styles.arrowRight} />
               </Link>

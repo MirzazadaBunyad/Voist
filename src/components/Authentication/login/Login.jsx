@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./login.module.scss";
 import smile from "../../../assets/img/smile.gif";
 import eyeClosedIcon from "../../../assets/img/eyeClosedIcon.svg";
@@ -8,7 +8,7 @@ import ayeOpen from "../../../assets/img/passwordEye.svg";
 import arrowRightBlack from "../../../assets/img/arrowRightBlack.svg";
 import axios from "axios";
 
-export default function Login({ openForgetPassword, ChangeComponents }) {
+export default function Login({ openForgetPassword }) {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -67,6 +67,7 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
       }
       console.log("Data sent successfully!");
       navigate("/dashboard");
+      
     } catch (error) {
       console.error("Error sending data:", error.message);
       setErrorMessage("Error sending data");
@@ -79,12 +80,11 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
     setShowPassword(!showPassword);
   };
 
-  const goToCreateAccount = () => {
-    ChangeComponents();
-  };
+ 
 
-  const handleChangeForgetPassword = () => {
+  const handleChangeForgetPassword = (e) => {
     openForgetPassword();
+    e.preventDefault()
   };
 
   return (
@@ -99,9 +99,9 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
               Don't you have an account?
             </p>
             <span className={styles.accountСreationBtn}>
-              <button className={styles.createBtn} onClick={goToCreateAccount}>
-                Create account
-              </button>
+            <Link to="/authentication/createaccount" className={styles.createBtn}>
+                    Create an account
+                  </Link>
             </span>
             <img className={styles.smile} src={smile} alt="Smile" />
           </div>
@@ -118,7 +118,6 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
             >
               <input
                 type="email"
-                id="email"
                 name="email"
                 placeholder="example@company.com"
                 value={formData.email}
@@ -138,7 +137,6 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
             <input
               className={styles.LoginInput}
               type={showPassword ? "text" : "password"}
-              id="password"
               name="password"
               placeholder="Enter password"
               value={formData.password}
@@ -156,7 +154,6 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
               <input
                 className={styles.rememberMeInput}
                 type="checkbox"
-                id="rememberMe"
                 name="rememberMe"
               />
               <label className={styles.rememberMeLabel} htmlFor="rememberMe">
@@ -164,13 +161,13 @@ export default function Login({ openForgetPassword, ChangeComponents }) {
               </label>
             </div>
             <div className={styles.forgotPasswordContainer}>
-              <button
+              <Link to={"/authentication/forgotPassword"}
                 type="button"
                 onClick={handleChangeForgetPassword}
                 className={styles.forgotPassword}
               >
                 Forgot password?
-              </button>
+              </Link>
             </div>
           </div>
           {errorMessage && (

@@ -10,6 +10,7 @@ import checkCrossIcon from "../../../assets/img/checkCrossIcon.svg";
 import arrowRightBlack from "../../../assets/img/arrowRightBlack.svg";
 import passwordEye from "../../../assets/img/passwordEye.svg";
 import ActivateAccount from "../../activateAccount/ActivateAccount";
+import { Link } from "react-router-dom";
 
 const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
   const [showPassword1, setShowPassword1] = useState(false);
@@ -106,7 +107,7 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
     <section className={styles.container}>
       <div className={styles.loginContainer}>
         <div className={styles.headline}></div>
-        {show && !showActivation && (
+         
           <div className={styles.main}>
             <div className={styles.accountСreation}>
               <h1>
@@ -114,9 +115,9 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
               </h1>
               <div className={styles.accountAlready}>
                 <p>Already have an account?</p>
-                <button onClick={goToLogin} className={styles.loginButton}>
+                <Link to={"/authentication/login"}  className={styles.loginButton}>
                   Login here
-                </button>
+                </Link>
                 <img src={img} alt="smile" loading="lazy" />
               </div>
             </div>
@@ -132,7 +133,6 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
                     <input
                       type="text"
                       placeholder="Enter name"
-                      id="EnterName"
                       value={data.first_name}
                       name="first_name"
                       onChange={handleChange}
@@ -148,7 +148,6 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
                   <div className={styles.inputShow}>
                     <input
                       type="text"
-                      id="EnterSurname"
                       placeholder="Enter surname"
                       value={data.last_name}
                       name="last_name"
@@ -170,7 +169,6 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
                   <input
                     type="email"
                     placeholder="example@company.com"
-                    id="EnterEmail"
                     value={data.email}
                     name="email"
                     onChange={handleChange}
@@ -188,8 +186,6 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
                   <div className={styles.inputShow}>
                     <input
                       type={showPassword1 ? "text" : "password"}
-                      placeholder="Enter password"
-                      id="password"
                       value={data.password}
                       name="password"
                       onChange={handleChange}
@@ -208,7 +204,6 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
                   <div className={styles.inputShow}>
                     <input
                       type={showPassword2 ? "text" : "password"}
-                      id="confirmPassword"
                       placeholder="Enter password"
                       value={data.confirm_password}
                       name="confirm_password"
@@ -252,7 +247,7 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
               </div>
             </form>
           </div>
-        )}
+
         {showActivation && activationCodeSent && (
           <ActivateAccount
             data={data}

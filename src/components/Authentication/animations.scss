@@ -31,14 +31,12 @@
   opacity: 1;
   transform: translateX(31px);
   transition: opacity 1s ease, transform 1s linear;
-  top: 138px;
 }
 
 .CreateAccount-exit {
   opacity: 1;
   transform: translateX(0);
   position: absolute;
-  top: 138px;
 }
 
 .CreateAccount-exit-active {
