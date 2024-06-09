@@ -7,6 +7,9 @@ import CreateAccount from "./components/Authentication/createAccount/CreateAccou
 import VoiceRecorder from "./components/voiceRecorder/VoiceRecorder";
 import Dashboard from "./pages/Dashboard";
 import OnBoarding from "./components/onBoarding/OnBoarding";
+import Login from "./components/Authentication/login/Login";
+import CreateAccount from "./components/Authentication/createAccount/CreateAccount";
+import ForgotPassword from "./components/Authentication/forgotPassword/Forgotpassword";
 import { axiosInterceptorHandle } from "./utils/AxiosInterceptor";
 import { useEffect } from "react";
 import ForgotPassword from "./components/Authentication/forgotPassword/Forgotpassword";

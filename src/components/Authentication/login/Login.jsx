@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./login.module.scss";
 import smile from "../../../assets/img/smile.gif";
 import eyeClosedIcon from "../../../assets/img/eyeClosedIcon.svg";
 import inputMessageIcon from "../../../assets/img/inputMessageIcon.svg";
 import ayeOpen from "../../../assets/img/passwordEye.svg";
 import arrowRightBlack from "../../../assets/img/arrowRightBlack.svg";
+import HeroImg from "../../smallComponents/heroImg/HeroImg";
+import Footer from "../../footer/Footer";
+import logo from "../../../assets/img/voistLogo.svg";
 import axios from "axios";
 
 export default function Login({ openForgetPassword }) {

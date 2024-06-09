@@ -15,76 +15,95 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
-  .headLine {
-    font-size: 2.5rem;
-    font-weight: 900;
-    line-height: 2.75rem;
-    letter-spacing: 0.025rem;
-    color: #1d2b21;
-
-    span {
-      color: #38e842;
-      font-weight: 900;
-      letter-spacing: 0.025rem;
-      font-size: 2.5rem;
-      line-height: 2.75rem;
-    }
-  }
-  .accountСreation {
-    display: flex;
-    align-items: center;
-    .accountСreationText {
-      color: #6c756f;
-      font-size: 0.9rem;
-      font-style: normal;
-      font-weight: 500;
-      line-height: 1rem;
-      letter-spacing: 0.4px;
-    }
-    .accountСreationBtn {
-      .createBtn {
-        border: none;
-        background-color: transparent;
-        padding: 2px 8px;
-        font-size: 0.9rem;
-        font-weight: 700;
-        line-height: 1rem;
-        font-family: Raleway;
-        letter-spacing: 0.4px;
-        color: #000000;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        &:hover {
-          background-color: #ecf1ff;
-          color: #7da1ff;
-          transition: all 0.3s ease;
-          border-radius: 8px;
-        }
-        &:active {
-          color: #2b52b5;
-          background-color: #c3d4ff;
-          border-radius: 8px;
-        }
-      }
-    }
-    .smile {
-      width: 1.5rem;
-      height: 1.5rem;
-    }
-  }
+  align-self: stretch;
 }
-
-.form {
-  width: 31.25rem;
-  margin-top: 25px;
-}
-
-.loginLabel {
-  font-weight: 600;
-  font-size: 0.75rem;
-  line-height: 0.75rem;
+.headLine{
+  color: var(--Base-base-13, #1D2B21);
+  font-family: Raleway;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 44px; /* 110% */
   letter-spacing: 0.4px;
-  color: #1d2b21;
+span{
+  color: var(--Main-main-600, #38E842);
+font-family: Raleway;
+font-size: 40px;
+font-style: normal;
+font-weight: 900;
+line-height: 44px;
+letter-spacing: 0.4px;
+} 
+}
+.accountСreation{
+  display: flex;
+align-items: center;
+gap: 8px;
+align-self: stretch;
+text-align: center;
+align-items: center;
+
+
+}
+.accountСreationText{
+  color: var(--Base-base-8, #6C756F);
+font-family: Raleway;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 16px; /* 114.286% */
+letter-spacing: 0.4px;
+
+}
+.createBtn{
+  color: var(--Natural-natural-13, #000);
+  font-family: Raleway;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px; /* 114.286% */
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  &:hover {
+    background-color: #ecf1ff;
+    transition: all 0.3s ease;
+    color: #7da1ff;
+    border-radius: 8px;
+  }
+  &:active {
+    color: #2b52b5;
+    background-color: #c3d4ff;
+  }
+  
+}
+.smile{
+  width: 24px;
+height: 24px;
+}
+
+.formContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  align-self: stretch;
+
+}
+
+.inputContainer{
+display: flex;
+flex-direction: column;
+gap: 24px;
+}
+
+.rememberMe{
+  display: flex;
+justify-content: space-between;
+align-items: center;
+align-self: stretch;
+width: 500px;
 }
 
 .LoginInput {
@@ -96,6 +115,19 @@
   margin-top: 9px;
   padding-right: 65px;
   transition: all 0.5s ease;
+  input {
+    width: 80%;
+    outline: none;
+    border: none;
+    &::placeholder {
+      color: #99a09b;
+      font-family: Raleway;
+      font-size: 0.875rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 1.5rem;
+      letter-spacing: 0.4px;
+    }
   &::placeholder {
     color: #99a09b;
     font-family: Raleway;
@@ -105,23 +137,11 @@
     line-height: 1.5rem;
     letter-spacing: 0.4px;
   }
+  }
 }
-
-.LoginInput input {
+.LoginInput2{
   width: 100%;
-  outline: none;
-  border: none;
-  &::placeholder {
-    color: #99a09b;
-    font-family: Raleway;
-    font-size: 0.875rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 1.5rem;
-    letter-spacing: 0.4px;
-  }
 }
-
 .invalid {
   border: 1px solid red;
 }
@@ -142,7 +162,6 @@
 .rememberMe {
   display: flex;
   justify-content: space-between;
-  margin-left: 10px;
   cursor: pointer;
   .rememberMeContainer {
     display: flex;
@@ -169,66 +188,73 @@
     }
   }
 }
-
-.forgotPassword {
-  background: transparent;
-  border: none;
-  color: #000;
-  font-family: Raleway;
-  font-weight: 700;
-  font-size: 0.875rem;
-  line-height: 24px;
-  letter-spacing: 0.4px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 2px 8px;
-  &:hover {
-    background-color: #ecf1ff;
-    transition: all 0.3s ease;
-    color: #7da1ff;
-    border-radius: 8px;
-  }
-  &:active {
-    color: #2b52b5;
-    background-color: #c3d4ff;
-  }
-}
-
 .button {
-  margin-top: 34px;
-  .buttonElement {
-    display: flex;
-    padding: 16px 24px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 12px;
+    margin-top: 34px;
+    .buttonElement {
+      display: flex;
+      padding: 16px 24px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      border-radius: 12px;
+      border: none;
+      background-color: #7dff85;
+      color: #1d2b21;
+      font-family: Raleway;
+      font-weight: 700;
+      font-size: 1rem;
+      line-height: 1.5rem;
+      letter-spacing: 0.4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      img {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+      &:hover {
+        background-color: #2bb534;
+        color: #ffffff;
+        transition: all 0.3s ease;
+        img {
+          filter: invert(100%);
+          transition: all 0.3s ease;
+        }
+      }
+      &:active {
+        transition: all 0.3s ease;
+        border: 6px solid #38e84266;
+      }
+    }
+  }
+  .forgotPassword {
+    background: transparent;
     border: none;
-    background-color: #7dff85;
-    color: #1d2b21;
+    color: #000;
     font-family: Raleway;
     font-weight: 700;
-    font-size: 1rem;
-    line-height: 1.5rem;
+    font-size: 0.875rem;
+    line-height: 24px;
     letter-spacing: 0.4px;
     cursor: pointer;
     transition: all 0.3s ease;
-    img {
-      width: 1.5rem;
-      height: 1.5rem;
-    }
+    padding: 2px 8px;
     &:hover {
-      background-color: #2bb534;
-      color: #ffffff;
+      background-color: #ecf1ff;
       transition: all 0.3s ease;
-      img {
-        filter: invert(100%);
-        transition: all 0.3s ease;
-      }
+      color: #7da1ff;
+      border-radius: 8px;
     }
     &:active {
-      transition: all 0.3s ease;
-      border: 6px solid #38e84266;
+      color: #2b52b5;
+      background-color: #c3d4ff;
     }
   }
-}
+  .errorMessage{
+    color: red;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-left: 9px;
+  }
+  
+  

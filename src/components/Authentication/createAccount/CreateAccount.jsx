@@ -12,7 +12,7 @@ import passwordEye from "../../../assets/img/passwordEye.svg";
 import ActivateAccount from "../../activateAccount/ActivateAccount";
 import { Link } from "react-router-dom";
 
-const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
+const CreateAccount = ({ ChangeComponents }) => {
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
   const [showActivation, setShowActivation] = useState(false);
@@ -256,6 +256,7 @@ const CreateAccount = ({ ChangeComponents, show /* , backToLogin */ }) => {
           />
         )}
       </div>
+      <HeroImg />
     </section>
   );
 };

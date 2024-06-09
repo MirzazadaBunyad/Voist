@@ -5,7 +5,7 @@ import Successfully from "./successfully/Successfully";
 import CodeBelow from "./codeBelow/CodeBolow";
 import SendToEmail from "./sendToEmail/SendToEmail";
 import { CSSTransition } from "react-transition-group";
-import "../animations.scss";
+import HeroImg from "../../smallComponents/heroImg/HeroImg";
 
 export default function ForgotPassword({ backToLogin }) {
   const [currentComponent, setCurrentComponent] = useState("SendToEmail");
@@ -17,6 +17,7 @@ export default function ForgotPassword({ backToLogin }) {
 
   return (
     <section className={styles.container}>
+      <HeroImg />
       <div className={styles.loginContainer}>
         <CSSTransition
           in={currentComponent === "SendToEmail"}

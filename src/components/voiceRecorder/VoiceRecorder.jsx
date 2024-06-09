@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-// import AWS from 'aws-sdk'
+import AWS from 'aws-sdk';
 import HeroImg from "../smallComponents/heroImg/HeroImg";
 import styles from "./voiceRecorder.module.scss";
 import voistWhiteLogo from "../../assets/img/voistWhiteLogo.svg";
@@ -17,21 +17,21 @@ function VoiceRecorder() {
     const [isButtonsVisible, setIsButtonsVisible] = useState(false);
     const [isSendButtonVisible, setIsSendButtonVisible] = useState(true);
     const [showAudio, setShowAudio] = useState(false);
-
+    const recordedBlobRef = useRef(null);
 
     // AWS S3 configuration
-    // const S3_BUCKET = 'YOUR_BUCKET_NAME_HERE';
-    // const REGION = 'YOUR_DESIRED_REGION_HERE';
+    const S3_BUCKET = 'call-recordings-voist';
+    const REGION = 'eu-central-1';
 
-    // AWS.config.update({
-    //     accessKeyId: 'YOUR_ACCESS_KEY_HERE',
-    //     secretAccessKey: 'YOUR_SECRET_ACCESS_KEY_HERE'
-    // })
+    AWS.config.update({
+        accessKeyId: 'AKIAVRUVQ2YQAXCVNRLE',
+        secretAccessKey: 'gXr/kp4T90ldr4B6qYtzIASU47pUFrQixkwCCdka'
+    });
 
-    // const myBucket = new AWS.S3({
-    //     params: { Bucket: S3_BUCKET },
-    //     region: REGION,
-    // });
+    const myBucket = new AWS.S3({
+        params: { Bucket: S3_BUCKET },
+        region: REGION,
+    });
 
     function createBlobUrl(blob) {
         return URL.createObjectURL(blob);
@@ -60,10 +60,7 @@ function VoiceRecorder() {
                     setIsMicrophoneVisible(true);
                     setIsButtonsVisible(true);
                     setIsSendButtonVisible(false);
-
-                    // Upload recorded audio to S3
-
-                    // uploadFile(blob);
+                    recordedBlobRef.current = blob;
                 };
 
                 mediaRecorder.start();
@@ -85,28 +82,32 @@ function VoiceRecorder() {
         window.location.reload();
     };
 
-    // const uploadFile = (file) => {
-    //     const params = {
-    //         ACL: 'public-read',
-    //         Body: file,
-    //         Bucket: S3_BUCKET,
-    //         Key: `recorded_audio_${Date.now()}.webm` // Adjust the Key as needed
-    //     };
+    const handleSend = () => {
+        if (recordedBlobRef.current) {
+            uploadFile(recordedBlobRef.current);
+        }
+    };
 
-    //     myBucket.putObject(params)
-    //         .on('httpUploadProgress', (evt) => {
-    //             console.log(`Upload Progress: ${Math.round((evt.loaded / evt.total) * 100)}%`);
-    //         })
-    //         .send((err) => {
-    //             if (err) console.log(err);
-    //         });
-    // };
+    const uploadFile = (file) => {
+        const params = {
+            ACL: 'public-read',
+            Body: file,
+            Bucket: S3_BUCKET,
+            Key: `recorded_audio_${Date.now()}.webm` // Adjust the Key as needed
+        };
+
+        myBucket.putObject(params)
+            .on('httpUploadProgress', (evt) => {
+                console.log(`Upload Progress: ${Math.round((evt.loaded / evt.total) * 100)}%`);
+            })
+            .send((err) => {
+                if (err) console.log(err);
+            });
+    };
 
     return (
         <div className={styles.container}>
-            <div className={styles.rightImage}>
-                <HeroImg />
-            </div>
+            <HeroImg />
             <div className={styles.left__side}>
                 <header>
                     <div className={styles.logo}>
@@ -139,7 +140,7 @@ function VoiceRecorder() {
                                 {isRecording ? 'Stop recording' : 'Start recording'}
                             </button>
                             <div className={`${styles.buttons} ${isButtonsVisible ? styles.buttonsVisible : ''}`}>
-                                <button className={styles.sendButton}>
+                                <button className={styles.sendButton} onClick={handleSend}>
                                     <img className={styles.checkIcon} src={checkWhiteIcon} alt="Check icon" />
                                     Send
                                 </button>
