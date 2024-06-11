@@ -1,15 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Link, useNavigate } from "react-router-dom";
 import styles from "./login.module.scss";
 import smile from "../../../assets/img/smile.gif";
 import eyeClosedIcon from "../../../assets/img/eyeClosedIcon.svg";
 import inputMessageIcon from "../../../assets/img/inputMessageIcon.svg";
 import ayeOpen from "../../../assets/img/passwordEye.svg";
 import arrowRightBlack from "../../../assets/img/arrowRightBlack.svg";
-import HeroImg from "../../smallComponents/heroImg/HeroImg";
-import Footer from "../../footer/Footer";
-import logo from "../../../assets/img/voistLogo.svg";
 import axios from "axios";
 
 export default function Login({ openForgetPassword }) {
@@ -71,7 +67,7 @@ export default function Login({ openForgetPassword }) {
       }
       console.log("Data sent successfully!");
       navigate("/dashboard");
-      
+
     } catch (error) {
       console.error("Error sending data:", error.message);
       setErrorMessage("Error sending data");
@@ -84,7 +80,7 @@ export default function Login({ openForgetPassword }) {
     setShowPassword(!showPassword);
   };
 
- 
+
 
   const handleChangeForgetPassword = (e) => {
     openForgetPassword();
@@ -103,9 +99,9 @@ export default function Login({ openForgetPassword }) {
               Don't you have an account?
             </p>
             <span className={styles.accountСreationBtn}>
-            <Link to="/authentication/createaccount" className={styles.createBtn}>
-                    Create an account
-                  </Link>
+              <Link to="/authentication/createaccount" className={styles.createBtn}>
+                Create an account
+              </Link>
             </span>
             <img className={styles.smile} src={smile} alt="Smile" />
           </div>
@@ -116,9 +112,8 @@ export default function Login({ openForgetPassword }) {
               E-mail*
             </label>
             <div
-              className={`${styles.LoginInput} ${
-                isTyping && !isValidEmail(formData.email) ? styles.invalid : ""
-              }`}
+              className={`${styles.LoginInput} ${isTyping && !isValidEmail(formData.email) ? styles.invalid : ""
+                }`}
             >
               <input
                 type="email"
@@ -165,7 +160,7 @@ export default function Login({ openForgetPassword }) {
               </label>
             </div>
             <div className={styles.forgotPasswordContainer}>
-              <Link to={"/authentication/forgotPassword"}
+              <Link to={"/forgotPassword/SendToEmail"}
                 type="button"
                 onClick={handleChangeForgetPassword}
                 className={styles.forgotPassword}
