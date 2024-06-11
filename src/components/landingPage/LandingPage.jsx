@@ -706,7 +706,7 @@ function LandingPage() {
                   <a target="blank" href="">
                     <FaTwitter className={styles.footerContSocialIcon} />
                   </a>
-                  <a target="blank" href="">
+                  <a target="blank" href="https://www.linkedin.com/company/alas-development-center/mycompany/">
                     <FaLinkedin className={styles.footerContSocialIcon} />
                   </a>
                 </div>
