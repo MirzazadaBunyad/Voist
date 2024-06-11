@@ -1,29 +1,26 @@
 .container {
-  border-radius: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 .loginContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  margin: 56px 0 0 130px;
+  padding: 40px 0 0 130px;
+  height: 84vh;
   .main {
     display: flex;
     width: 500px;
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    gap: 7px;
     .characters {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 8px;
+      gap: 5px;
       div {
         display: flex;
         align-items: flex-start;
-        gap: 8px;
+        gap: 5px;
         &:nth-child(1) {
           p {
             color: #1d2b21;
@@ -56,7 +53,7 @@
         padding: 16px 24px;
         justify-content: center;
         align-items: center;
-        gap: 10px;
+        gap: 6px;
         border: none;
         border-radius: 12px;
         background: #7dff85;
@@ -85,7 +82,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 4px;
+      gap: 2px;
       align-self: stretch;
       margin-top: 32px;
       p {
@@ -102,7 +99,7 @@
         padding: 2px 8px;
         justify-content: center;
         align-items: center;
-        gap: 4px;
+        gap: 2px;
         border-radius: 8px;
         background: transparent;
         border: none;
@@ -144,7 +141,7 @@
     display: inline-flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 20px;
+    gap: 10px;
     h2 {
       color: Natural-natural-1, #fff;
       font-family: Raleway;
@@ -252,7 +249,7 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 9px;
+      gap: 2px;
       .label {
         color: #1d2b21;
         font-family: Raleway;
@@ -264,7 +261,7 @@
       }
       input {
         display: flex;
-        padding: 16px 40px 16px 18px;
+        padding: 12px 40px 12px 18px;
         align-items: center;
         gap: 4px;
         align-self: stretch;
@@ -285,7 +282,7 @@
   .inputEmail {
     display: flex;
     flex-direction: column;
-    gap: 9px;
+    gap: 3px;
     position: relative;
     width: 100%;
     .label {
@@ -313,7 +310,7 @@
     display: flex;
     padding: 16px 45px 16px 24px;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
     align-self: stretch;
     border-radius: 12px;
     width: 100%;
@@ -361,7 +358,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .buttonElement {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
   font-size: 16px;
   font-family: Raleway;
   font-weight: 700;

@@ -10,11 +10,7 @@ import checkCrossIcon from "../../../assets/img/checkCrossIcon.svg";
 import arrowRightBlack from "../../../assets/img/arrowRightBlack.svg";
 import passwordEye from "../../../assets/img/passwordEye.svg";
 import ActivateAccount from "../../activateAccount/ActivateAccount";
-import HeroImg from "../../smallComponents/heroImg/HeroImg";
 import { Link } from "react-router-dom";
-import logo from "../../../assets/img/voistLogo.svg";
-import Footer from "../../footer/Footer";
-
 
 const CreateAccount = ({ ChangeComponents }) => {
   const [showPassword1, setShowPassword1] = useState(false);
@@ -35,38 +31,38 @@ const CreateAccount = ({ ChangeComponents }) => {
   const handleSubmit = async (e) => {
     e && e.preventDefault();
 
-    if (data.password !== data.confirm_password) {
-      setPasswordError("Passwords do not match");
-      return;
-    }
+    // if (data.password !== data.confirm_password) {
+    //   setPasswordError("Passwords do not match");
+    //   return;
+    // }
 
-    try {
-      const response = await fetch(
-        "http://46.101.152.88:8000/api/v1/auth/register/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            first_name: data.first_name,
-            last_name: data.last_name,
-            email: data.email,
-            password: data.password,
-          }),
-        }
-      );
+    // try {
+    //   const response = await fetch(
+    //     "http://46.101.152.88:8000/api/v1/auth/register/",
+    //     {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify({
+    //         first_name: data.first_name,
+    //         last_name: data.last_name,
+    //         email: data.email,
+    //         password: data.password,
+    //       }),
+    //     }
+    //   );
 
-      if (!response.ok) {
-        throw new Error(`HTTP error: Status ${response.status}`);
-      }
+    //   if (!response.ok) {
+    //     throw new Error(`HTTP error: Status ${response.status}`);
+    //   }
 
-      console.log("Data sent successfully!");
-      setActivationCodeSent(true);
-      setShowActivation(true);
-    } catch (error) {
-      console.error("Error sending data:", error.message);
-    }
+    //   console.log("Data sent successfully!");
+    //   setActivationCodeSent(true);
+    //   setShowActivation(true);
+    // } catch (error) {
+    //   console.error("Error sending data:", error.message);
+    // }
   };
 
   const isValidEmail = (email) => {
@@ -109,10 +105,9 @@ const CreateAccount = ({ ChangeComponents }) => {
 
   return (
     <section className={styles.container}>
-      <div className={`${styles.loginContainer} ${styles.scrollbar}`}>
-        <div className={styles.logo}>
-          <img src={logo} alt="error" />
-        </div>
+      <div className={styles.loginContainer}>
+        <div className={styles.headline}></div>
+
         <div className={styles.main}>
           <div className={styles.accountСreation}>
             <h1>
@@ -120,7 +115,7 @@ const CreateAccount = ({ ChangeComponents }) => {
             </h1>
             <div className={styles.accountAlready}>
               <p>Already have an account?</p>
-              <Link to="/login" className={styles.loginButton}>
+              <Link to={"/authentication/login"} className={styles.loginButton}>
                 Login here
               </Link>
               <img src={img} alt="smile" loading="lazy" />
@@ -138,7 +133,6 @@ const CreateAccount = ({ ChangeComponents }) => {
                   <input
                     type="text"
                     placeholder="Enter name"
-                    id="EnterName"
                     value={data.first_name}
                     name="first_name"
                     onChange={handleChange}
@@ -154,7 +148,6 @@ const CreateAccount = ({ ChangeComponents }) => {
                 <div className={styles.inputShow}>
                   <input
                     type="text"
-                    id="EnterSurname"
                     placeholder="Enter surname"
                     value={data.last_name}
                     name="last_name"
@@ -176,7 +169,6 @@ const CreateAccount = ({ ChangeComponents }) => {
                 <input
                   type="email"
                   placeholder="example@company.com"
-                  id="EnterEmail"
                   value={data.email}
                   name="email"
                   onChange={handleChange}
@@ -194,8 +186,6 @@ const CreateAccount = ({ ChangeComponents }) => {
                 <div className={styles.inputShow}>
                   <input
                     type={showPassword1 ? "text" : "password"}
-                    placeholder="Enter password"
-                    id="password"
                     value={data.password}
                     name="password"
                     onChange={handleChange}
@@ -214,7 +204,6 @@ const CreateAccount = ({ ChangeComponents }) => {
                 <div className={styles.inputShow}>
                   <input
                     type={showPassword2 ? "text" : "password"}
-                    id="confirmPassword"
                     placeholder="Enter password"
                     value={data.confirm_password}
                     name="confirm_password"
@@ -257,9 +246,9 @@ const CreateAccount = ({ ChangeComponents }) => {
               </button>
             </div>
           </form>
-          <Footer />
         </div>
-        {showActivation && activationCodeSent && (
+
+        {showActivation && (
           <ActivateAccount
             data={data}
             backToLogin={() => setShowActivation(false)}
@@ -267,7 +256,6 @@ const CreateAccount = ({ ChangeComponents }) => {
           />
         )}
       </div>
-      <HeroImg />
     </section>
   );
 };
