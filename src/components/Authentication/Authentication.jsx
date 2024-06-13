@@ -1,4 +1,4 @@
-import { Outlet, useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Footer from "../footer/Footer";
 import HeroImg from "../smallComponents/heroImg/HeroImg";
 import styles from "./authentication.module.scss";

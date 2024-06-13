@@ -28,7 +28,7 @@ function CodeBelow({ sendInformation }) {
       <div className={styles.accountСreation}>
         <h1>Enter the code below</h1>
         <div className={styles.accountAlready}>
-          <p>OTP code sent to {sendInformation.input} </p>
+          <p>OTP code sent to {sendInformation.input}</p>
           <img src={img} className={styles.smile} alt="smile" loading="lazy" />
         </div>
         <form className={styles.formContainer} onSubmit={handleSubmit}>
@@ -43,7 +43,7 @@ function CodeBelow({ sendInformation }) {
           </div>
           <div className={styles.buttonElement}>
             <button type="submit" className={styles.sendButton}>
-              Verify code
+              Continue
               <img src={arrowRightBlack} alt="Error" />
             </button>
             <Link to={"/authentication/login"} className={styles.cancelButton}>

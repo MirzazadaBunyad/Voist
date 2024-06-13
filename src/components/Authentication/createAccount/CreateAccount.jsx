@@ -187,6 +187,7 @@ const CreateAccount = ({ ChangeComponents }) => {
                   <input
                     type={showPassword1 ? "text" : "password"}
                     value={data.password}
+                    placeholder="Enter password"
                     name="password"
                     onChange={handleChange}
                   />

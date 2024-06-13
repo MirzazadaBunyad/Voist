@@ -5,6 +5,7 @@ import inputMessageIcon from "../../../../assets/img/inputMessageIcon.svg";
 import arrowRightBlack from "../../../../assets/img/arrowRightBlack.svg";
 import styles from "../sendToEmail/sendToEmail.module.scss";
 import BackButton from "../../../../components/smallComponents/backButton/BackButton";
+import Footer from "../../../footer/Footer";
 
 function SendToEmail({
   setSendInformation,
@@ -54,54 +55,56 @@ function SendToEmail({
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.backButton}>
-        <BackButton link={"/authentication/login"} />
-      </div>
-
-      <div className={styles.accountСreation}>
-        <h1>Let’s change the password</h1>
-        <div className={styles.accountAlready}>
-          <p>Enter your email first</p>
-          <img
-            src={img}
-            className={styles.smile}
-            alt="smile"
-            loading="lazy"
-          />
+    <>
+      <div className={styles.container}>
+        <div className={styles.backButton}>
+          <BackButton link={"/authentication/login"} />
         </div>
-        <form className={styles.formContainer} onSubmit={handleSubmit}>
-          <div>
-            <label className={styles.loginLabel} htmlFor="email">
-              Email*
-            </label>
-            <input
-              className={styles.LoginInput}
-              type="email"
-              id="email"
-              name="email"
-              placeholder="example@company.com"
-              value={inputValue}
-              onChange={handleChange}
-            />
+
+        <div className={styles.accountСreation}>
+          <h1>Let’s change the password</h1>
+          <div className={styles.accountAlready}>
+            <p>Enter your email first</p>
             <img
-              className={styles.inputMessageIcon}
-              src={inputMessageIcon}
-              alt="Error"
+              src={img}
+              className={styles.smile}
+              alt="smile"
+              loading="lazy"
             />
           </div>
-          <div className={styles.buttonElement}>
-            <button type="submit" className={styles.sendButton}>
-              Send code
-              <img src={arrowRightBlack} alt="Error" />
-            </button>
-            <Link to={"/authentication/login"} className={styles.cancelButton}>
-              Cancel
-            </Link>
-          </div>
-        </form>
+          <form className={styles.formContainer} onSubmit={handleSubmit}>
+            <div>
+              <label className={styles.loginLabel} htmlFor="email">
+                Email*
+              </label>
+              <input
+                className={styles.LoginInput}
+                type="email"
+                id="email"
+                name="email"
+                placeholder="example@company.com"
+                value={inputValue}
+                onChange={handleChange}
+              />
+              <img
+                className={styles.inputMessageIcon}
+                src={inputMessageIcon}
+                alt="Error"
+              />
+            </div>
+            <div className={styles.buttonElement}>
+              <button type="submit" className={styles.sendButton}>
+                Send code
+                <img src={arrowRightBlack} alt="Error" />
+              </button>
+              <Link to={"/authentication/login"} className={styles.cancelButton}>
+                Cancel
+              </Link>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
