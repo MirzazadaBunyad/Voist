@@ -6,10 +6,10 @@ import CreateAccount from "./components/Authentication/createAccount/CreateAccou
 import VoiceRecorder from "./components/voiceRecorder/VoiceRecorder";
 import Dashboard from "./pages/Dashboard";
 import OnBoarding from "./components/onBoarding/OnBoarding";
-import ForgotPassword from "./components/Authentication/forgotPassword/Forgotpassword";
 import { axiosInterceptorHandle } from "./utils/AxiosInterceptor";
 import { useEffect } from "react";
 import Login from "./components/Authentication/login/Login";
+import ForgotPassword from "./components/Authentication/forgotPassword/Forgotpassword";
 import SendToEmail from "./components/Authentication/forgotPassword/sendToEmail/SendToEmail";
 import CodeBelow from "./components/Authentication/forgotPassword/codeBelow/CodeBolow";
 import NewPassword from "./components/Authentication/forgotPassword/newPassword/NewPassword";
@@ -44,17 +44,17 @@ function App() {
       <Route path="/voicerecorder" element={<VoiceRecorder />} />
       <Route path="/dashboard/*" element={<Dashboard />} />
       <Route path="/onboarding" element={<OnBoarding />} />
-      
+
       <Route path="/authentication" element={<Authentication />}>
         <Route path="login" element={<Login/>} />
         <Route path="createaccount" element={<CreateAccount />} />
-        </Route>
-        <Route path="/authentication/forgotPassword" element={<ForgotPassword/>} >
-          <Route path="sendtoemail" element={<SendToEmail/>} />
-          <Route path="codebelow" element={<CodeBelow/>} />
-          <Route path="newpassword" element={<NewPassword/>} />
-          <Route path="successfully" element={<Successfully/>} />
-        </Route>
+      </Route>
+      <Route path="/forgotPassword" element={<ForgotPassword />} >
+        <Route path="sendtoemail" element={<SendToEmail />} />
+        <Route path="codebelow" element={<CodeBelow />} />
+        <Route path="newpassword" element={<NewPassword />} />
+        <Route path="successfully" element={<Successfully />} />
+      </Route>
     </Routes>
   );
 }

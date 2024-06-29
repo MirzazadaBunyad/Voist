@@ -1,17 +1,18 @@
 import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import img from "../../../../assets/img/smile.gif";
 import inputMessageIcon from "../../../../assets/img/inputMessageIcon.svg";
 import arrowRightBlack from "../../../../assets/img/arrowRightBlack.svg";
 import styles from "../sendToEmail/sendToEmail.module.scss";
 import BackButton from "../../../../components/smallComponents/backButton/BackButton";
+import Footer from "../../../footer/Footer";
 
 function SendToEmail({
-  handleClickToLogin,
-  handleClickToChange,
   setSendInformation,
   initialData,
 }) {
   const [inputValue, setInputValue] = useState(initialData.email || "");
+  const navigate = useNavigate();
 
   useEffect(() => {
     setInputValue(initialData.email || "");
@@ -25,12 +26,11 @@ function SendToEmail({
     e.preventDefault();
     if (inputValue.trim() !== "") {
       setSendInformation({ ...initialData, email: inputValue });
-      handleClickToChange();
       console.log(initialData);
 
       try {
         const response = await fetch(
-          "https://safaraliyev.live/api/user/password_reset/",
+          // "https://safaraliyev.live/api/user/password_reset/",
           {
             method: "POST",
             headers: {
@@ -47,23 +47,18 @@ function SendToEmail({
         }
 
         console.log("Data sent successfully!");
-        // setActivationCodeSent(true);
-        // setShowActivation(true);
+        navigate("/forgotPassword/CodeBelow");
       } catch (error) {
         console.error("Error sending data:", error.message);
       }
     }
   };
 
-  const handleCancel = (e) => {
-    e.preventDefault();
-    handleClickToLogin();
-  };
   return (
     <>
       <div className={styles.container}>
-        <div onClick={handleCancel} className={styles.backButton}>
-          <BackButton />
+        <div className={styles.backButton}>
+          <BackButton link={"/authentication/login"} />
         </div>
 
         <div className={styles.accountСreation}>
@@ -102,13 +97,9 @@ function SendToEmail({
                 Send code
                 <img src={arrowRightBlack} alt="Error" />
               </button>
-
-              <button
-                onClick={handleClickToLogin}
-                className={styles.cancelButton}
-              >
+              <Link to={"/authentication/login"} className={styles.cancelButton}>
                 Cancel
-              </button>
+              </Link>
             </div>
           </form>
         </div>
