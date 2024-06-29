@@ -8,7 +8,7 @@ import CreateAccount from "./createAccount/CreateAccount";
 import Login from "./login/Login"; 
 import checkCrossIcon from "../../assets/img/checkCrossIcon.svg";
 import logo from "../../assets/img/voistLogo.svg";
-import ForgotPassword from "./forgotPassword/Forgotpassword";
+import './animations.scss';
 function Authentication() { 
   const location = useLocation(); // получаем текущий location
 
@@ -50,7 +50,7 @@ function Authentication() {
     </main> 
       </div> 
       <div className={`${styles.right__side} heroImg`}> 
-        <HeroImg /> 
+        <HeroImg/> 
       </div> 
     </div> 
 

@@ -256,7 +256,6 @@ const CreateAccount = ({ ChangeComponents }) => {
           />
         )}
       </div>
-      <HeroImg />
     </section>
   );
 };
