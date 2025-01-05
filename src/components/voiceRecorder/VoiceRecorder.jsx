@@ -24,8 +24,8 @@ function VoiceRecorder() {
     const REGION = 'eu-central-1';
 
     AWS.config.update({
-        accessKeyId: 'AKIAVRUVQ2YQAXCVNRLE',
-        secretAccessKey: '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'
+        accessKeyId: 'xxx',
+        secretAccessKey: 'xxx'
     });
 
     const myBucket = new AWS.S3({
